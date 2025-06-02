@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.uploadMultipleToCloudinary = exports.uploadToCloudinary = void 0;
+exports.deleteFromCloudinary = exports.uploadMultipleToCloudinary = exports.uploadToCloudinary = void 0;
 const cloudinary_1 = require("cloudinary");
 const stream_1 = require("stream");
 const env_1 = __importDefault(require("./env"));
@@ -47,3 +47,12 @@ const uploadMultipleToCloudinary = (fileBuffers, folder) => __awaiter(void 0, vo
     return Promise.all(fileBuffers.map((buffer) => (0, exports.uploadToCloudinary)(buffer, folder)));
 });
 exports.uploadMultipleToCloudinary = uploadMultipleToCloudinary;
+const deleteFromCloudinary = (publicId) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield cloudinary_1.v2.uploader.destroy(publicId);
+    }
+    catch (error) {
+        throw new Error(`Failed to delete image with public_id ${publicId} from Cloudinary`);
+    }
+});
+exports.deleteFromCloudinary = deleteFromCloudinary;

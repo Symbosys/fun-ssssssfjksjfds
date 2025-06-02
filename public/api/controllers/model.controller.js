@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetById = exports.getAllModels = exports.createModel = void 0;
+exports.deleteModel = exports.GetById = exports.getAllModels = exports.createModel = void 0;
 const config_1 = require("../../config");
 const cloudinary_1 = require("../../config/cloudinary");
 const middlewares_1 = require("../middlewares");
@@ -155,4 +155,36 @@ exports.GetById = (0, middlewares_1.asyncHandler)((req, res) => __awaiter(void 0
     if (!models)
         throw new utils_1.ErrorResponse("Employee not found", types_1.statusCode.Not_Found);
     return (0, response_util_1.SuccessResponse)(res, "Employee fetched successfully", models, types_1.statusCode.OK);
+}));
+exports.deleteModel = (0, middlewares_1.asyncHandler)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = Number(req.params); // Extract model ID from request params
+    // Fetch the model with associated images
+    const model = yield config_1.prisma.model.findUnique({
+        where: { id },
+        include: { image: true },
+    });
+    // Check if model exists
+    if (!model) {
+        return next(new utils_1.ErrorResponse('Model not found', types_1.statusCode.Not_Found));
+    }
+    // Delete images from Cloudinary if they exist
+    if (model.image && model.image.length > 0) {
+        const publicIds = model.image.map((img) => {
+            if (typeof img.image === 'object' && img.image !== null && 'public_id' in img.image) {
+                return img.image.public_id;
+            }
+            return undefined;
+        }).filter((id) => id !== undefined);
+        try {
+            yield Promise.all(publicIds.map((publicId) => (0, cloudinary_1.deleteFromCloudinary)(publicId)));
+        }
+        catch (error) {
+            return next(new utils_1.ErrorResponse('Failed to delete images from Cloudinary', types_1.statusCode.Internal_Server_Error));
+        }
+    }
+    // Delete the model (Prisma will handle cascading deletes for related records if configured)
+    yield config_1.prisma.model.delete({
+        where: { id },
+    });
+    return (0, response_util_1.SuccessResponse)(res, 'Model deleted successfully', null, types_1.statusCode.OK);
 }));
