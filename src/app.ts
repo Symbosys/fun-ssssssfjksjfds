@@ -40,7 +40,7 @@ app.use(
 
 // 🩺 Health check endpoint
 app.get("/", (_, res) => {
-    res.send("Hello World");
+    res.send("Hello Worlds");
 });
 
 app.use("/api/v1/admin", adminRouter);
