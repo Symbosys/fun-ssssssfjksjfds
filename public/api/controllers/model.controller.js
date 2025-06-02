@@ -88,10 +88,13 @@ exports.getAllModels = (0, middlewares_1.asyncHandler)((req, res, next) => __awa
         ? req.query.isActive === "true"
         : undefined;
     const skip = (page - 1) * limit;
+    let models = [];
+    let totalModel = 0;
+    // Step 1: Try to fetch models based on search query and filters
     const where = {};
     if (searchQuery) {
         where.OR = [
-            { name: { contains: searchQuery } },
+            { name: { contains: searchQuery } }, // Case-insensitive search
             { email: { contains: searchQuery } },
             { phone: { contains: searchQuery } },
             { age: { contains: searchQuery } },
@@ -100,24 +103,46 @@ exports.getAllModels = (0, middlewares_1.asyncHandler)((req, res, next) => __awa
     if (isActive !== undefined) {
         where.isActive = isActive;
     }
-    const [models, totalModel] = yield Promise.all([
+    // Fetch models based on the search query and filters
+    [models, totalModel] = yield Promise.all([
         config_1.prisma.model.findMany({
             where,
             skip,
             take: limit,
             orderBy: { createdAt: "desc" },
-            include: {
-                image: true,
-            }
+            include: { image: true },
         }),
-        config_1.prisma.model.count({ where })
+        config_1.prisma.model.count({ where }),
     ]);
-    return (0, response_util_1.SuccessResponse)(res, "model fetched successfully", {
+    // Step 2: If no models are found or search query is provided but doesn't match, fetch random models
+    if (models.length === 0) {
+        // Fetch total count of all models (ignoring search query and isActive filter for random selection)
+        const totalAvailableModels = yield config_1.prisma.model.count();
+        if (totalAvailableModels > 0) {
+            // Generate random skip value to fetch random models
+            const randomSkip = Math.floor(Math.random() * totalAvailableModels);
+            const adjustedSkip = Math.max(0, Math.min(randomSkip, totalAvailableModels - limit));
+            // Fetch random models without the search query filter
+            models = yield config_1.prisma.model.findMany({
+                skip: adjustedSkip,
+                take: limit,
+                orderBy: { id: "asc" }, // Order by ID to ensure consistent randomization
+                include: { image: true },
+            });
+            // Update totalModel to reflect all available models since we're returning random ones
+            totalModel = totalAvailableModels;
+        }
+    }
+    // Step 3: Shuffle the models array to ensure randomness in the response
+    if (models.length > 0) {
+        models = models.sort(() => Math.random() - 0.5); // Fisher-Yates shuffle alternative
+    }
+    return (0, response_util_1.SuccessResponse)(res, "Models fetched successfully", {
         models,
         currentPage: page,
         totalPages: Math.ceil(totalModel / limit),
         totalModel,
-        count: models.length
+        count: models.length,
     }, types_1.statusCode.OK);
 }));
 exports.GetById = (0, middlewares_1.asyncHandler)((req, res) => __awaiter(void 0, void 0, void 0, function* () {

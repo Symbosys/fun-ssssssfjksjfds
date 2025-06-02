@@ -104,53 +104,81 @@ export const createModel = asyncHandler(async (req, res, next) => {
   
 
 export const getAllModels = asyncHandler(async (req, res, next) => {
-    const page = Number(req.query.page) || 1;
-    const limit = Number(req.query.limit) || 10;
-    const searchQuery = req.query.searchQuery || "";
-    const isActive =
-      req.query.isActive === "true" || req.query.isActive === "false"
-        ? req.query.isActive === "true"
-            : undefined;
-    
-    const skip = (page - 1) * limit;
-    const where: any = {};
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+  const searchQuery = req.query.searchQuery || "";
+  const isActive =
+    req.query.isActive === "true" || req.query.isActive === "false"
+      ? req.query.isActive === "true"
+      : undefined;
 
-    if(searchQuery) {
-        where.OR = [
-            { name: { contains: searchQuery} },
-            { email: { contains: searchQuery } },
-            { phone: { contains: searchQuery } },
-            {age: { contains: searchQuery } },
-        ];
-    }
+  const skip = (page - 1) * limit;
+  let models = [];
+  let totalModel = 0;
 
-    if (isActive !== undefined) {
-        where.isActive = isActive;
-    }
+  // Step 1: Try to fetch models based on search query and filters
+  const where: any = {};
+  if (searchQuery) {
+      where.OR = [
+          { name: { contains: searchQuery} }, // Case-insensitive search
+          { email: { contains: searchQuery } },
+          { phone: { contains: searchQuery } },
+          { age: { contains: searchQuery} },
+      ];
+  }
 
-    const [models, totalModel] = await Promise.all([
-        prisma.model.findMany({
-            where,
-            skip,
-            take: limit,
-            orderBy: { createdAt: "desc" },
-            include: {
-                image: true,
-            }
-        }),
-        prisma.model.count({ where })
-    ])
+  if (isActive !== undefined) {
+      where.isActive = isActive;
+  }
 
-  
-    return SuccessResponse(res, "model fetched successfully", {
-        models,
-        currentPage: page,
-        totalPages: Math.ceil(totalModel / limit),
-        totalModel,
-        count: models.length
-    }, statusCode.OK)
-    
-})
+  // Fetch models based on the search query and filters
+  [models, totalModel] = await Promise.all([
+      prisma.model.findMany({
+          where,
+          skip,
+          take: limit,
+          orderBy: { createdAt: "desc" },
+          include: { image: true },
+      }),
+      prisma.model.count({ where }),
+  ]);
+
+  // Step 2: If no models are found or search query is provided but doesn't match, fetch random models
+  if (models.length === 0) {
+      // Fetch total count of all models (ignoring search query and isActive filter for random selection)
+      const totalAvailableModels = await prisma.model.count();
+
+      if (totalAvailableModels > 0) {
+          // Generate random skip value to fetch random models
+          const randomSkip = Math.floor(Math.random() * totalAvailableModels);
+          const adjustedSkip = Math.max(0, Math.min(randomSkip, totalAvailableModels - limit));
+
+          // Fetch random models without the search query filter
+          models = await prisma.model.findMany({
+              skip: adjustedSkip,
+              take: limit,
+              orderBy: { id: "asc" }, // Order by ID to ensure consistent randomization
+              include: { image: true },
+          });
+
+          // Update totalModel to reflect all available models since we're returning random ones
+          totalModel = totalAvailableModels;
+      }
+  }
+
+  // Step 3: Shuffle the models array to ensure randomness in the response
+  if (models.length > 0) {
+      models = models.sort(() => Math.random() - 0.5); // Fisher-Yates shuffle alternative
+  }
+
+  return SuccessResponse(res, "Models fetched successfully", {
+      models,
+      currentPage: page,
+      totalPages: Math.ceil(totalModel / limit),
+      totalModel,
+      count: models.length,
+  }, statusCode.OK);
+});
 
 export const GetById = asyncHandler(
     async (req, res) => {

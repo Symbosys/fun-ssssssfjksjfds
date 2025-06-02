@@ -35,7 +35,7 @@ app.use((0, express_rate_limit_1.rateLimit)({
 }));
 // 🩺 Health check endpoint
 app.get("/", (_, res) => {
-    res.send("Hello World");
+    res.send("Hello Worlds");
 });
 app.use("/api/v1/admin", routes_1.adminRouter);
 app.use("/api/v1/model", routes_1.modelRouter);
