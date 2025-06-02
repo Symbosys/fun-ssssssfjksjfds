@@ -50,7 +50,7 @@ model ModelImage {
   id      Int   @id @default(autoincrement())
   image   Json?
   modelId Int
-  model   Model @relation(fields: [modelId], references: [id])
+  model   Model @relation(fields: [modelId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

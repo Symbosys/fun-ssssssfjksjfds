@@ -201,7 +201,9 @@ export const GetById = asyncHandler(
   
 
 export const deleteModel = asyncHandler(async (req, res, next) => {
-  const id  = Number(req.params); // Extract model ID from request params
+  const id = Number(req.params.id);
+  if (!id || isNaN(id))
+    throw new ErrorResponse("Invalid id", statusCode.Bad_Request)
 
   // Fetch the model with associated images
   const model = await prisma.model.findUnique({
@@ -209,34 +211,47 @@ export const deleteModel = asyncHandler(async (req, res, next) => {
     include: { image: true },
   });
 
-  // Check if model exists
   if (!model) {
     return next(new ErrorResponse('Model not found', statusCode.Not_Found));
   }
 
   // Delete images from Cloudinary if they exist
   if (model.image && model.image.length > 0) {
-    const publicIds = model.image.map((img) => {
-      if (typeof img.image === 'object' && img.image !== null && 'public_id' in img.image) {
-        return img.image.public_id;
+    const publicIds: string[] = [];
+    
+    // Safely extract public_ids
+    for (const img of model.image) {
+      try {
+        // Ensure img.image is an object with public_id
+        if (img.image && typeof img.image === 'object' && 'public_id' in img.image) {
+          const publicId = (img.image as { public_id: string }).public_id;
+          if (typeof publicId === 'string') {
+            publicIds.push(publicId);
+          }
+        }
+      } catch (error) {
+        console.error('Error processing image:', img, error);
       }
-      return undefined;
-    }).filter((id): id is string => id !== undefined);
-    try {
-      await Promise.all(
-        publicIds.map((publicId) => deleteFromCloudinary(publicId))
-      );
-    } catch (error) {
-      return next(
-        new ErrorResponse(
-          'Failed to delete images from Cloudinary',
-          statusCode.Internal_Server_Error
-        )
-      );
+    }
+
+    // If we have public_ids, delete them from Cloudinary
+    if (publicIds.length > 0) {
+      try {
+        await Promise.all(
+          publicIds.map((publicId) => deleteFromCloudinary(publicId))
+        );
+      } catch (error) {
+        return next(
+          new ErrorResponse(
+            'Failed to delete images from Cloudinary',
+            statusCode.Internal_Server_Error
+          )
+        );
+      }
     }
   }
 
-  // Delete the model (Prisma will handle cascading deletes for related records if configured)
+  // Delete the model
   await prisma.model.delete({
     where: { id },
   });
