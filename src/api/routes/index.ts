@@ -1,0 +1,10 @@
+import adminRouter from "./admin.routes"
+import modelRouter from "./model.routes"
+import hotelRoute from "./hotel.routes"
+
+
+export {
+    adminRouter,
+    modelRouter,
+    hotelRoute
+}

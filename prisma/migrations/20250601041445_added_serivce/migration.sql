@@ -1,0 +1,21 @@
+-- AlterTable
+ALTER TABLE `hotels` ADD COLUMN `isActive` BOOLEAN NOT NULL DEFAULT true;
+
+-- AlterTable
+ALTER TABLE `model` ADD COLUMN `address` VARCHAR(191) NULL,
+    ADD COLUMN `isActive` BOOLEAN NOT NULL DEFAULT true,
+    ADD COLUMN `whatsapp` VARCHAR(191) NULL;
+
+-- CreateTable
+CREATE TABLE `Service` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NOT NULL,
+    `modelId` INTEGER NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `Service` ADD CONSTRAINT `Service_modelId_fkey` FOREIGN KEY (`modelId`) REFERENCES `Model`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

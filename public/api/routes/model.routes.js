@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const middlewares_1 = require("../middlewares");
+const controllers_1 = require("../controllers");
+const modelRouter = (0, express_1.Router)();
+modelRouter.post("/create", middlewares_1.multerUpload.array("image"), controllers_1.ModelController.createModel);
+modelRouter.get("/all", controllers_1.ModelController.getAllModels);
+modelRouter.get("/:id", controllers_1.ModelController.GetById);
+exports.default = modelRouter;

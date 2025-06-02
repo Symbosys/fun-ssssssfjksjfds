@@ -1,0 +1,12 @@
+import { Router } from "express";
+import { multerUpload } from "../middlewares";
+import { ModelController } from "../controllers";
+
+const modelRouter = Router();
+
+modelRouter.post("/create", multerUpload.array("image"), ModelController.createModel);
+modelRouter.get("/all", ModelController.getAllModels);
+
+modelRouter.get("/:id", ModelController.GetById);
+
+export default modelRouter;
