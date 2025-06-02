@@ -50,3 +50,11 @@ export const uploadMultipleToCloudinary = async (
 ): Promise<{ public_id: string; secure_url: string }[]> => {
   return Promise.all(fileBuffers.map((buffer) => uploadToCloudinary(buffer, folder)));
 };
+
+export const deleteFromCloudinary = async (publicId: string): Promise<void> => {
+  try {
+    await cloudinary.uploader.destroy(publicId);
+  } catch (error) {
+    throw new Error(`Failed to delete image with public_id ${publicId} from Cloudinary`);
+  }
+};

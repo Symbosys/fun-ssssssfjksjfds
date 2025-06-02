@@ -1,5 +1,5 @@
 import { ENV, prisma } from "../../config";
-import { uploadMultipleToCloudinary } from "../../config/cloudinary";
+import { deleteFromCloudinary, uploadMultipleToCloudinary } from "../../config/cloudinary";
 import { asyncHandler } from "../middlewares";
 import { statusCode } from "../types/types";
 import { ErrorResponse } from "../utils";
@@ -200,4 +200,46 @@ export const GetById = asyncHandler(
 );
   
 
-  
+export const deleteModel = asyncHandler(async (req, res, next) => {
+  const id  = Number(req.params); // Extract model ID from request params
+
+  // Fetch the model with associated images
+  const model = await prisma.model.findUnique({
+    where: { id },
+    include: { image: true },
+  });
+
+  // Check if model exists
+  if (!model) {
+    return next(new ErrorResponse('Model not found', statusCode.Not_Found));
+  }
+
+  // Delete images from Cloudinary if they exist
+  if (model.image && model.image.length > 0) {
+    const publicIds = model.image.map((img) => {
+      if (typeof img.image === 'object' && img.image !== null && 'public_id' in img.image) {
+        return img.image.public_id;
+      }
+      return undefined;
+    }).filter((id): id is string => id !== undefined);
+    try {
+      await Promise.all(
+        publicIds.map((publicId) => deleteFromCloudinary(publicId))
+      );
+    } catch (error) {
+      return next(
+        new ErrorResponse(
+          'Failed to delete images from Cloudinary',
+          statusCode.Internal_Server_Error
+        )
+      );
+    }
+  }
+
+  // Delete the model (Prisma will handle cascading deletes for related records if configured)
+  await prisma.model.delete({
+    where: { id },
+  });
+
+  return SuccessResponse(res, 'Model deleted successfully', null, statusCode.OK);
+});
