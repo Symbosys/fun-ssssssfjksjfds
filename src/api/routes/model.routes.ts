@@ -8,6 +8,7 @@ modelRouter.post("/create", multerUpload.array("image"), ModelController.createM
 modelRouter.get("/all", ModelController.getAllModels);
 
 modelRouter.get("/:id", ModelController.GetById);
+modelRouter.put("/:id", multerUpload.array("image"), ModelController.updateModel);
 modelRouter.delete("/:id", ModelController.deleteModel);
 
 export default modelRouter;

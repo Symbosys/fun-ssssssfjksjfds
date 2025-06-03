@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteModel = exports.GetById = exports.getAllModels = exports.createModel = void 0;
+exports.updateModel = exports.deleteModel = exports.GetById = exports.getAllModels = exports.createModel = void 0;
 const config_1 = require("../../config");
 const cloudinary_1 = require("../../config/cloudinary");
 const middlewares_1 = require("../middlewares");
@@ -153,8 +153,8 @@ exports.GetById = (0, middlewares_1.asyncHandler)((req, res) => __awaiter(void 0
             image: true,
         } });
     if (!models)
-        throw new utils_1.ErrorResponse("Employee not found", types_1.statusCode.Not_Found);
-    return (0, response_util_1.SuccessResponse)(res, "Employee fetched successfully", models, types_1.statusCode.OK);
+        throw new utils_1.ErrorResponse("model not found", types_1.statusCode.Not_Found);
+    return (0, response_util_1.SuccessResponse)(res, "model fetched successfully", models, types_1.statusCode.OK);
 }));
 exports.deleteModel = (0, middlewares_1.asyncHandler)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const id = Number(req.params.id);
@@ -201,4 +201,99 @@ exports.deleteModel = (0, middlewares_1.asyncHandler)((req, res, next) => __awai
         where: { id },
     });
     return (0, response_util_1.SuccessResponse)(res, 'Model deleted successfully', null, types_1.statusCode.OK);
+}));
+exports.updateModel = (0, middlewares_1.asyncHandler)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = Number(req.params.id);
+    if (!id || isNaN(id)) {
+        throw new utils_1.ErrorResponse("Invalid id", types_1.statusCode.Bad_Request);
+    }
+    // Validate request body against modelCreateSchema
+    const validData = model_validator_1.modelCreateSchema.partial().parse(req.body);
+    // Fetch the existing model
+    const existingModel = yield config_1.prisma.model.findUnique({
+        where: { id },
+        include: { image: true },
+    });
+    if (!existingModel) {
+        return next(new utils_1.ErrorResponse('Model not found', types_1.statusCode.Not_Found));
+    }
+    // Check for email/phone conflicts with other models
+    const [existingModelByEmail, existingModelByPhone] = yield Promise.all([
+        validData.email
+            ? config_1.prisma.model.findFirst({
+                where: { email: validData.email, id: { not: id } },
+            })
+            : null,
+        validData.phone
+            ? config_1.prisma.model.findFirst({
+                where: { phone: validData.phone, id: { not: id } },
+            })
+            : null,
+    ]);
+    if (existingModelByEmail) {
+        return next(new utils_1.ErrorResponse('Model with this email already exists', types_1.statusCode.Bad_Request));
+    }
+    if (existingModelByPhone) {
+        return next(new utils_1.ErrorResponse('Model with this phone already exists', types_1.statusCode.Bad_Request));
+    }
+    // Handle image updates
+    let uploadedImages = [];
+    let imagesToDelete = [];
+    if (req.files && Array.isArray(req.files) && req.files.length > 0) {
+        // Validate file types and sizes
+        for (const file of req.files) {
+            if (!file.mimetype.startsWith('image/')) {
+                return next(new utils_1.ErrorResponse(`File ${file.originalname} is not a valid image (only JPEG, PNG, WEBP allowed)`, types_1.statusCode.Bad_Request));
+            }
+            if (file.size > 5 * 1024 * 1024) {
+                return next(new utils_1.ErrorResponse(`File ${file.originalname} exceeds 5MB limit`, types_1.statusCode.Bad_Request));
+            }
+        }
+        // Collect public_ids of existing images to delete
+        if (existingModel.image && existingModel.image.length > 0) {
+            for (const img of existingModel.image) {
+                try {
+                    if (img.image && typeof img.image === 'object' && 'public_id' in img.image) {
+                        const publicId = img.image.public_id;
+                        if (typeof publicId === 'string') {
+                            imagesToDelete.push(publicId);
+                        }
+                    }
+                }
+                catch (error) {
+                    console.error('Error processing image for deletion:', img, error);
+                }
+            }
+        }
+        // Upload new images to Cloudinary
+        uploadedImages = yield (0, cloudinary_1.uploadMultipleToCloudinary)(req.files.map((file) => file.buffer), 'model_images');
+        // Delete old images from Cloudinary
+        if (imagesToDelete.length > 0) {
+            try {
+                yield Promise.all(imagesToDelete.map((publicId) => (0, cloudinary_1.deleteFromCloudinary)(publicId)));
+            }
+            catch (error) {
+                return next(new utils_1.ErrorResponse('Failed to delete old images from Cloudinary', types_1.statusCode.Internal_Server_Error));
+            }
+        }
+    }
+    // Update the model
+    const updatedModel = yield config_1.prisma.model.update({
+        where: { id },
+        data: Object.assign({ name: validData.name, age: validData.age, email: validData.email, phone: validData.phone, whatsapp: validData.whatsapp, address: validData.address, isActive: validData.isActive, service: validData.service }, (uploadedImages.length > 0 && {
+            image: {
+                deleteMany: {}, // Delete all existing images
+                create: uploadedImages.map((img) => ({
+                    image: {
+                        public_id: img.public_id,
+                        secure_url: img.secure_url,
+                    },
+                })),
+            },
+        })),
+        include: {
+            image: true,
+        },
+    });
+    return (0, response_util_1.SuccessResponse)(res, 'Model updated successfully', updatedModel, types_1.statusCode.OK);
 }));

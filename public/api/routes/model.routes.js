@@ -7,5 +7,6 @@ const modelRouter = (0, express_1.Router)();
 modelRouter.post("/create", middlewares_1.multerUpload.array("image"), controllers_1.ModelController.createModel);
 modelRouter.get("/all", controllers_1.ModelController.getAllModels);
 modelRouter.get("/:id", controllers_1.ModelController.GetById);
+modelRouter.put("/:id", middlewares_1.multerUpload.array("image"), controllers_1.ModelController.updateModel);
 modelRouter.delete("/:id", controllers_1.ModelController.deleteModel);
 exports.default = modelRouter;
