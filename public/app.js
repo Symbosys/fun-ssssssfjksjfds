@@ -35,11 +35,12 @@ app.use((0, express_rate_limit_1.rateLimit)({
 }));
 // 🩺 Health check endpoint
 app.get("/", (_, res) => {
-    res.send("Hello Worlds");
+    res.send("Hello Worldsaa");
 });
 app.use("/api/v1/admin", routes_1.adminRouter);
 app.use("/api/v1/model", routes_1.modelRouter);
 app.use("/api/v1/hotel", routes_1.hotelRoute);
+app.use("/api/v1/apply-escort", routes_1.applicationRoutes);
 // ⚠️ Global error handling middleware
 app.use(middlewares_1.errorMiddleware);
 // 📤 Export the configured app

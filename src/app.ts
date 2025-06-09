@@ -6,7 +6,7 @@ import { rateLimit } from "express-rate-limit";
 import { errorMiddleware } from "./api/middlewares";
 import { ENV } from "./config";
 import path from "path"
-import { adminRouter, hotelRoute, modelRouter } from "./api/routes";
+import { adminRouter, applicationRoutes, hotelRoute, modelRouter } from "./api/routes";
 
 
 // 🚀 Initialize express application
@@ -40,12 +40,13 @@ app.use(
 
 // 🩺 Health check endpoint
 app.get("/", (_, res) => {
-    res.send("Hello Worlds");
+    res.send("Hello Worldsaa");
 });
 
 app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/model", modelRouter);
 app.use("/api/v1/hotel", hotelRoute);
+app.use("/api/v1/apply-escort", applicationRoutes)
 
   
 // ⚠️ Global error handling middleware

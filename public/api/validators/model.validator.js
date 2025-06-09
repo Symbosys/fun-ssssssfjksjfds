@@ -69,6 +69,7 @@ exports.modelCreateSchema = zod_1.z.object({
         .refine((val) => !val || /^\+?[1-9]\d{1,14}$/.test(val), {
         message: 'WhatsApp number must be a valid international format',
     }),
+    gender: zod_1.z.enum(["MALE", "FEMALE"]).default("FEMALE"),
     address: zod_1.z
         .string({ invalid_type_error: 'Address must be a string' })
         .max(500, { message: 'Address must be at most 500 characters' })

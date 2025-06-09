@@ -136,6 +136,7 @@ exports.Prisma.ModelScalarFieldEnum = {
   age: 'age',
   email: 'email',
   phone: 'phone',
+  gender: 'gender',
   whatsapp: 'whatsapp',
   address: 'address',
   service: 'service',
@@ -161,6 +162,19 @@ exports.Prisma.HotelsScalarFieldEnum = {
   state: 'state',
   country: 'country',
   isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ApplicantsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  age: 'age',
+  email: 'email',
+  phone: 'phone',
+  whatsapp: 'whatsapp',
+  gender: 'gender',
+  address: 'address',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -215,16 +229,31 @@ exports.Prisma.HotelsOrderByRelevanceFieldEnum = {
   state: 'state',
   country: 'country'
 };
+
+exports.Prisma.ApplicantsOrderByRelevanceFieldEnum = {
+  name: 'name',
+  age: 'age',
+  email: 'email',
+  phone: 'phone',
+  whatsapp: 'whatsapp',
+  address: 'address'
+};
 exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN',
   SUB_ADMIN: 'SUB_ADMIN'
+};
+
+exports.Gender = exports.$Enums.Gender = {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE'
 };
 
 exports.Prisma.ModelName = {
   Admin: 'Admin',
   Model: 'Model',
   ModelImage: 'ModelImage',
-  Hotels: 'Hotels'
+  Hotels: 'Hotels',
+  Applicants: 'Applicants'
 };
 
 /**
