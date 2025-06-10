@@ -5,7 +5,7 @@ const hotelRoute = Router();
 
 hotelRoute.post("/create", HotelController.createHotel);
 hotelRoute.get("/all", HotelController.getAllHotels);
-
+hotelRoute.get("/nearby", HotelController.getHotelsByLocation);
 hotelRoute.get("/:id", HotelController.getHotelById);
 hotelRoute.delete("/:id", HotelController.deleteHotelById);
 
