@@ -111,3 +111,98 @@ export const deleteHotelById = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse("Hotel not found", statusCode.Not_Found));
   return SuccessResponse(res, "Hotel deleted Successfully");
 });
+
+
+export const getHotelsByLocation = asyncHandler(async (req, res, next) => {
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+
+  // Extract location fields from query parameters
+  const {
+    locality,
+    sublocality,
+    administrative_area_level_1,
+    administrative_area_level_2,
+    administrative_area_level_3,
+    country,
+    neighborhood,
+    route,
+  } = req.query;
+
+  // Validate that at least one location field is provided
+  if (
+    !locality &&
+    !sublocality &&
+    !administrative_area_level_1 &&
+    !administrative_area_level_2 &&
+    !administrative_area_level_3 &&
+    !country &&
+    !neighborhood &&
+    !route
+  ) {
+    return next(
+      new ErrorResponse(
+        "At least one location field is required",
+        statusCode.Bad_Request
+      )
+    );
+  }
+
+  const skip = (page - 1) * limit;
+  const where: any = {
+    isActive: true, // Only fetch active hotels
+    OR: [],
+  };
+
+  // Build the OR conditions for matching location fields
+  const locationFields = [
+    locality,
+    sublocality,
+    administrative_area_level_1,
+    administrative_area_level_2,
+    administrative_area_level_3,
+    country, 
+    neighborhood,
+    route,
+  ].filter(Boolean); // Filter out undefined/null/empty values
+
+  locationFields.forEach((field: any) => {
+    where.OR.push(
+      { location: { contains: field} },
+      { city: { contains: field} },
+      { state: { contains: field} },
+      { country: { contains: field} }
+    );
+  });
+
+  // If no location fields were provided, remove the OR condition
+  if (where.OR.length === 0) {
+    delete where.OR;
+  }
+
+  const [hotels, totalHotels] = await Promise.all([
+    prisma.hotels.findMany({
+      where,
+      skip,
+      take: limit,
+      orderBy: { createdAt: "desc" },
+    }),
+    prisma.hotels.count({
+      where,
+    }),
+  ]);
+
+  return SuccessResponse(
+    res,
+    "Hotels fetched successfully",
+    {
+      hotels,
+      currentPage: page,
+      totalPages: Math.ceil(totalHotels / limit),
+      totalHotels,
+      count: hotels.length,
+    },
+    statusCode.OK
+  );
+
+});
