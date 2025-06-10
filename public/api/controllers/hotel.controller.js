@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteHotelById = exports.getHotelById = exports.getAllHotels = exports.createHotel = void 0;
+exports.getHotelsByLocation = exports.deleteHotelById = exports.getHotelById = exports.getAllHotels = exports.createHotel = void 0;
 const config_1 = require("../../config");
 const middlewares_1 = require("../middlewares");
 const types_1 = require("../types/types");
@@ -91,4 +91,62 @@ exports.deleteHotelById = (0, middlewares_1.asyncHandler)((req, res, next) => __
     if (!deletedHotel)
         return next(new utils_1.ErrorResponse("Hotel not found", types_1.statusCode.Not_Found));
     return (0, response_util_1.SuccessResponse)(res, "Hotel deleted Successfully");
+}));
+exports.getHotelsByLocation = (0, middlewares_1.asyncHandler)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 10;
+    // Extract location fields from query parameters
+    const { locality, sublocality, administrative_area_level_1, administrative_area_level_2, administrative_area_level_3, country, neighborhood, route, } = req.query;
+    // Validate that at least one location field is provided
+    if (!locality &&
+        !sublocality &&
+        !administrative_area_level_1 &&
+        !administrative_area_level_2 &&
+        !administrative_area_level_3 &&
+        !country &&
+        !neighborhood &&
+        !route) {
+        return next(new utils_1.ErrorResponse("At least one location field is required", types_1.statusCode.Bad_Request));
+    }
+    const skip = (page - 1) * limit;
+    const where = {
+        isActive: true, // Only fetch active hotels
+        OR: [],
+    };
+    // Build the OR conditions for matching location fields
+    const locationFields = [
+        locality,
+        sublocality,
+        administrative_area_level_1,
+        administrative_area_level_2,
+        administrative_area_level_3,
+        country,
+        neighborhood,
+        route,
+    ].filter(Boolean); // Filter out undefined/null/empty values
+    locationFields.forEach((field) => {
+        where.OR.push({ location: { contains: field } }, { city: { contains: field } }, { state: { contains: field } }, { country: { contains: field } });
+    });
+    // If no location fields were provided, remove the OR condition
+    if (where.OR.length === 0) {
+        delete where.OR;
+    }
+    const [hotels, totalHotels] = yield Promise.all([
+        config_1.prisma.hotels.findMany({
+            where,
+            skip,
+            take: limit,
+            orderBy: { createdAt: "desc" },
+        }),
+        config_1.prisma.hotels.count({
+            where,
+        }),
+    ]);
+    return (0, response_util_1.SuccessResponse)(res, "Hotels fetched successfully", {
+        hotels,
+        currentPage: page,
+        totalPages: Math.ceil(totalHotels / limit),
+        totalHotels,
+        count: hotels.length,
+    }, types_1.statusCode.OK);
 }));
