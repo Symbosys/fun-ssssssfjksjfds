@@ -121,24 +121,16 @@ export const getHotelsByLocation = asyncHandler(async (req, res, next) => {
   const {
     locality,
     sublocality,
-    administrative_area_level_1,
-    administrative_area_level_2,
     administrative_area_level_3,
-    country,
     neighborhood,
-    route,
   } = req.query;
 
   // Validate that at least one location field is provided
   if (
     !locality &&
     !sublocality &&
-    !administrative_area_level_1 &&
-    !administrative_area_level_2 &&
     !administrative_area_level_3 &&
-    !country &&
-    !neighborhood &&
-    !route
+    !neighborhood
   ) {
     return next(
       new ErrorResponse(
@@ -158,12 +150,8 @@ export const getHotelsByLocation = asyncHandler(async (req, res, next) => {
   const locationFields = [
     locality,
     sublocality,
-    administrative_area_level_1,
-    administrative_area_level_2,
     administrative_area_level_3,
-    country, 
     neighborhood,
-    route,
   ].filter(Boolean); // Filter out undefined/null/empty values
 
   locationFields.forEach((field: any) => {
