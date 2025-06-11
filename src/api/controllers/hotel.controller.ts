@@ -159,7 +159,6 @@ export const getHotelsByLocation = asyncHandler(async (req, res, next) => {
       { location: { contains: field} },
       { city: { contains: field} },
       { state: { contains: field} },
-      { country: { contains: field} }
     );
   });
 
