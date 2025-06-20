@@ -15,7 +15,7 @@ export const bookingValidator = z.object({
         .trim().nonempty("Location is required"),
     phone: z.string()
         .min(10, 'Phone number must be at least 10 digits')
-        .max(10, 'Phone number cannot exceed 15 digits').nonempty("Phone number is required"),
+        .max(10, 'Phone number cannot exceed 10 digits').nonempty("Phone number is required"),
     date: z.string(),
     time: z.string(),
     modelId: z.string({required_error: "Model is required"}).nonempty("Model is required"),
