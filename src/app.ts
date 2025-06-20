@@ -6,7 +6,7 @@ import { rateLimit } from "express-rate-limit";
 import { errorMiddleware } from "./api/middlewares";
 import { ENV } from "./config";
 import path from "path"
-import { adminRouter, applicationRoutes, hotelRoute, modelRouter } from "./api/routes";
+import { adminRouter, applicationRoutes, BookingRoute, hotelRoute, modelRouter } from "./api/routes";
 
 
 // 🚀 Initialize express application
@@ -40,13 +40,17 @@ app.use(
 
 // 🩺 Health check endpoint
 app.get("/", (_, res) => {
-    res.send("Hello Worldsaa");
+    res.json({
+      message: "Server is up and running",
+      data: ENV.USER_EMAIL
+    });
 });
 
 app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/model", modelRouter);
 app.use("/api/v1/hotel", hotelRoute);
-app.use("/api/v1/apply-escort", applicationRoutes)
+app.use("/api/v1/apply-escort", applicationRoutes);
+app.use("/api/v1/booking", BookingRoute)
 
   
 // ⚠️ Global error handling middleware

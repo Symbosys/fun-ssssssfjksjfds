@@ -96,16 +96,12 @@ exports.getHotelsByLocation = (0, middlewares_1.asyncHandler)((req, res, next) =
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 10;
     // Extract location fields from query parameters
-    const { locality, sublocality, administrative_area_level_1, administrative_area_level_2, administrative_area_level_3, country, neighborhood, route, } = req.query;
+    const { locality, sublocality, administrative_area_level_3, neighborhood, } = req.query;
     // Validate that at least one location field is provided
     if (!locality &&
         !sublocality &&
-        !administrative_area_level_1 &&
-        !administrative_area_level_2 &&
         !administrative_area_level_3 &&
-        !country &&
-        !neighborhood &&
-        !route) {
+        !neighborhood) {
         return next(new utils_1.ErrorResponse("At least one location field is required", types_1.statusCode.Bad_Request));
     }
     const skip = (page - 1) * limit;
@@ -117,15 +113,11 @@ exports.getHotelsByLocation = (0, middlewares_1.asyncHandler)((req, res, next) =
     const locationFields = [
         locality,
         sublocality,
-        administrative_area_level_1,
-        administrative_area_level_2,
         administrative_area_level_3,
-        country,
         neighborhood,
-        route,
     ].filter(Boolean); // Filter out undefined/null/empty values
     locationFields.forEach((field) => {
-        where.OR.push({ location: { contains: field } }, { city: { contains: field } }, { state: { contains: field } }, { country: { contains: field } });
+        where.OR.push({ location: { contains: field } }, { city: { contains: field } }, { state: { contains: field } });
     });
     // If no location fields were provided, remove the OR condition
     if (where.OR.length === 0) {

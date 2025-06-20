@@ -1,10 +1,13 @@
 import { ZodError } from "zod";
 import AdminValidator, {AdminType} from "./admin.validator";
+import { bookingValidator, BookingType } from "./booking.validator";
 
 export {
   zodError,
   AdminValidator,
-  AdminType
+  AdminType,
+  bookingValidator,
+  BookingType,
 };
 
 const zodError = (error: ZodError) => {

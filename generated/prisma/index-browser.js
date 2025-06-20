@@ -140,6 +140,7 @@ exports.Prisma.ModelScalarFieldEnum = {
   whatsapp: 'whatsapp',
   address: 'address',
   service: 'service',
+  description: 'description',
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -179,6 +180,20 @@ exports.Prisma.ApplicantsScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.BookingScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  userLocation: 'userLocation',
+  phone: 'phone',
+  date: 'date',
+  time: 'time',
+  modelId: 'modelId',
+  hotelName: 'hotelName',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -207,7 +222,8 @@ exports.Prisma.ModelOrderByRelevanceFieldEnum = {
   phone: 'phone',
   whatsapp: 'whatsapp',
   address: 'address',
-  service: 'service'
+  service: 'service',
+  description: 'description'
 };
 
 exports.Prisma.JsonNullValueFilter = {
@@ -238,6 +254,16 @@ exports.Prisma.ApplicantsOrderByRelevanceFieldEnum = {
   whatsapp: 'whatsapp',
   address: 'address'
 };
+
+exports.Prisma.BookingOrderByRelevanceFieldEnum = {
+  name: 'name',
+  email: 'email',
+  userLocation: 'userLocation',
+  phone: 'phone',
+  date: 'date',
+  time: 'time',
+  hotelName: 'hotelName'
+};
 exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN',
   SUB_ADMIN: 'SUB_ADMIN'
@@ -253,7 +279,8 @@ exports.Prisma.ModelName = {
   Model: 'Model',
   ModelImage: 'ModelImage',
   Hotels: 'Hotels',
-  Applicants: 'Applicants'
+  Applicants: 'Applicants',
+  Booking: 'Booking'
 };
 
 /**

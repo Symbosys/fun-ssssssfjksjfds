@@ -31,17 +31,20 @@ enum Role {
 }
 
 model Model {
-  id       Int          @id @default(autoincrement())
-  name     String
-  age      String
-  email    String?      @unique
-  phone    String?      @unique
-  gender   Gender       @default(FEMALE)
-  image    ModelImage[]
-  whatsapp String?
-  address  String?
-  service  String?
-  isActive Boolean      @default(true)
+  id          Int          @id @default(autoincrement())
+  name        String
+  age         String
+  email       String?      @unique
+  phone       String?      @unique
+  gender      Gender       @default(FEMALE)
+  image       ModelImage[]
+  whatsapp    String?
+  address     String?
+  service     String?
+  description String?
+  isActive    Boolean      @default(true)
+
+  booking Booking[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -87,6 +90,22 @@ model Applicants {
   whatsapp String?
   gender   Gender  @default(MALE)
   address  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Booking {
+  id           Int     @id @default(autoincrement())
+  name         String
+  email        String
+  userLocation String
+  phone        String
+  date         String
+  time         String
+  modelId      Int
+  hotelName    String?
+  model        Model   @relation(fields: [modelId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
