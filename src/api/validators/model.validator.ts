@@ -102,7 +102,12 @@ export const modelCreateSchema = z.object(
       .string({ required_error: "Description is required" })
       .min(1, { message: "Description cannot be empty" })
       .max(500, { message: "Description must be at most 500 characters" }),
+      height: z
+      .string().optional(),
+     weight: z
+      .string().optional(),
   },
+ 
   {
     invalid_type_error: "Model must be an object",
     required_error: "Model data is required",

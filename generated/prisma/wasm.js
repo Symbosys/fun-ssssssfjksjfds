@@ -141,6 +141,8 @@ exports.Prisma.ModelScalarFieldEnum = {
   address: 'address',
   service: 'service',
   description: 'description',
+  weight: 'weight',
+  height: 'height',
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -150,19 +152,6 @@ exports.Prisma.ModelImageScalarFieldEnum = {
   id: 'id',
   image: 'image',
   modelId: 'modelId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.HotelsScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  location: 'location',
-  description: 'description',
-  city: 'city',
-  state: 'state',
-  country: 'country',
-  isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -223,7 +212,9 @@ exports.Prisma.ModelOrderByRelevanceFieldEnum = {
   whatsapp: 'whatsapp',
   address: 'address',
   service: 'service',
-  description: 'description'
+  description: 'description',
+  weight: 'weight',
+  height: 'height'
 };
 
 exports.Prisma.JsonNullValueFilter = {
@@ -235,15 +226,6 @@ exports.Prisma.JsonNullValueFilter = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
-};
-
-exports.Prisma.HotelsOrderByRelevanceFieldEnum = {
-  name: 'name',
-  location: 'location',
-  description: 'description',
-  city: 'city',
-  state: 'state',
-  country: 'country'
 };
 
 exports.Prisma.ApplicantsOrderByRelevanceFieldEnum = {
@@ -278,7 +260,6 @@ exports.Prisma.ModelName = {
   Admin: 'Admin',
   Model: 'Model',
   ModelImage: 'ModelImage',
-  Hotels: 'Hotels',
   Applicants: 'Applicants',
   Booking: 'Booking'
 };
