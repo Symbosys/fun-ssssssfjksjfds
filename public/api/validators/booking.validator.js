@@ -17,7 +17,7 @@ exports.bookingValidator = zod_1.z.object({
         .trim().nonempty("Location is required"),
     phone: zod_1.z.string()
         .min(10, 'Phone number must be at least 10 digits')
-        .max(10, 'Phone number cannot exceed 15 digits').nonempty("Phone number is required"),
+        .max(10, 'Phone number cannot exceed 10 digits').nonempty("Phone number is required"),
     date: zod_1.z.string(),
     time: zod_1.z.string(),
     modelId: zod_1.z.string({ required_error: "Model is required" }).nonempty("Model is required"),

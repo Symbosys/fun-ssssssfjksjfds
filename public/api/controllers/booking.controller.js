@@ -13,7 +13,6 @@ exports.deleteBooking = exports.getBookingById = exports.getALlBookings = export
 const config_1 = require("../../config");
 const middlewares_1 = require("../middlewares");
 const types_1 = require("../types/types");
-const mailer_1 = require("../utils/mailer");
 const response_util_1 = require("../utils/response.util");
 const validators_1 = require("../validators");
 exports.createBooking = (0, middlewares_1.asyncHandler)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -29,7 +28,6 @@ exports.createBooking = (0, middlewares_1.asyncHandler)((req, res, next) => __aw
     const booking = yield config_1.prisma.booking.create({
         data: Object.assign(Object.assign({}, validData), { modelId: Number(validData.modelId) }),
     });
-    yield (0, mailer_1.sendEmail)("amitkumaryadav62029@gmail.com", "success response", "hellow guys");
     return (0, response_util_1.SuccessResponse)(res, "Booking created successfully", booking, types_1.statusCode.Created);
 }));
 exports.getALlBookings = (0, middlewares_1.asyncHandler)((req, res) => __awaiter(void 0, void 0, void 0, function* () {

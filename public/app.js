@@ -3,15 +3,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const cors_1 = __importDefault(require("cors"));
 const express_1 = __importDefault(require("express"));
+const express_rate_limit_1 = require("express-rate-limit");
 const helmet_1 = __importDefault(require("helmet"));
 const morgan_1 = __importDefault(require("morgan"));
-const cors_1 = __importDefault(require("cors"));
-const express_rate_limit_1 = require("express-rate-limit");
-const middlewares_1 = require("./api/middlewares");
-const config_1 = require("./config");
 const path_1 = __importDefault(require("path"));
+const middlewares_1 = require("./api/middlewares");
 const routes_1 = require("./api/routes");
+const config_1 = require("./config");
 // 🚀 Initialize express application
 const app = (0, express_1.default)();
 // 🛡️ Security and utility middlewares
@@ -43,7 +43,6 @@ app.get("/", (_, res) => {
 });
 app.use("/api/v1/admin", routes_1.adminRouter);
 app.use("/api/v1/model", routes_1.modelRouter);
-app.use("/api/v1/hotel", routes_1.hotelRoute);
 app.use("/api/v1/apply-escort", routes_1.applicationRoutes);
 app.use("/api/v1/booking", routes_1.BookingRoute);
 // ⚠️ Global error handling middleware

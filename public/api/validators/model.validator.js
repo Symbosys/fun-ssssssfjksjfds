@@ -91,6 +91,10 @@ exports.modelCreateSchema = zod_1.z.object({
         .string({ required_error: "Description is required" })
         .min(1, { message: "Description cannot be empty" })
         .max(500, { message: "Description must be at most 500 characters" }),
+    height: zod_1.z
+        .string().optional(),
+    weight: zod_1.z
+        .string().optional(),
 }, {
     invalid_type_error: "Model must be an object",
     required_error: "Model data is required",

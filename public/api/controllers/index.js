@@ -33,13 +33,11 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BookingController = exports.ApplicationController = exports.HotelController = exports.ModelController = exports.AdminController = void 0;
+exports.BookingController = exports.ApplicationController = exports.ModelController = exports.AdminController = void 0;
 const AdminController = __importStar(require("./admin.controller"));
 exports.AdminController = AdminController;
 const ModelController = __importStar(require("./model.controller"));
 exports.ModelController = ModelController;
-const HotelController = __importStar(require("./hotel.controller"));
-exports.HotelController = HotelController;
 const ApplicationController = __importStar(require("./application.controller"));
 exports.ApplicationController = ApplicationController;
 const BookingController = __importStar(require("./booking.controller"));

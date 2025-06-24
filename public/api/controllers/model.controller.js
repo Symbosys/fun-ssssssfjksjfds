@@ -280,7 +280,7 @@ exports.updateModel = (0, middlewares_1.asyncHandler)((req, res, next) => __awai
     // Update the model
     const updatedModel = yield config_1.prisma.model.update({
         where: { id },
-        data: Object.assign({ name: validData.name, age: validData.age, email: validData.email, phone: validData.phone, whatsapp: validData.whatsapp, address: validData.address, isActive: validData.isActive, service: validData.service }, (uploadedImages.length > 0 && {
+        data: Object.assign({ name: validData.name, age: validData.age, email: validData.email, phone: validData.phone, whatsapp: validData.whatsapp, address: validData.address, isActive: validData.isActive, service: validData.service, height: validData.height, weight: validData.weight }, (uploadedImages.length > 0 && {
             image: {
                 deleteMany: {}, // Delete all existing images
                 create: uploadedImages.map((img) => ({
