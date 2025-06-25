@@ -39,6 +39,7 @@ export const getALlBookings = asyncHandler(async (req, res) => {
   const limit = Number(req.query.limit) || 10;
   const searchQuery = (req.query.searchQuery as string) || "";
   const modelId = Number(req.query.modelId) || undefined;
+  const date = req.query.date ? new Date(req.query.date as string) : undefined;
   const skip = (page - 1) * limit;
 
   const where: any = {};
@@ -53,6 +54,15 @@ export const getALlBookings = asyncHandler(async (req, res) => {
 
   if (modelId) {
     where.modelId = modelId;
+  }
+
+  if (date && !isNaN(date.getTime())) {
+    const startDate = new Date(`${date}T00:00:00.000Z`);
+    const endDate = new Date(`${date}T23:59:59.999Z`);
+    where.createdAt = {
+      gte: startDate,
+      lte: endDate,
+    };
   }
 
   const [booking, totalBooking] = await Promise.all([

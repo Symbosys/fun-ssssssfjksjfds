@@ -35,6 +35,7 @@ exports.getALlBookings = (0, middlewares_1.asyncHandler)((req, res) => __awaiter
     const limit = Number(req.query.limit) || 10;
     const searchQuery = req.query.searchQuery || "";
     const modelId = Number(req.query.modelId) || undefined;
+    const date = req.query.date ? new Date(req.query.date) : undefined;
     const skip = (page - 1) * limit;
     const where = {};
     if (searchQuery) {
@@ -46,6 +47,14 @@ exports.getALlBookings = (0, middlewares_1.asyncHandler)((req, res) => __awaiter
     }
     if (modelId) {
         where.modelId = modelId;
+    }
+    if (date && !isNaN(date.getTime())) {
+        const startDate = new Date(`${date}T00:00:00.000Z`);
+        const endDate = new Date(`${date}T23:59:59.999Z`);
+        where.createdAt = {
+            gte: startDate,
+            lte: endDate,
+        };
     }
     const [booking, totalBooking] = yield Promise.all([
         config_1.prisma.booking.findMany({
