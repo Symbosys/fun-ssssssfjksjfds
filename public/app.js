@@ -45,6 +45,7 @@ app.use("/api/v1/admin", routes_1.adminRouter);
 app.use("/api/v1/model", routes_1.modelRouter);
 app.use("/api/v1/apply-escort", routes_1.applicationRoutes);
 app.use("/api/v1/booking", routes_1.BookingRoute);
+app.use("/api/v1/setting", routes_1.SettingRoute);
 // ⚠️ Global error handling middleware
 app.use(middlewares_1.errorMiddleware);
 // 📤 Export the configured app

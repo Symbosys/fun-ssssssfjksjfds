@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateModel = exports.deleteModel = exports.GetById = exports.getAllModels = exports.createModel = void 0;
+exports.updateAllModelsContact = exports.updateModel = exports.deleteModel = exports.GetById = exports.getAllModels = exports.createModel = void 0;
 const config_1 = require("../../config");
 const cloudinary_1 = require("../../config/cloudinary");
 const middlewares_1 = require("../middlewares");
@@ -296,4 +296,50 @@ exports.updateModel = (0, middlewares_1.asyncHandler)((req, res, next) => __awai
         },
     });
     return (0, response_util_1.SuccessResponse)(res, 'Model updated successfully', updatedModel, types_1.statusCode.OK);
+}));
+exports.updateAllModelsContact = (0, middlewares_1.asyncHandler)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    // Validate that at least one field is provided
+    const { email, phone, whatsapp } = req.body;
+    if (email === undefined && phone === undefined && whatsapp === undefined) {
+        return next(new utils_1.ErrorResponse("At least one of email, phone, or whatsapp must be provided", types_1.statusCode.Bad_Request));
+    }
+    // Check for email/phone conflicts with existing models
+    const [existingModelByEmail, existingModelByPhone] = yield Promise.all([
+        email !== undefined
+            ? config_1.prisma.model.findFirst({
+                where: { email },
+            })
+            : null,
+        phone !== undefined
+            ? config_1.prisma.model.findFirst({
+                where: { phone },
+            })
+            : null,
+    ]);
+    if (existingModelByEmail && email !== null) {
+        return next(new utils_1.ErrorResponse("The provided email is already in use", types_1.statusCode.Bad_Request));
+    }
+    if (existingModelByPhone && phone !== null) {
+        return next(new utils_1.ErrorResponse("The provided phone is already in use", types_1.statusCode.Bad_Request));
+    }
+    // Prepare update data, only include provided fields
+    const updateData = {};
+    if (email !== undefined)
+        updateData.email = email || null; // Allow explicit null to clear email
+    if (phone !== undefined)
+        updateData.phone = phone || null; // Allow explicit null to clear phone
+    if (whatsapp !== undefined)
+        updateData.whatsapp = whatsapp || null; // Allow explicit null to clear whatsapp
+    // Count total models before updating
+    const totalModels = yield config_1.prisma.model.count();
+    if (totalModels === 0) {
+        return next(new utils_1.ErrorResponse("No models found to update", types_1.statusCode.Not_Found));
+    }
+    // Update all models
+    yield config_1.prisma.model.updateMany({
+        data: updateData,
+    });
+    return (0, response_util_1.SuccessResponse)(res, `Contact details updated successfully for ${totalModels} model(s)`, {
+        count: totalModels
+    }, types_1.statusCode.OK);
 }));
