@@ -5,7 +5,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { errorMiddleware } from "./api/middlewares";
-import { adminRouter, applicationRoutes, BookingRoute, modelRouter } from "./api/routes";
+import { adminRouter, applicationRoutes, BookingRoute, modelRouter, SettingRoute } from "./api/routes";
 import { ENV } from "./config";
 
 
@@ -49,7 +49,8 @@ app.get("/", (_, res) => {
 app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/model", modelRouter);
 app.use("/api/v1/apply-escort", applicationRoutes);
-app.use("/api/v1/booking", BookingRoute)
+app.use("/api/v1/booking", BookingRoute);
+app.use("/api/v1/setting", SettingRoute)
 
   
 // ⚠️ Global error handling middleware

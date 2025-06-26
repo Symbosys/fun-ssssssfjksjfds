@@ -407,3 +407,81 @@ export const updateModel = asyncHandler(async (req, res, next) => {
     statusCode.OK
   );
 });
+
+
+export const updateAllModelsContact = asyncHandler(async (req, res, next) => {
+  // Validate that at least one field is provided
+  const { email, phone, whatsapp } = req.body;
+  if (email === undefined && phone === undefined && whatsapp === undefined) {
+    return next(
+      new ErrorResponse(
+        "At least one of email, phone, or whatsapp must be provided",
+        statusCode.Bad_Request
+      )
+    );
+  }
+
+  // Check for email/phone conflicts with existing models
+  const [existingModelByEmail, existingModelByPhone] = await Promise.all([
+    email !== undefined
+      ? prisma.model.findFirst({
+          where: { email },
+        })
+      : null,
+    phone !== undefined
+      ? prisma.model.findFirst({
+          where: { phone },
+        })
+      : null,
+  ]);
+
+  if (existingModelByEmail && email !== null) {
+    return next(
+      new ErrorResponse(
+        "The provided email is already in use",
+        statusCode.Bad_Request
+      )
+    );
+  }
+  if (existingModelByPhone && phone !== null) {
+    return next(
+      new ErrorResponse(
+        "The provided phone is already in use",
+        statusCode.Bad_Request
+      )
+    );
+  }
+
+  // Prepare update data, only include provided fields
+  const updateData: any = {};
+  if (email !== undefined) updateData.email = email || null; // Allow explicit null to clear email
+  if (phone !== undefined) updateData.phone = phone || null; // Allow explicit null to clear phone
+  if (whatsapp !== undefined) updateData.whatsapp = whatsapp || null; // Allow explicit null to clear whatsapp
+
+  // Count total models before updating
+  const totalModels = await prisma.model.count();
+
+  if (totalModels === 0) {
+    return next(
+      new ErrorResponse(
+        "No models found to update",
+        statusCode.Not_Found
+      )
+    );
+  }
+
+  // Update all models
+  await prisma.model.updateMany({
+    data: updateData,
+  });
+
+
+  return SuccessResponse(
+    res,
+    `Contact details updated successfully for ${totalModels} model(s)`,
+    {
+      count: totalModels
+    },
+    statusCode.OK
+  );
+});
