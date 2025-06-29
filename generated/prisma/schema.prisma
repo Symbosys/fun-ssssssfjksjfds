@@ -44,6 +44,7 @@ model Model {
   description String?
   weight      String?
   height      String?
+  price       String?
   isActive    Boolean      @default(true)
 
   booking Booking[]

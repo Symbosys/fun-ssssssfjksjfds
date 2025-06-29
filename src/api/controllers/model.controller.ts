@@ -78,6 +78,9 @@ export const createModel = asyncHandler(async (req, res, next) => {
         address: validData.address,
         isActive: validData.isActive,
         service: validData.service,
+        height: validData.height,
+        weight: validData.weight,
+        price: validData.price,
         image: uploadedImages.length > 0
           ? {
               create: uploadedImages.map((img) => ({
@@ -382,6 +385,7 @@ export const updateModel = asyncHandler(async (req, res, next) => {
       service: validData.service,
       height: validData.height,
       weight: validData.weight,
+      price: validData.price,
       // If new images were uploaded, delete old images and create new ones
       ...(uploadedImages.length > 0 && {
         image: {

@@ -95,6 +95,7 @@ exports.modelCreateSchema = zod_1.z.object({
         .string().optional(),
     weight: zod_1.z
         .string().optional(),
+    price: zod_1.z.string({ required_error: "price is required" }).nonempty("Price is required")
 }, {
     invalid_type_error: "Model must be an object",
     required_error: "Model data is required",

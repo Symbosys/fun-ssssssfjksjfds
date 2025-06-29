@@ -106,6 +106,7 @@ export const modelCreateSchema = z.object(
       .string().optional(),
      weight: z
       .string().optional(),
+      price: z.string({required_error: "price is required"}).nonempty("Price is required")
   },
  
   {
