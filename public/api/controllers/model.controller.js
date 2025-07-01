@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateContactDetails = exports.updateAllModelsContact = exports.updateModel = exports.deleteModel = exports.GetById = exports.getAllModels = exports.createModel = void 0;
+exports.getContactDetails = exports.updateContactDetails = exports.updateAllModelsContact = exports.updateModel = exports.deleteModel = exports.GetById = exports.getAllModels = exports.createModel = void 0;
 const config_1 = require("../../config");
 const cloudinary_1 = require("../../config/cloudinary");
 const middlewares_1 = require("../middlewares");
@@ -396,4 +396,11 @@ exports.updateContactDetails = (0, middlewares_1.asyncHandler)((req, res, next) 
         data: updateData,
     });
     return (0, response_util_1.SuccessResponse)(res, 'Contact details updated successfully', { contact: updatedContact }, types_1.statusCode.OK);
+}));
+exports.getContactDetails = (0, middlewares_1.asyncHandler)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const contact = yield config_1.prisma.contact.findFirst();
+    if (!contact) {
+        return next(new utils_1.ErrorResponse('Contact details not found', types_1.statusCode.Not_Found));
+    }
+    return (0, response_util_1.SuccessResponse)(res, 'Contact details fetched successfully', contact, types_1.statusCode.OK);
 }));

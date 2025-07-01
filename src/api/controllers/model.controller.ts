@@ -574,3 +574,24 @@ export const updateContactDetails = asyncHandler(async (req, res, next) => {
     statusCode.OK
   );
 });
+
+
+export const getContactDetails = asyncHandler(async (req, res, next) => {
+  const contact = await prisma.contact.findFirst();
+
+  if (!contact) {
+    return next(
+      new ErrorResponse(
+        'Contact details not found',
+        statusCode.Not_Found
+      )
+    );
+  }
+
+  return SuccessResponse(
+    res,
+    'Contact details fetched successfully',
+    contact ,
+    statusCode.OK
+  )
+})
