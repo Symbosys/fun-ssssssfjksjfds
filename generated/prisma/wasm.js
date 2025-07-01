@@ -184,6 +184,16 @@ exports.Prisma.BookingScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ContactScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  phone: 'phone',
+  whatsapp: 'whatsapp',
+  registrationFee: 'registrationFee',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -248,6 +258,13 @@ exports.Prisma.BookingOrderByRelevanceFieldEnum = {
   time: 'time',
   hotelName: 'hotelName'
 };
+
+exports.Prisma.ContactOrderByRelevanceFieldEnum = {
+  email: 'email',
+  phone: 'phone',
+  whatsapp: 'whatsapp',
+  registrationFee: 'registrationFee'
+};
 exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN',
   SUB_ADMIN: 'SUB_ADMIN'
@@ -263,7 +280,8 @@ exports.Prisma.ModelName = {
   Model: 'Model',
   ModelImage: 'ModelImage',
   Applicants: 'Applicants',
-  Booking: 'Booking'
+  Booking: 'Booking',
+  Contact: 'Contact'
 };
 
 /**

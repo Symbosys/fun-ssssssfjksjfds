@@ -97,3 +97,14 @@ model Booking {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Contact {
+  id              Int     @id @default(autoincrement())
+  email           String?
+  phone           String?
+  whatsapp        String?
+  registrationFee String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

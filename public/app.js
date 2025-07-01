@@ -20,7 +20,7 @@ app.use("/uploads", express_1.default.static(path_1.default.join(__dirname, "../
 app.use((0, helmet_1.default)());
 app.use((0, morgan_1.default)("dev"));
 app.use((0, cors_1.default)({
-    origin: "*",
+    origin: "http://127.0.0.1:3000/client",
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
 }));

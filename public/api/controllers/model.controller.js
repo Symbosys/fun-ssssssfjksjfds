@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateAllModelsContact = exports.updateModel = exports.deleteModel = exports.GetById = exports.getAllModels = exports.createModel = void 0;
+exports.updateContactDetails = exports.updateAllModelsContact = exports.updateModel = exports.deleteModel = exports.GetById = exports.getAllModels = exports.createModel = void 0;
 const config_1 = require("../../config");
 const cloudinary_1 = require("../../config/cloudinary");
 const middlewares_1 = require("../middlewares");
@@ -345,4 +345,55 @@ exports.updateAllModelsContact = (0, middlewares_1.asyncHandler)((req, res, next
     return (0, response_util_1.SuccessResponse)(res, `Contact details updated successfully for ${totalModels} model(s)`, {
         count: totalModels
     }, types_1.statusCode.OK);
+}));
+exports.updateContactDetails = (0, middlewares_1.asyncHandler)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email, phone, whatsapp, registrationFee } = req.body;
+    // Validate that at least one field is provided
+    if (email === undefined && phone === undefined && whatsapp === undefined && registrationFee === undefined) {
+        return next(new utils_1.ErrorResponse('At least one of email, phone, whatsapp, or registrationFee must be provided', types_1.statusCode.Bad_Request));
+    }
+    // Prepare update/create data, only include provided fields
+    const updateData = {};
+    if (email !== undefined)
+        updateData.email = email || null;
+    if (phone !== undefined)
+        updateData.phone = phone || null;
+    if (whatsapp !== undefined)
+        updateData.whatsapp = whatsapp || null;
+    if (registrationFee !== undefined)
+        updateData.registrationFee = registrationFee || null;
+    // Check for email/phone conflicts with existing contacts
+    const [existingContactByEmail, existingContactByPhone] = yield Promise.all([
+        email !== undefined
+            ? config_1.prisma.contact.findFirst({
+                where: { email },
+            })
+            : null,
+        phone !== undefined
+            ? config_1.prisma.contact.findFirst({
+                where: { phone },
+            })
+            : null,
+    ]);
+    if (existingContactByEmail && email !== null) {
+        return next(new utils_1.ErrorResponse('The provided email is already in use', types_1.statusCode.Bad_Request));
+    }
+    if (existingContactByPhone && phone !== null) {
+        return next(new utils_1.ErrorResponse('The provided phone is already in use', types_1.statusCode.Bad_Request));
+    }
+    // Check if a contact exists
+    const existingContact = yield config_1.prisma.contact.findFirst();
+    if (!existingContact) {
+        // Create new contact
+        const newContact = yield config_1.prisma.contact.create({
+            data: updateData,
+        });
+        return (0, response_util_1.SuccessResponse)(res, 'Contact created successfully', { contact: newContact }, types_1.statusCode.Created);
+    }
+    // Update existing contact
+    const updatedContact = yield config_1.prisma.contact.update({
+        where: { id: existingContact.id },
+        data: updateData,
+    });
+    return (0, response_util_1.SuccessResponse)(res, 'Contact details updated successfully', { contact: updatedContact }, types_1.statusCode.OK);
 }));

@@ -489,3 +489,88 @@ export const updateAllModelsContact = asyncHandler(async (req, res, next) => {
     statusCode.OK
   );
 });
+
+
+export const updateContactDetails = asyncHandler(async (req, res, next) => {
+  const { email, phone, whatsapp, registrationFee } = req.body;
+
+  // Validate that at least one field is provided
+  if (email === undefined && phone === undefined && whatsapp === undefined && registrationFee === undefined) {
+    return next(
+      new ErrorResponse(
+        'At least one of email, phone, whatsapp, or registrationFee must be provided',
+        statusCode.Bad_Request
+      )
+    );
+  }
+
+  // Prepare update/create data, only include provided fields
+  const updateData: any = {};
+  if (email !== undefined) updateData.email = email || null;
+  if (phone !== undefined) updateData.phone = phone || null;
+  if (whatsapp !== undefined) updateData.whatsapp = whatsapp || null;
+  if (registrationFee !== undefined) updateData.registrationFee = registrationFee || null;
+
+  // Check for email/phone conflicts with existing contacts
+  const [existingContactByEmail, existingContactByPhone] = await Promise.all([
+    email !== undefined
+      ? prisma.contact.findFirst({
+          where: { email },
+        })
+      : null,
+    phone !== undefined
+      ? prisma.contact.findFirst({
+          where: { phone },
+        })
+      : null,
+  ]);
+
+  if (existingContactByEmail && email !== null) {
+    return next(
+      new ErrorResponse(
+        'The provided email is already in use',
+        statusCode.Bad_Request
+      )
+    );
+  }
+  if (existingContactByPhone && phone !== null) {
+    return next(
+      new ErrorResponse(
+        'The provided phone is already in use',
+        statusCode.Bad_Request
+      )
+    );
+  }
+
+  // Check if a contact exists
+  const existingContact = await prisma.contact.findFirst();
+
+  if (!existingContact) {
+    // Create new contact
+    const newContact = await prisma.contact.create({
+      data: updateData,
+    });
+
+
+    return SuccessResponse(
+      res,
+      'Contact created successfully',
+      { contact: newContact },
+      statusCode.Created
+    );
+  }
+
+  // Update existing contact
+  const updatedContact = await prisma.contact.update({
+    where: { id: existingContact.id },
+    data: updateData,
+  });
+
+
+  return SuccessResponse(
+    res,
+    'Contact details updated successfully',
+    { contact: updatedContact },
+    statusCode.OK
+  );
+});
