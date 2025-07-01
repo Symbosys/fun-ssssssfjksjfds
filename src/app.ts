@@ -19,7 +19,7 @@ app.use(helmet());
 app.use(morgan("dev"));
 app.use(
   cors({
-    origin: "http://127.0.0.1:3000/client",
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
   })
