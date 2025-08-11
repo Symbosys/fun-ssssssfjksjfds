@@ -12,6 +12,7 @@ import { ENV } from "./config";
 // 🚀 Initialize express application
 const app = express();
 
+
 // 🛡️ Security and utility middlewares
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));

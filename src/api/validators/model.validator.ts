@@ -101,7 +101,7 @@ export const modelCreateSchema = z.object(
     description: z
       .string({ required_error: "Description is required" })
       .min(1, { message: "Description cannot be empty" })
-      .max(500, { message: "Description must be at most 500 characters" }),
+      .max(5000, { message: "Description must be at most 5000 characters" }),
       height: z
       .string().optional(),
      weight: z
