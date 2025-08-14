@@ -41,7 +41,7 @@ model Model{
   whatsapp String?
   address String?
   service String?
-  description String?
+  description String? @db.LongText
   weight String?
   height String?
   price String?

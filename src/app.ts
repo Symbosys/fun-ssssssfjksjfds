@@ -14,7 +14,7 @@ const app = express();
 
 
 // 🛡️ Security and utility middlewares
-app.use(express.json());
+app.use(express.json({limit: "20mb"}));
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 app.use(helmet());
 app.use(morgan("dev"));
