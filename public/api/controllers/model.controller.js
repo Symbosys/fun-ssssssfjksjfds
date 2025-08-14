@@ -66,6 +66,7 @@ exports.createModel = (0, middlewares_1.asyncHandler)((req, res, next) => __awai
             height: validData.height,
             weight: validData.weight,
             price: validData.price,
+            description: validData.description,
             image: uploadedImages.length > 0
                 ? {
                     create: uploadedImages.map((img) => ({
