@@ -387,6 +387,7 @@ export const updateModel = asyncHandler(async (req, res, next) => {
       height: validData.height,
       weight: validData.weight,
       price: validData.price,
+      description: validData.description,
       // If new images were uploaded, delete old images and create new ones
       ...(uploadedImages.length > 0 && {
         image: {
