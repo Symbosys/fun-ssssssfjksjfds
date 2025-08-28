@@ -3,6 +3,21 @@ import { ENV, prisma } from "./config";
 
 const PORT = process.env.PORT || 4000;
 
+async function main() {
+ const tableSizes = await prisma.$queryRawUnsafe(`
+  SELECT table_name,
+         ROUND((data_length + index_length) / 1024 / 1024, 2) AS size_mb,
+         ROUND((data_length + index_length) / 1024 / 1024 / 1024, 4) AS size_gb
+  FROM information_schema.tables
+  WHERE table_schema = DATABASE()
+  ORDER BY (data_length + index_length) DESC;
+`);
+
+console.log(tableSizes);
+}
+
+main();
+
 const server = app.listen(ENV.PORT, () => {
   console.log(`
         🖥️  SERVER STARTED 🚀  

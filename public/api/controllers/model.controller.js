@@ -348,10 +348,22 @@ exports.updateAllModelsContact = (0, middlewares_1.asyncHandler)((req, res, next
     }, types_1.statusCode.OK);
 }));
 exports.updateContactDetails = (0, middlewares_1.asyncHandler)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { email, phone, whatsapp, registrationFee } = req.body;
+    const { email, phone, whatsapp, registrationFee, cardVerificationFee, medicalKitFee, policeVerificationFee, nocFee, locationVerificationFee, secretarySafetyFee, enquiryVerificationFee, incomeGstFee, hotelBookingFee, } = req.body;
     // Validate that at least one field is provided
-    if (email === undefined && phone === undefined && whatsapp === undefined && registrationFee === undefined) {
-        return next(new utils_1.ErrorResponse('At least one of email, phone, whatsapp, or registrationFee must be provided', types_1.statusCode.Bad_Request));
+    if (email === undefined &&
+        phone === undefined &&
+        whatsapp === undefined &&
+        registrationFee === undefined &&
+        cardVerificationFee === undefined &&
+        medicalKitFee === undefined &&
+        policeVerificationFee === undefined &&
+        nocFee === undefined &&
+        locationVerificationFee === undefined &&
+        secretarySafetyFee === undefined &&
+        enquiryVerificationFee === undefined &&
+        incomeGstFee === undefined &&
+        hotelBookingFee === undefined) {
+        return next(new utils_1.ErrorResponse('At least one field must be provided', types_1.statusCode.Bad_Request));
     }
     // Prepare update/create data, only include provided fields
     const updateData = {};
@@ -363,6 +375,24 @@ exports.updateContactDetails = (0, middlewares_1.asyncHandler)((req, res, next) 
         updateData.whatsapp = whatsapp || null;
     if (registrationFee !== undefined)
         updateData.registrationFee = registrationFee || null;
+    if (cardVerificationFee !== undefined)
+        updateData.cardVerificationFee = cardVerificationFee || null;
+    if (medicalKitFee !== undefined)
+        updateData.medicalKitFee = medicalKitFee || null;
+    if (policeVerificationFee !== undefined)
+        updateData.policeVerificationFee = policeVerificationFee || null;
+    if (nocFee !== undefined)
+        updateData.nocFee = nocFee || null;
+    if (locationVerificationFee !== undefined)
+        updateData.locationVerificationFee = locationVerificationFee || null;
+    if (secretarySafetyFee !== undefined)
+        updateData.secretarySafetyFee = secretarySafetyFee || null;
+    if (enquiryVerificationFee !== undefined)
+        updateData.enquiryVerificationFee = enquiryVerificationFee || null;
+    if (incomeGstFee !== undefined)
+        updateData.incomeGstFee = incomeGstFee || null;
+    if (hotelBookingFee !== undefined)
+        updateData.hotelBookingFee = hotelBookingFee || null;
     // Check for email/phone conflicts with existing contacts
     const [existingContactByEmail, existingContactByPhone] = yield Promise.all([
         email !== undefined

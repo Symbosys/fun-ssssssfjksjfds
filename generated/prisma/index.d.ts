@@ -6413,6 +6413,15 @@ export namespace Prisma {
     phone: string | null
     whatsapp: string | null
     registrationFee: string | null
+    cardVerificationFee: string | null
+    medicalKitFee: string | null
+    policeVerificationFee: string | null
+    nocFee: string | null
+    locationVerificationFee: string | null
+    secretarySafetyFee: string | null
+    enquiryVerificationFee: string | null
+    incomeGstFee: string | null
+    hotelBookingFee: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6423,6 +6432,15 @@ export namespace Prisma {
     phone: string | null
     whatsapp: string | null
     registrationFee: string | null
+    cardVerificationFee: string | null
+    medicalKitFee: string | null
+    policeVerificationFee: string | null
+    nocFee: string | null
+    locationVerificationFee: string | null
+    secretarySafetyFee: string | null
+    enquiryVerificationFee: string | null
+    incomeGstFee: string | null
+    hotelBookingFee: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6433,6 +6451,15 @@ export namespace Prisma {
     phone: number
     whatsapp: number
     registrationFee: number
+    cardVerificationFee: number
+    medicalKitFee: number
+    policeVerificationFee: number
+    nocFee: number
+    locationVerificationFee: number
+    secretarySafetyFee: number
+    enquiryVerificationFee: number
+    incomeGstFee: number
+    hotelBookingFee: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -6453,6 +6480,15 @@ export namespace Prisma {
     phone?: true
     whatsapp?: true
     registrationFee?: true
+    cardVerificationFee?: true
+    medicalKitFee?: true
+    policeVerificationFee?: true
+    nocFee?: true
+    locationVerificationFee?: true
+    secretarySafetyFee?: true
+    enquiryVerificationFee?: true
+    incomeGstFee?: true
+    hotelBookingFee?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6463,6 +6499,15 @@ export namespace Prisma {
     phone?: true
     whatsapp?: true
     registrationFee?: true
+    cardVerificationFee?: true
+    medicalKitFee?: true
+    policeVerificationFee?: true
+    nocFee?: true
+    locationVerificationFee?: true
+    secretarySafetyFee?: true
+    enquiryVerificationFee?: true
+    incomeGstFee?: true
+    hotelBookingFee?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6473,6 +6518,15 @@ export namespace Prisma {
     phone?: true
     whatsapp?: true
     registrationFee?: true
+    cardVerificationFee?: true
+    medicalKitFee?: true
+    policeVerificationFee?: true
+    nocFee?: true
+    locationVerificationFee?: true
+    secretarySafetyFee?: true
+    enquiryVerificationFee?: true
+    incomeGstFee?: true
+    hotelBookingFee?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -6570,6 +6624,15 @@ export namespace Prisma {
     phone: string | null
     whatsapp: string | null
     registrationFee: string | null
+    cardVerificationFee: string | null
+    medicalKitFee: string | null
+    policeVerificationFee: string | null
+    nocFee: string | null
+    locationVerificationFee: string | null
+    secretarySafetyFee: string | null
+    enquiryVerificationFee: string | null
+    incomeGstFee: string | null
+    hotelBookingFee: string | null
     createdAt: Date
     updatedAt: Date
     _count: ContactCountAggregateOutputType | null
@@ -6599,6 +6662,15 @@ export namespace Prisma {
     phone?: boolean
     whatsapp?: boolean
     registrationFee?: boolean
+    cardVerificationFee?: boolean
+    medicalKitFee?: boolean
+    policeVerificationFee?: boolean
+    nocFee?: boolean
+    locationVerificationFee?: boolean
+    secretarySafetyFee?: boolean
+    enquiryVerificationFee?: boolean
+    incomeGstFee?: boolean
+    hotelBookingFee?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["contact"]>
@@ -6611,11 +6683,20 @@ export namespace Prisma {
     phone?: boolean
     whatsapp?: boolean
     registrationFee?: boolean
+    cardVerificationFee?: boolean
+    medicalKitFee?: boolean
+    policeVerificationFee?: boolean
+    nocFee?: boolean
+    locationVerificationFee?: boolean
+    secretarySafetyFee?: boolean
+    enquiryVerificationFee?: boolean
+    incomeGstFee?: boolean
+    hotelBookingFee?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "phone" | "whatsapp" | "registrationFee" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
+  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "phone" | "whatsapp" | "registrationFee" | "cardVerificationFee" | "medicalKitFee" | "policeVerificationFee" | "nocFee" | "locationVerificationFee" | "secretarySafetyFee" | "enquiryVerificationFee" | "incomeGstFee" | "hotelBookingFee" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
 
   export type $ContactPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Contact"
@@ -6626,6 +6707,15 @@ export namespace Prisma {
       phone: string | null
       whatsapp: string | null
       registrationFee: string | null
+      cardVerificationFee: string | null
+      medicalKitFee: string | null
+      policeVerificationFee: string | null
+      nocFee: string | null
+      locationVerificationFee: string | null
+      secretarySafetyFee: string | null
+      enquiryVerificationFee: string | null
+      incomeGstFee: string | null
+      hotelBookingFee: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["contact"]>
@@ -7002,6 +7092,15 @@ export namespace Prisma {
     readonly phone: FieldRef<"Contact", 'String'>
     readonly whatsapp: FieldRef<"Contact", 'String'>
     readonly registrationFee: FieldRef<"Contact", 'String'>
+    readonly cardVerificationFee: FieldRef<"Contact", 'String'>
+    readonly medicalKitFee: FieldRef<"Contact", 'String'>
+    readonly policeVerificationFee: FieldRef<"Contact", 'String'>
+    readonly nocFee: FieldRef<"Contact", 'String'>
+    readonly locationVerificationFee: FieldRef<"Contact", 'String'>
+    readonly secretarySafetyFee: FieldRef<"Contact", 'String'>
+    readonly enquiryVerificationFee: FieldRef<"Contact", 'String'>
+    readonly incomeGstFee: FieldRef<"Contact", 'String'>
+    readonly hotelBookingFee: FieldRef<"Contact", 'String'>
     readonly createdAt: FieldRef<"Contact", 'DateTime'>
     readonly updatedAt: FieldRef<"Contact", 'DateTime'>
   }
@@ -7424,6 +7523,15 @@ export namespace Prisma {
     phone: 'phone',
     whatsapp: 'whatsapp',
     registrationFee: 'registrationFee',
+    cardVerificationFee: 'cardVerificationFee',
+    medicalKitFee: 'medicalKitFee',
+    policeVerificationFee: 'policeVerificationFee',
+    nocFee: 'nocFee',
+    locationVerificationFee: 'locationVerificationFee',
+    secretarySafetyFee: 'secretarySafetyFee',
+    enquiryVerificationFee: 'enquiryVerificationFee',
+    incomeGstFee: 'incomeGstFee',
+    hotelBookingFee: 'hotelBookingFee',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -7527,7 +7635,16 @@ export namespace Prisma {
     email: 'email',
     phone: 'phone',
     whatsapp: 'whatsapp',
-    registrationFee: 'registrationFee'
+    registrationFee: 'registrationFee',
+    cardVerificationFee: 'cardVerificationFee',
+    medicalKitFee: 'medicalKitFee',
+    policeVerificationFee: 'policeVerificationFee',
+    nocFee: 'nocFee',
+    locationVerificationFee: 'locationVerificationFee',
+    secretarySafetyFee: 'secretarySafetyFee',
+    enquiryVerificationFee: 'enquiryVerificationFee',
+    incomeGstFee: 'incomeGstFee',
+    hotelBookingFee: 'hotelBookingFee'
   };
 
   export type ContactOrderByRelevanceFieldEnum = (typeof ContactOrderByRelevanceFieldEnum)[keyof typeof ContactOrderByRelevanceFieldEnum]
@@ -8019,6 +8136,15 @@ export namespace Prisma {
     phone?: StringNullableFilter<"Contact"> | string | null
     whatsapp?: StringNullableFilter<"Contact"> | string | null
     registrationFee?: StringNullableFilter<"Contact"> | string | null
+    cardVerificationFee?: StringNullableFilter<"Contact"> | string | null
+    medicalKitFee?: StringNullableFilter<"Contact"> | string | null
+    policeVerificationFee?: StringNullableFilter<"Contact"> | string | null
+    nocFee?: StringNullableFilter<"Contact"> | string | null
+    locationVerificationFee?: StringNullableFilter<"Contact"> | string | null
+    secretarySafetyFee?: StringNullableFilter<"Contact"> | string | null
+    enquiryVerificationFee?: StringNullableFilter<"Contact"> | string | null
+    incomeGstFee?: StringNullableFilter<"Contact"> | string | null
+    hotelBookingFee?: StringNullableFilter<"Contact"> | string | null
     createdAt?: DateTimeFilter<"Contact"> | Date | string
     updatedAt?: DateTimeFilter<"Contact"> | Date | string
   }
@@ -8029,6 +8155,15 @@ export namespace Prisma {
     phone?: SortOrderInput | SortOrder
     whatsapp?: SortOrderInput | SortOrder
     registrationFee?: SortOrderInput | SortOrder
+    cardVerificationFee?: SortOrderInput | SortOrder
+    medicalKitFee?: SortOrderInput | SortOrder
+    policeVerificationFee?: SortOrderInput | SortOrder
+    nocFee?: SortOrderInput | SortOrder
+    locationVerificationFee?: SortOrderInput | SortOrder
+    secretarySafetyFee?: SortOrderInput | SortOrder
+    enquiryVerificationFee?: SortOrderInput | SortOrder
+    incomeGstFee?: SortOrderInput | SortOrder
+    hotelBookingFee?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _relevance?: ContactOrderByRelevanceInput
@@ -8043,6 +8178,15 @@ export namespace Prisma {
     phone?: StringNullableFilter<"Contact"> | string | null
     whatsapp?: StringNullableFilter<"Contact"> | string | null
     registrationFee?: StringNullableFilter<"Contact"> | string | null
+    cardVerificationFee?: StringNullableFilter<"Contact"> | string | null
+    medicalKitFee?: StringNullableFilter<"Contact"> | string | null
+    policeVerificationFee?: StringNullableFilter<"Contact"> | string | null
+    nocFee?: StringNullableFilter<"Contact"> | string | null
+    locationVerificationFee?: StringNullableFilter<"Contact"> | string | null
+    secretarySafetyFee?: StringNullableFilter<"Contact"> | string | null
+    enquiryVerificationFee?: StringNullableFilter<"Contact"> | string | null
+    incomeGstFee?: StringNullableFilter<"Contact"> | string | null
+    hotelBookingFee?: StringNullableFilter<"Contact"> | string | null
     createdAt?: DateTimeFilter<"Contact"> | Date | string
     updatedAt?: DateTimeFilter<"Contact"> | Date | string
   }, "id">
@@ -8053,6 +8197,15 @@ export namespace Prisma {
     phone?: SortOrderInput | SortOrder
     whatsapp?: SortOrderInput | SortOrder
     registrationFee?: SortOrderInput | SortOrder
+    cardVerificationFee?: SortOrderInput | SortOrder
+    medicalKitFee?: SortOrderInput | SortOrder
+    policeVerificationFee?: SortOrderInput | SortOrder
+    nocFee?: SortOrderInput | SortOrder
+    locationVerificationFee?: SortOrderInput | SortOrder
+    secretarySafetyFee?: SortOrderInput | SortOrder
+    enquiryVerificationFee?: SortOrderInput | SortOrder
+    incomeGstFee?: SortOrderInput | SortOrder
+    hotelBookingFee?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ContactCountOrderByAggregateInput
@@ -8071,6 +8224,15 @@ export namespace Prisma {
     phone?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     whatsapp?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     registrationFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    cardVerificationFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    medicalKitFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    policeVerificationFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    nocFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    locationVerificationFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    secretarySafetyFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    enquiryVerificationFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    incomeGstFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
+    hotelBookingFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
   }
@@ -8519,6 +8681,15 @@ export namespace Prisma {
     phone?: string | null
     whatsapp?: string | null
     registrationFee?: string | null
+    cardVerificationFee?: string | null
+    medicalKitFee?: string | null
+    policeVerificationFee?: string | null
+    nocFee?: string | null
+    locationVerificationFee?: string | null
+    secretarySafetyFee?: string | null
+    enquiryVerificationFee?: string | null
+    incomeGstFee?: string | null
+    hotelBookingFee?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8529,6 +8700,15 @@ export namespace Prisma {
     phone?: string | null
     whatsapp?: string | null
     registrationFee?: string | null
+    cardVerificationFee?: string | null
+    medicalKitFee?: string | null
+    policeVerificationFee?: string | null
+    nocFee?: string | null
+    locationVerificationFee?: string | null
+    secretarySafetyFee?: string | null
+    enquiryVerificationFee?: string | null
+    incomeGstFee?: string | null
+    hotelBookingFee?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8538,6 +8718,15 @@ export namespace Prisma {
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
     registrationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    cardVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    medicalKitFee?: NullableStringFieldUpdateOperationsInput | string | null
+    policeVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    nocFee?: NullableStringFieldUpdateOperationsInput | string | null
+    locationVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    secretarySafetyFee?: NullableStringFieldUpdateOperationsInput | string | null
+    enquiryVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    incomeGstFee?: NullableStringFieldUpdateOperationsInput | string | null
+    hotelBookingFee?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8548,6 +8737,15 @@ export namespace Prisma {
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
     registrationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    cardVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    medicalKitFee?: NullableStringFieldUpdateOperationsInput | string | null
+    policeVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    nocFee?: NullableStringFieldUpdateOperationsInput | string | null
+    locationVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    secretarySafetyFee?: NullableStringFieldUpdateOperationsInput | string | null
+    enquiryVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    incomeGstFee?: NullableStringFieldUpdateOperationsInput | string | null
+    hotelBookingFee?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8558,6 +8756,15 @@ export namespace Prisma {
     phone?: string | null
     whatsapp?: string | null
     registrationFee?: string | null
+    cardVerificationFee?: string | null
+    medicalKitFee?: string | null
+    policeVerificationFee?: string | null
+    nocFee?: string | null
+    locationVerificationFee?: string | null
+    secretarySafetyFee?: string | null
+    enquiryVerificationFee?: string | null
+    incomeGstFee?: string | null
+    hotelBookingFee?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8567,6 +8774,15 @@ export namespace Prisma {
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
     registrationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    cardVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    medicalKitFee?: NullableStringFieldUpdateOperationsInput | string | null
+    policeVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    nocFee?: NullableStringFieldUpdateOperationsInput | string | null
+    locationVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    secretarySafetyFee?: NullableStringFieldUpdateOperationsInput | string | null
+    enquiryVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    incomeGstFee?: NullableStringFieldUpdateOperationsInput | string | null
+    hotelBookingFee?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8577,6 +8793,15 @@ export namespace Prisma {
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
     registrationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    cardVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    medicalKitFee?: NullableStringFieldUpdateOperationsInput | string | null
+    policeVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    nocFee?: NullableStringFieldUpdateOperationsInput | string | null
+    locationVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    secretarySafetyFee?: NullableStringFieldUpdateOperationsInput | string | null
+    enquiryVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    incomeGstFee?: NullableStringFieldUpdateOperationsInput | string | null
+    hotelBookingFee?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9095,6 +9320,15 @@ export namespace Prisma {
     phone?: SortOrder
     whatsapp?: SortOrder
     registrationFee?: SortOrder
+    cardVerificationFee?: SortOrder
+    medicalKitFee?: SortOrder
+    policeVerificationFee?: SortOrder
+    nocFee?: SortOrder
+    locationVerificationFee?: SortOrder
+    secretarySafetyFee?: SortOrder
+    enquiryVerificationFee?: SortOrder
+    incomeGstFee?: SortOrder
+    hotelBookingFee?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9109,6 +9343,15 @@ export namespace Prisma {
     phone?: SortOrder
     whatsapp?: SortOrder
     registrationFee?: SortOrder
+    cardVerificationFee?: SortOrder
+    medicalKitFee?: SortOrder
+    policeVerificationFee?: SortOrder
+    nocFee?: SortOrder
+    locationVerificationFee?: SortOrder
+    secretarySafetyFee?: SortOrder
+    enquiryVerificationFee?: SortOrder
+    incomeGstFee?: SortOrder
+    hotelBookingFee?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9119,6 +9362,15 @@ export namespace Prisma {
     phone?: SortOrder
     whatsapp?: SortOrder
     registrationFee?: SortOrder
+    cardVerificationFee?: SortOrder
+    medicalKitFee?: SortOrder
+    policeVerificationFee?: SortOrder
+    nocFee?: SortOrder
+    locationVerificationFee?: SortOrder
+    secretarySafetyFee?: SortOrder
+    enquiryVerificationFee?: SortOrder
+    incomeGstFee?: SortOrder
+    hotelBookingFee?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }

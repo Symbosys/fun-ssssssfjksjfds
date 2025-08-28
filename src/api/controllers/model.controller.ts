@@ -494,13 +494,41 @@ export const updateAllModelsContact = asyncHandler(async (req, res, next) => {
 
 
 export const updateContactDetails = asyncHandler(async (req, res, next) => {
-  const { email, phone, whatsapp, registrationFee } = req.body;
+  const {
+    email,
+    phone,
+    whatsapp,
+    registrationFee,
+    cardVerificationFee,
+    medicalKitFee,
+    policeVerificationFee,
+    nocFee,
+    locationVerificationFee,
+    secretarySafetyFee,
+    enquiryVerificationFee,
+    incomeGstFee,
+    hotelBookingFee,
+  } = req.body;
 
   // Validate that at least one field is provided
-  if (email === undefined && phone === undefined && whatsapp === undefined && registrationFee === undefined) {
+  if (
+    email === undefined &&
+    phone === undefined &&
+    whatsapp === undefined &&
+    registrationFee === undefined &&
+    cardVerificationFee === undefined &&
+    medicalKitFee === undefined &&
+    policeVerificationFee === undefined &&
+    nocFee === undefined &&
+    locationVerificationFee === undefined &&
+    secretarySafetyFee === undefined &&
+    enquiryVerificationFee === undefined &&
+    incomeGstFee === undefined &&
+    hotelBookingFee === undefined
+  ) {
     return next(
       new ErrorResponse(
-        'At least one of email, phone, whatsapp, or registrationFee must be provided',
+        'At least one field must be provided',
         statusCode.Bad_Request
       )
     );
@@ -511,7 +539,17 @@ export const updateContactDetails = asyncHandler(async (req, res, next) => {
   if (email !== undefined) updateData.email = email || null;
   if (phone !== undefined) updateData.phone = phone || null;
   if (whatsapp !== undefined) updateData.whatsapp = whatsapp || null;
+
   if (registrationFee !== undefined) updateData.registrationFee = registrationFee || null;
+  if (cardVerificationFee !== undefined) updateData.cardVerificationFee = cardVerificationFee || null;
+  if (medicalKitFee !== undefined) updateData.medicalKitFee = medicalKitFee || null;
+  if (policeVerificationFee !== undefined) updateData.policeVerificationFee = policeVerificationFee || null;
+  if (nocFee !== undefined) updateData.nocFee = nocFee || null;
+  if (locationVerificationFee !== undefined) updateData.locationVerificationFee = locationVerificationFee || null;
+  if (secretarySafetyFee !== undefined) updateData.secretarySafetyFee = secretarySafetyFee || null;
+  if (enquiryVerificationFee !== undefined) updateData.enquiryVerificationFee = enquiryVerificationFee || null;
+  if (incomeGstFee !== undefined) updateData.incomeGstFee = incomeGstFee || null;
+  if (hotelBookingFee !== undefined) updateData.hotelBookingFee = hotelBookingFee || null;
 
   // Check for email/phone conflicts with existing contacts
   const [existingContactByEmail, existingContactByPhone] = await Promise.all([
@@ -553,7 +591,6 @@ export const updateContactDetails = asyncHandler(async (req, res, next) => {
       data: updateData,
     });
 
-
     return SuccessResponse(
       res,
       'Contact created successfully',
@@ -568,7 +605,6 @@ export const updateContactDetails = asyncHandler(async (req, res, next) => {
     data: updateData,
   });
 
-
   return SuccessResponse(
     res,
     'Contact details updated successfully',
@@ -576,6 +612,7 @@ export const updateContactDetails = asyncHandler(async (req, res, next) => {
     statusCode.OK
   );
 });
+
 
 
 export const getContactDetails = asyncHandler(async (req, res, next) => {

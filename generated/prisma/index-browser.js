@@ -190,6 +190,15 @@ exports.Prisma.ContactScalarFieldEnum = {
   phone: 'phone',
   whatsapp: 'whatsapp',
   registrationFee: 'registrationFee',
+  cardVerificationFee: 'cardVerificationFee',
+  medicalKitFee: 'medicalKitFee',
+  policeVerificationFee: 'policeVerificationFee',
+  nocFee: 'nocFee',
+  locationVerificationFee: 'locationVerificationFee',
+  secretarySafetyFee: 'secretarySafetyFee',
+  enquiryVerificationFee: 'enquiryVerificationFee',
+  incomeGstFee: 'incomeGstFee',
+  hotelBookingFee: 'hotelBookingFee',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -263,7 +272,16 @@ exports.Prisma.ContactOrderByRelevanceFieldEnum = {
   email: 'email',
   phone: 'phone',
   whatsapp: 'whatsapp',
-  registrationFee: 'registrationFee'
+  registrationFee: 'registrationFee',
+  cardVerificationFee: 'cardVerificationFee',
+  medicalKitFee: 'medicalKitFee',
+  policeVerificationFee: 'policeVerificationFee',
+  nocFee: 'nocFee',
+  locationVerificationFee: 'locationVerificationFee',
+  secretarySafetyFee: 'secretarySafetyFee',
+  enquiryVerificationFee: 'enquiryVerificationFee',
+  incomeGstFee: 'incomeGstFee',
+  hotelBookingFee: 'hotelBookingFee'
 };
 exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN',
