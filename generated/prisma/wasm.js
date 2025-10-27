@@ -5,13 +5,28 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 
 const {
+  PrismaClientKnownRequestError,
+  PrismaClientUnknownRequestError,
+  PrismaClientRustPanicError,
+  PrismaClientInitializationError,
+  PrismaClientValidationError,
+  getPrismaClient,
+  sqltag,
+  empty,
+  join,
+  raw,
+  skip,
   Decimal,
+  Debug,
   objectEnumValues,
   makeStrictEnum,
+  Extensions,
+  warnOnce,
+  defineDmmfProperty,
   Public,
   getRuntime,
-  skip
-} = require('./runtime/index-browser.js')
+  createParam,
+} = require('./runtime/wasm-engine-edge.js')
 
 
 const Prisma = {}
@@ -20,79 +35,35 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.10.1
- * Query Engine version: 9b628578b3b7cae625e8c927178f15a170e74a9c
+ * Prisma Client JS version: 6.17.1
+ * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
  */
 Prisma.prismaVersion = {
-  client: "6.10.1",
-  engine: "9b628578b3b7cae625e8c927178f15a170e74a9c"
+  client: "6.17.1",
+  engine: "272a37d34178c2894197e17273bf937f25acdeac"
 }
 
-Prisma.PrismaClientKnownRequestError = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`PrismaClientKnownRequestError is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)};
-Prisma.PrismaClientUnknownRequestError = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`PrismaClientUnknownRequestError is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
-Prisma.PrismaClientRustPanicError = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`PrismaClientRustPanicError is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
-Prisma.PrismaClientInitializationError = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`PrismaClientInitializationError is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
-Prisma.PrismaClientValidationError = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`PrismaClientValidationError is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
+Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
+Prisma.PrismaClientUnknownRequestError = PrismaClientUnknownRequestError
+Prisma.PrismaClientRustPanicError = PrismaClientRustPanicError
+Prisma.PrismaClientInitializationError = PrismaClientInitializationError
+Prisma.PrismaClientValidationError = PrismaClientValidationError
 Prisma.Decimal = Decimal
 
 /**
  * Re-export of sql-template-tag
  */
-Prisma.sql = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`sqltag is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
-Prisma.empty = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`empty is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
-Prisma.join = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`join is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
-Prisma.raw = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`raw is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
+Prisma.sql = sqltag
+Prisma.empty = empty
+Prisma.join = join
+Prisma.raw = raw
 Prisma.validator = Public.validator
 
 /**
 * Extensions
 */
-Prisma.getExtensionContext = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`Extensions.getExtensionContext is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
-Prisma.defineExtension = () => {
-  const runtimeName = getRuntime().prettyName;
-  throw new Error(`Extensions.defineExtension is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
-In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
-)}
+Prisma.getExtensionContext = Extensions.getExtensionContext
+Prisma.defineExtension = Extensions.defineExtension
 
 /**
  * Shorthand utilities for JSON filtering
@@ -109,10 +80,11 @@ Prisma.NullTypes = {
 
 
 
+
+
 /**
  * Enums
  */
-
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   ReadUncommitted: 'ReadUncommitted',
   ReadCommitted: 'ReadCommitted',
@@ -203,6 +175,49 @@ exports.Prisma.ContactScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.OtpScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  otp: 'otp',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProfileScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  url: 'url',
+  name: 'name',
+  dateOfBirth: 'dateOfBirth',
+  gender: 'gender',
+  state: 'state',
+  phone: 'phone',
+  address: 'address',
+  website: 'website',
+  upi: 'upi',
+  cardVerification: 'cardVerification',
+  carVefificationStatus: 'carVefificationStatus',
+  medicalKit: 'medicalKit',
+  medicalKitStatus: 'medicalKitStatus',
+  policeVerification: 'policeVerification',
+  policeVerificationStatus: 'policeVerificationStatus',
+  nocChange: 'nocChange',
+  nocChangeStatus: 'nocChangeStatus',
+  locationVerificationChangeArea: 'locationVerificationChangeArea',
+  locationVerificationChangeAreaStatus: 'locationVerificationChangeAreaStatus',
+  secretarySafetyChange: 'secretarySafetyChange',
+  secretarySafetyChangeStatus: 'secretarySafetyChangeStatus',
+  enquiryVerificationChange: 'enquiryVerificationChange',
+  enquiryVerificationChangeStatus: 'enquiryVerificationChangeStatus',
+  incomeGstChange: 'incomeGstChange',
+  incomeGstChangeStatus: 'incomeGstChangeStatus',
+  phoneVerification: 'phoneVerification',
+  phoneVerificationVerifiedStatus: 'phoneVerificationVerifiedStatus',
+  joiningFromChange: 'joiningFromChange',
+  joiningFromChangeStatus: 'joiningFromChangeStatus'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -283,6 +298,24 @@ exports.Prisma.ContactOrderByRelevanceFieldEnum = {
   incomeGstFee: 'incomeGstFee',
   hotelBookingFee: 'hotelBookingFee'
 };
+
+exports.Prisma.OtpOrderByRelevanceFieldEnum = {
+  email: 'email',
+  otp: 'otp'
+};
+
+exports.Prisma.ProfileOrderByRelevanceFieldEnum = {
+  email: 'email',
+  url: 'url',
+  name: 'name',
+  dateOfBirth: 'dateOfBirth',
+  gender: 'gender',
+  state: 'state',
+  phone: 'phone',
+  address: 'address',
+  website: 'website',
+  upi: 'upi'
+};
 exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN',
   SUB_ADMIN: 'SUB_ADMIN'
@@ -293,42 +326,99 @@ exports.Gender = exports.$Enums.Gender = {
   FEMALE: 'FEMALE'
 };
 
+exports.Status = exports.$Enums.Status = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
 exports.Prisma.ModelName = {
   Admin: 'Admin',
   Model: 'Model',
   ModelImage: 'ModelImage',
   Applicants: 'Applicants',
   Booking: 'Booking',
-  Contact: 'Contact'
+  Contact: 'Contact',
+  Otp: 'Otp',
+  Profile: 'Profile'
 };
-
 /**
- * This is a stub Prisma Client that will error at runtime if called.
+ * Create the Client
  */
-class PrismaClient {
-  constructor() {
-    return new Proxy(this, {
-      get(target, prop) {
-        let message
-        const runtime = getRuntime()
-        if (runtime.isEdge) {
-          message = `PrismaClient is not configured to run in ${runtime.prettyName}. In order to run Prisma Client on edge runtime, either:
-- Use Prisma Accelerate: https://pris.ly/d/accelerate
-- Use Driver Adapters: https://pris.ly/d/driver-adapters
-`;
-        } else {
-          message = 'PrismaClient is unable to run in this browser environment, or has been bundled for the browser (running in `' + runtime.prettyName + '`).'
-        }
-
-        message += `
-If this is unexpected, please open an issue: https://pris.ly/prisma-prisma-bug-report`
-
-        throw new Error(message)
+const config = {
+  "generator": {
+    "name": "client",
+    "provider": {
+      "fromEnvVar": null,
+      "value": "prisma-client-js"
+    },
+    "output": {
+      "value": "C:\\Users\\Lenovo\\Desktop\\symbosys\\call\\Backend\\server\\generated\\prisma",
+      "fromEnvVar": null
+    },
+    "config": {
+      "engineType": "library"
+    },
+    "binaryTargets": [
+      {
+        "fromEnvVar": null,
+        "value": "windows",
+        "native": true
       }
-    })
+    ],
+    "previewFeatures": [],
+    "sourceFilePath": "C:\\Users\\Lenovo\\Desktop\\symbosys\\call\\Backend\\server\\prisma\\schema.prisma",
+    "isCustomOutput": true
+  },
+  "relativeEnvPaths": {
+    "rootEnvPath": null,
+    "schemaEnvPath": "../../.env"
+  },
+  "relativePath": "../../prisma",
+  "clientVersion": "6.17.1",
+  "engineVersion": "272a37d34178c2894197e17273bf937f25acdeac",
+  "datasourceNames": [
+    "db"
+  ],
+  "activeProvider": "mysql",
+  "postinstall": false,
+  "inlineDatasources": {
+    "db": {
+      "url": {
+        "fromEnvVar": "DATABASE_URL",
+        "value": null
+      }
+    }
+  },
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Admin {\n  id       Int    @id @default(autoincrement())\n  name     String\n  email    String @unique\n  password String\n  role     Role   @default(SUB_ADMIN)\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nenum Role {\n  ADMIN\n  SUB_ADMIN\n}\n\nmodel Model {\n  id          Int          @id @default(autoincrement())\n  name        String\n  age         String\n  email       String?      @unique\n  phone       String?      @unique\n  gender      Gender       @default(FEMALE)\n  image       ModelImage[]\n  whatsapp    String?\n  address     String?\n  service     String?\n  description String?      @db.LongText\n  weight      String?\n  height      String?\n  price       String?\n  isActive    Boolean      @default(true)\n\n  booking Booking[]\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nenum Gender {\n  MALE\n  FEMALE\n}\n\nmodel ModelImage {\n  id      Int   @id @default(autoincrement())\n  image   Json?\n  modelId Int\n  model   Model @relation(fields: [modelId], references: [id], onDelete: Cascade)\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Applicants {\n  id       Int     @id @default(autoincrement())\n  name     String\n  age      String\n  email    String? @unique\n  phone    String? @unique\n  whatsapp String?\n  gender   Gender  @default(MALE)\n  address  String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Booking {\n  id           Int     @id @default(autoincrement())\n  name         String\n  email        String\n  userLocation String\n  phone        String\n  date         String\n  time         String\n  modelId      Int\n  hotelName    String?\n  model        Model   @relation(fields: [modelId], references: [id], onDelete: Cascade)\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Contact {\n  id       Int     @id @default(autoincrement())\n  email    String?\n  phone    String?\n  whatsapp String?\n\n  registrationFee         String? // Joining Form Charge\n  cardVerificationFee     String? // Card Verification Charge\n  medicalKitFee           String? // Medical Kit Charge\n  policeVerificationFee   String? // Police Verification Charge\n  nocFee                  String? // NOC Charge\n  locationVerificationFee String? // Location Verification Charge\n  secretarySafetyFee      String? // Secretary Safety Charge\n  enquiryVerificationFee  String? // Enquiry Verification Charge\n  incomeGstFee            String? // Income GST Charge\n  hotelBookingFee         String? // Hotel Booking Charge\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Otp {\n  id        Int      @id @default(autoincrement())\n  email     String   @unique\n  otp       String\n  expiresAt DateTime\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Profile {\n  id          Int     @id @default(autoincrement())\n  email       String  @unique\n  url         String?\n  name        String?\n  dateOfBirth String?\n  gender      String?\n  state       String?\n  phone       String?\n  address     String?\n  website     String?\n  upi         String?\n\n  // Verification Images\n  cardVerification      Json?\n  carVefificationStatus Status @default(PENDING)\n\n  medicalKit       Json?\n  medicalKitStatus Status @default(PENDING)\n\n  policeVerification       Json?\n  policeVerificationStatus Status @default(PENDING)\n\n  nocChange       Json?\n  nocChangeStatus Status @default(PENDING)\n\n  locationVerificationChangeArea       Json?\n  locationVerificationChangeAreaStatus Status @default(PENDING)\n\n  secretarySafetyChange       Json?\n  secretarySafetyChangeStatus Status @default(PENDING)\n\n  enquiryVerificationChange       Json?\n  enquiryVerificationChangeStatus Status @default(PENDING)\n\n  incomeGstChange       Json?\n  incomeGstChangeStatus Status @default(PENDING)\n\n  phoneVerification               Json?\n  phoneVerificationVerifiedStatus Status @default(PENDING)\n\n  joiningFromChange       Json?\n  joiningFromChangeStatus Status @default(PENDING)\n}\n\nenum Status {\n  PENDING\n  APPROVED\n  REJECTED\n}\n",
+  "inlineSchemaHash": "2d2e007bed6eb385d7bbcb4fb5f0c7cbffdde969114be3abc261daa6af5174c4",
+  "copyEngine": true
+}
+config.dirname = '/'
+
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Admin\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"Role\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Model\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"age\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"gender\",\"kind\":\"enum\",\"type\":\"Gender\"},{\"name\":\"image\",\"kind\":\"object\",\"type\":\"ModelImage\",\"relationName\":\"ModelToModelImage\"},{\"name\":\"whatsapp\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"service\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"weight\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"height\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"price\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isActive\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"booking\",\"kind\":\"object\",\"type\":\"Booking\",\"relationName\":\"BookingToModel\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"ModelImage\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"image\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"modelId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"model\",\"kind\":\"object\",\"type\":\"Model\",\"relationName\":\"ModelToModelImage\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Applicants\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"age\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"whatsapp\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"gender\",\"kind\":\"enum\",\"type\":\"Gender\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Booking\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userLocation\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"date\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"time\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"modelId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"hotelName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"model\",\"kind\":\"object\",\"type\":\"Model\",\"relationName\":\"BookingToModel\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Contact\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"whatsapp\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"registrationFee\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cardVerificationFee\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"medicalKitFee\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"policeVerificationFee\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nocFee\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"locationVerificationFee\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"secretarySafetyFee\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"enquiryVerificationFee\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"incomeGstFee\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"hotelBookingFee\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Otp\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"otp\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"expiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Profile\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"dateOfBirth\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"gender\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"state\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"website\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"upi\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cardVerification\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"carVefificationStatus\",\"kind\":\"enum\",\"type\":\"Status\"},{\"name\":\"medicalKit\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"medicalKitStatus\",\"kind\":\"enum\",\"type\":\"Status\"},{\"name\":\"policeVerification\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"policeVerificationStatus\",\"kind\":\"enum\",\"type\":\"Status\"},{\"name\":\"nocChange\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"nocChangeStatus\",\"kind\":\"enum\",\"type\":\"Status\"},{\"name\":\"locationVerificationChangeArea\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"locationVerificationChangeAreaStatus\",\"kind\":\"enum\",\"type\":\"Status\"},{\"name\":\"secretarySafetyChange\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"secretarySafetyChangeStatus\",\"kind\":\"enum\",\"type\":\"Status\"},{\"name\":\"enquiryVerificationChange\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"enquiryVerificationChangeStatus\",\"kind\":\"enum\",\"type\":\"Status\"},{\"name\":\"incomeGstChange\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"incomeGstChangeStatus\",\"kind\":\"enum\",\"type\":\"Status\"},{\"name\":\"phoneVerification\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"phoneVerificationVerifiedStatus\",\"kind\":\"enum\",\"type\":\"Status\"},{\"name\":\"joiningFromChange\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"joiningFromChangeStatus\",\"kind\":\"enum\",\"type\":\"Status\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
+config.engineWasm = {
+  getRuntime: async () => require('./query_engine_bg.js'),
+  getQueryEngineWasmModule: async () => {
+    const loader = (await import('#wasm-engine-loader')).default
+    const engine = (await loader).default
+    return engine
   }
 }
+config.compilerWasm = undefined
 
+config.injectableEdgeEnv = () => ({
+  parsed: {
+    DATABASE_URL: typeof globalThis !== 'undefined' && globalThis['DATABASE_URL'] || typeof process !== 'undefined' && process.env && process.env.DATABASE_URL || undefined
+  }
+})
+
+if (typeof globalThis !== 'undefined' && globalThis['DEBUG'] || typeof process !== 'undefined' && process.env && process.env.DEBUG || undefined) {
+  Debug.enable(typeof globalThis !== 'undefined' && globalThis['DEBUG'] || typeof process !== 'undefined' && process.env && process.env.DEBUG || undefined)
+}
+
+const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
-
 Object.assign(exports, Prisma)
+

@@ -15,11 +15,11 @@ datasource db {
 }
 
 model Admin {
-  id Int @id @default(autoincrement())
-  name String
-  email String @unique
+  id       Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
   password String
-  role Role @default(SUB_ADMIN)
+  role     Role   @default(SUB_ADMIN)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -30,28 +30,28 @@ enum Role {
   SUB_ADMIN
 }
 
-model Model{
-  id Int @id @default(autoincrement())
-  name String
-  age String
-  email String? @unique
-  phone String? @unique
-  gender Gender @default(FEMALE)
-  image ModelImage[]
-  whatsapp String?
-  address String?
-  service String?
-  description String? @db.LongText
-  weight String?
-  height String?
-  price String?
-  isActive Boolean @default(true)
+model Model {
+  id          Int          @id @default(autoincrement())
+  name        String
+  age         String
+  email       String?      @unique
+  phone       String?      @unique
+  gender      Gender       @default(FEMALE)
+  image       ModelImage[]
+  whatsapp    String?
+  address     String?
+  service     String?
+  description String?      @db.LongText
+  weight      String?
+  height      String?
+  price       String?
+  isActive    Boolean      @default(true)
 
   booking Booking[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-} 
+}
 
 enum Gender {
   MALE
@@ -59,63 +59,124 @@ enum Gender {
 }
 
 model ModelImage {
-  id Int @id @default(autoincrement())
-  image Json?
+  id      Int   @id @default(autoincrement())
+  image   Json?
   modelId Int
-  model Model @relation(fields: [modelId], references: [id], onDelete: Cascade)
+  model   Model @relation(fields: [modelId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Applicants {
-  id Int @id @default(autoincrement())
-  name String
-  age String
-  email String? @unique
-  phone String? @unique
+  id       Int     @id @default(autoincrement())
+  name     String
+  age      String
+  email    String? @unique
+  phone    String? @unique
   whatsapp String?
-  gender Gender @default(MALE)
-  address String?
+  gender   Gender  @default(MALE)
+  address  String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Booking {
-  id Int @id @default(autoincrement())
-  name String
-  email String
+  id           Int     @id @default(autoincrement())
+  name         String
+  email        String
   userLocation String
-  phone String
-  date String
-  time String
-  modelId Int
-  hotelName String?
-  model Model @relation(fields: [modelId], references: [id], onDelete: Cascade)
+  phone        String
+  date         String
+  time         String
+  modelId      Int
+  hotelName    String?
+  model        Model   @relation(fields: [modelId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-
 model Contact {
-  id               Int      @id @default(autoincrement())
-  email            String?
-  phone            String?
-  whatsapp         String?
-  
-  registrationFee          String?   // Joining Form Charge
-  cardVerificationFee      String?   // Card Verification Charge
-  medicalKitFee            String?   // Medical Kit Charge
-  policeVerificationFee    String?   // Police Verification Charge
-  nocFee                   String?   // NOC Charge
-  locationVerificationFee  String?   // Location Verification Charge
-  secretarySafetyFee       String?   // Secretary Safety Charge
-  enquiryVerificationFee   String?   // Enquiry Verification Charge
-  incomeGstFee             String?   // Income GST Charge
-  hotelBookingFee          String?   // Hotel Booking Charge
+  id       Int     @id @default(autoincrement())
+  email    String?
+  phone    String?
+  whatsapp String?
 
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  registrationFee         String? // Joining Form Charge
+  cardVerificationFee     String? // Card Verification Charge
+  medicalKitFee           String? // Medical Kit Charge
+  policeVerificationFee   String? // Police Verification Charge
+  nocFee                  String? // NOC Charge
+  locationVerificationFee String? // Location Verification Charge
+  secretarySafetyFee      String? // Secretary Safety Charge
+  enquiryVerificationFee  String? // Enquiry Verification Charge
+  incomeGstFee            String? // Income GST Charge
+  hotelBookingFee         String? // Hotel Booking Charge
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Otp {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  otp       String
+  expiresAt DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Profile {
+  id          Int     @id @default(autoincrement())
+  email       String  @unique
+  url         String?
+  name        String?
+  dateOfBirth String?
+  gender      String?
+  state       String?
+  phone       String? 
+  address     String?
+  website     String?
+  upi         String?
+
+  // Verification Images
+  cardVerification      Json?
+  carVefificationStatus Status @default(PENDING)
+
+  medicalKit                           Json?
+  medicalKitStatus               Status @default(PENDING)
+
+
+  policeVerification                   Json?
+  policeVerificationStatus             Status @default(PENDING)
+
+  nocChange                            Json?
+  nocChangeStatus                      Status @default(PENDING)
+
+  locationVerificationChangeArea       Json?
+  locationVerificationChangeAreaStatus Status @default(PENDING)
+
+  secretarySafetyChange                Json?
+  secretarySafetyChangeStatus         Status @default(PENDING)
+
+  enquiryVerificationChange            Json?
+  enquiryVerificationChangeStatus      Status @default(PENDING)
+
+  incomeGstChange                      Json?
+  incomeGstChangeStatus                Status @default(PENDING)
+
+  phoneVerification                    Json?
+  phoneVerificationVerifiedStatus      Status @default(PENDING)
+
+  joiningFromChange                    Json?
+  joiningFromChangeStatus               Status @default(PENDING)
+}
+
+enum Status {
+  PENDING
+  APPROVED
+  REJECTED
 }

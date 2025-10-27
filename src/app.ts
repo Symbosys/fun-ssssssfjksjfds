@@ -7,6 +7,8 @@ import path from "path";
 import { errorMiddleware } from "./api/middlewares";
 import { adminRouter, applicationRoutes, BookingRoute, modelRouter, SettingRoute } from "./api/routes";
 import { ENV } from "./config";
+import otprouter from "./api/routes/otp.routes";
+import profileRoutes from "./api/routes/profile.routes";
 
 
 // 🚀 Initialize express application
@@ -25,22 +27,22 @@ app.use(
     credentials: true,
   })
 );
-app.use(
-  rateLimit({
-    windowMs: 15 * 60 * 1000, //⌛ 15 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
-    message: {
-      status: 429,
-      message: "Too many requests, please try again later",
-    },
-    standardHeaders: true,
-    legacyHeaders: false,
-  })
-);
+// app.use(
+//   rateLimit({
+//     windowMs: 15 * 60 * 1000, //⌛ 15 minutes
+//     max: 100, // limit each IP to 100 requests per windowMs
+//     message: {
+//       status: 429,
+//       message: "Too many requests, please try again later",
+//     },
+//     standardHeaders: true,
+//     legacyHeaders: false,
+//   })
+// );
 
 
 // 🩺 Health check endpoint
-app.get("/", (_, res) => {
+app.get("/", (req, res) => {
     res.json({
       message: "Server is up and running",
       data: ENV.USER_EMAIL
@@ -51,7 +53,15 @@ app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/model", modelRouter);
 app.use("/api/v1/apply-escort", applicationRoutes);
 app.use("/api/v1/booking", BookingRoute);
-app.use("/api/v1/setting", SettingRoute)
+app.use("/api/v1/setting", SettingRoute);
+
+
+app.use("/api/v1/otp", otprouter);
+app.use("/api/v1/profile", profileRoutes);
+
+
+
+
 
   
 // ⚠️ Global error handling middleware

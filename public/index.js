@@ -15,20 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = __importDefault(require("./app"));
 const config_1 = require("./config");
 const PORT = process.env.PORT || 4000;
-function main() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const tableSizes = yield config_1.prisma.$queryRawUnsafe(`
-  SELECT table_name,
-         ROUND((data_length + index_length) / 1024 / 1024, 2) AS size_mb,
-         ROUND((data_length + index_length) / 1024 / 1024 / 1024, 4) AS size_gb
-  FROM information_schema.tables
-  WHERE table_schema = DATABASE()
-  ORDER BY (data_length + index_length) DESC;
-`);
-        console.log(tableSizes);
-    });
-}
-main();
 const server = app_1.default.listen(config_1.ENV.PORT, () => {
     console.log(`
         🖥️  SERVER STARTED 🚀  

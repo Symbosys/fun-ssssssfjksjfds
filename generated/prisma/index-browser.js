@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.10.1
- * Query Engine version: 9b628578b3b7cae625e8c927178f15a170e74a9c
+ * Prisma Client JS version: 6.17.1
+ * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
  */
 Prisma.prismaVersion = {
-  client: "6.10.1",
-  engine: "9b628578b3b7cae625e8c927178f15a170e74a9c"
+  client: "6.17.1",
+  engine: "272a37d34178c2894197e17273bf937f25acdeac"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -203,6 +203,49 @@ exports.Prisma.ContactScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.OtpScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  otp: 'otp',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProfileScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  url: 'url',
+  name: 'name',
+  dateOfBirth: 'dateOfBirth',
+  gender: 'gender',
+  state: 'state',
+  phone: 'phone',
+  address: 'address',
+  website: 'website',
+  upi: 'upi',
+  cardVerification: 'cardVerification',
+  carVefificationStatus: 'carVefificationStatus',
+  medicalKit: 'medicalKit',
+  medicalKitStatus: 'medicalKitStatus',
+  policeVerification: 'policeVerification',
+  policeVerificationStatus: 'policeVerificationStatus',
+  nocChange: 'nocChange',
+  nocChangeStatus: 'nocChangeStatus',
+  locationVerificationChangeArea: 'locationVerificationChangeArea',
+  locationVerificationChangeAreaStatus: 'locationVerificationChangeAreaStatus',
+  secretarySafetyChange: 'secretarySafetyChange',
+  secretarySafetyChangeStatus: 'secretarySafetyChangeStatus',
+  enquiryVerificationChange: 'enquiryVerificationChange',
+  enquiryVerificationChangeStatus: 'enquiryVerificationChangeStatus',
+  incomeGstChange: 'incomeGstChange',
+  incomeGstChangeStatus: 'incomeGstChangeStatus',
+  phoneVerification: 'phoneVerification',
+  phoneVerificationVerifiedStatus: 'phoneVerificationVerifiedStatus',
+  joiningFromChange: 'joiningFromChange',
+  joiningFromChangeStatus: 'joiningFromChangeStatus'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -283,6 +326,24 @@ exports.Prisma.ContactOrderByRelevanceFieldEnum = {
   incomeGstFee: 'incomeGstFee',
   hotelBookingFee: 'hotelBookingFee'
 };
+
+exports.Prisma.OtpOrderByRelevanceFieldEnum = {
+  email: 'email',
+  otp: 'otp'
+};
+
+exports.Prisma.ProfileOrderByRelevanceFieldEnum = {
+  email: 'email',
+  url: 'url',
+  name: 'name',
+  dateOfBirth: 'dateOfBirth',
+  gender: 'gender',
+  state: 'state',
+  phone: 'phone',
+  address: 'address',
+  website: 'website',
+  upi: 'upi'
+};
 exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN',
   SUB_ADMIN: 'SUB_ADMIN'
@@ -293,13 +354,21 @@ exports.Gender = exports.$Enums.Gender = {
   FEMALE: 'FEMALE'
 };
 
+exports.Status = exports.$Enums.Status = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
 exports.Prisma.ModelName = {
   Admin: 'Admin',
   Model: 'Model',
   ModelImage: 'ModelImage',
   Applicants: 'Applicants',
   Booking: 'Booking',
-  Contact: 'Contact'
+  Contact: 'Contact',
+  Otp: 'Otp',
+  Profile: 'Profile'
 };
 
 /**

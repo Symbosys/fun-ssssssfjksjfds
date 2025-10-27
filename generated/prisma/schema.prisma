@@ -118,3 +118,64 @@ model Contact {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Otp {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  otp       String
+  expiresAt DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Profile {
+  id          Int     @id @default(autoincrement())
+  email       String  @unique
+  url         String?
+  name        String?
+  dateOfBirth String?
+  gender      String?
+  state       String?
+  phone       String?
+  address     String?
+  website     String?
+  upi         String?
+
+  // Verification Images
+  cardVerification      Json?
+  carVefificationStatus Status @default(PENDING)
+
+  medicalKit       Json?
+  medicalKitStatus Status @default(PENDING)
+
+  policeVerification       Json?
+  policeVerificationStatus Status @default(PENDING)
+
+  nocChange       Json?
+  nocChangeStatus Status @default(PENDING)
+
+  locationVerificationChangeArea       Json?
+  locationVerificationChangeAreaStatus Status @default(PENDING)
+
+  secretarySafetyChange       Json?
+  secretarySafetyChangeStatus Status @default(PENDING)
+
+  enquiryVerificationChange       Json?
+  enquiryVerificationChangeStatus Status @default(PENDING)
+
+  incomeGstChange       Json?
+  incomeGstChangeStatus Status @default(PENDING)
+
+  phoneVerification               Json?
+  phoneVerificationVerifiedStatus Status @default(PENDING)
+
+  joiningFromChange       Json?
+  joiningFromChangeStatus Status @default(PENDING)
+}
+
+enum Status {
+  PENDING
+  APPROVED
+  REJECTED
+}
