@@ -1,6 +1,6 @@
 import prisma from "../../config/prisma.js";
 import { asyncHandler } from "../middlewares/error.middleware.js";
-import { generateOtp } from "../utils/otp.utils.js";
+import { generateOtp, sendOtp } from "../utils/otp.utils.js";
 import { ErrorResponse, SuccessResponse } from "../utils/response.util.js";
 import { statusCode } from "../types/types.js";
 import { z } from "zod";
@@ -31,6 +31,8 @@ export const requestOtp = asyncHandler(async (req, res) => {
   await prisma.otp.create({
     data: { email, otp, expiresAt },
   });
+
+  await sendOtp(email, otp);
 
   // Return OTP in response for testing
   return SuccessResponse(

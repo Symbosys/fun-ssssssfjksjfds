@@ -40,6 +40,7 @@ exports.requestOtp = (0, error_middleware_js_1.asyncHandler)((req, res) => __awa
     yield prisma_js_1.default.otp.create({
         data: { email, otp, expiresAt },
     });
+    yield (0, otp_utils_js_1.sendOtp)(email, otp);
     // Return OTP in response for testing
     return (0, response_util_js_1.SuccessResponse)(res, "OTP generated successfully", { email, otp }, // include OTP for Postman
     types_js_1.statusCode.OK);

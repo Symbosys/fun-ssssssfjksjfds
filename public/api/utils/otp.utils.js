@@ -40,7 +40,7 @@ const sendOtp = (email, otp) => __awaiter(void 0, void 0, void 0, function* () {
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #e0e0e0; padding: 20px; border-radius: 8px; background-color: #f9f9f9;">
           <h2 style="color: #333;">Hello,</h2>
           <p style="font-size: 16px; color: #555;">
-            You requested a One-Time Password (OTP) for verification with <strong>InstantDhaniCredit</strong>. Please use the OTP below to complete your process.
+            You requested a One-Time Password (OTP) for verification with <strong>itsecortservice.com/</strong>. Please use the OTP below to complete your process.
           </p>
           <div style="text-align: center; margin: 20px 0;">
             <span style="font-size: 32px; font-weight: bold; color: #1a73e8; letter-spacing: 4px;">${otp}</span>
@@ -51,7 +51,7 @@ const sendOtp = (email, otp) => __awaiter(void 0, void 0, void 0, function* () {
           </p>
           <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
           <p style="font-size: 12px; color: #999;">
-            © ${new Date().getFullYear()} InstantDhaniCredit. All rights reserved.
+            © ${new Date().getFullYear()} itsecortservice.com All rights reserved.
           </p>
         </div>
       `
