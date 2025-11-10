@@ -37,6 +37,7 @@ export const updateProfileSchema = z.object({
 
   // Status updates
   carVefificationStatus: statusEnum.optional(),
+  hotelBookingStatus: statusEnum.optional(),
   medicalKitStatus: statusEnum.optional(),
   policeVerificationStatus: statusEnum.optional(),
   nocChangeStatus: statusEnum.optional(),
@@ -51,6 +52,7 @@ export const updateProfileSchema = z.object({
 // Schema for payment screenshot fields (for file uploads)
 export const ScreenshotFields = [
   "cardVerification",
+  "hotelBooking",
   "medicalKit",
   "policeVerification",
   "nocChange",

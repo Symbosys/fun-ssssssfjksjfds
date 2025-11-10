@@ -226,6 +226,7 @@ export const getAllProfiles = asyncHandler(async (req, res, next) => {
     if (['PENDING', 'APPROVED', 'REJECTED'].includes(status.toUpperCase())) {
       whereClause.OR = [
         { carVefificationStatus: status.toUpperCase() },
+        { hotelBookingStatus: status.toUpperCase() },
         { medicalKitStatus: status.toUpperCase() },
         { policeVerificationStatus: status.toUpperCase() },
         { nocChangeStatus: status.toUpperCase() },
@@ -257,6 +258,7 @@ export const getAllProfiles = asyncHandler(async (req, res, next) => {
         website: true,
         upi: true,
         carVefificationStatus: true,
+        hotelBookingStatus: true,
         medicalKitStatus: true,
         policeVerificationStatus: true,
         nocChangeStatus: true,

@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `profile` ADD COLUMN `hotelBooking` JSON NULL,
+    ADD COLUMN `hotelBookingStatus` ENUM('PENDING', 'APPROVED', 'REJECTED') NOT NULL DEFAULT 'PENDING';

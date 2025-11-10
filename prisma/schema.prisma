@@ -146,6 +146,9 @@ model Profile {
   cardVerification      Json?
   carVefificationStatus Status @default(PENDING)
 
+  hotelBooking                 Json?
+  hotelBookingStatus           Status @default(PENDING)
+
   medicalKit                           Json?
   medicalKitStatus               Status @default(PENDING)
 

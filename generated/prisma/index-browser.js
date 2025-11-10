@@ -226,6 +226,8 @@ exports.Prisma.ProfileScalarFieldEnum = {
   upi: 'upi',
   cardVerification: 'cardVerification',
   carVefificationStatus: 'carVefificationStatus',
+  hotelBooking: 'hotelBooking',
+  hotelBookingStatus: 'hotelBookingStatus',
   medicalKit: 'medicalKit',
   medicalKitStatus: 'medicalKitStatus',
   policeVerification: 'policeVerification',

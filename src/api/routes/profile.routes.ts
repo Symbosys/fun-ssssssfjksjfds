@@ -15,9 +15,8 @@
 
 
 import express from "express";
-import { updateprofile, getprofileById, getAllProfiles } from "../controllers/profile.controller";
+import { getAllProfiles, getprofileById, updateprofile } from "../controllers/profile.controller";
 import { uploadPaymentScreenshots } from "../middlewares/upload.middleware";
-import { profileImageFields } from "../../constants/profileImageFields";
 
 const router = express.Router();
 

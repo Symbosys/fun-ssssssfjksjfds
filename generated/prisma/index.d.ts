@@ -8554,6 +8554,7 @@ export namespace Prisma {
     website: string | null
     upi: string | null
     carVefificationStatus: $Enums.Status | null
+    hotelBookingStatus: $Enums.Status | null
     medicalKitStatus: $Enums.Status | null
     policeVerificationStatus: $Enums.Status | null
     nocChangeStatus: $Enums.Status | null
@@ -8578,6 +8579,7 @@ export namespace Prisma {
     website: string | null
     upi: string | null
     carVefificationStatus: $Enums.Status | null
+    hotelBookingStatus: $Enums.Status | null
     medicalKitStatus: $Enums.Status | null
     policeVerificationStatus: $Enums.Status | null
     nocChangeStatus: $Enums.Status | null
@@ -8603,6 +8605,8 @@ export namespace Prisma {
     upi: number
     cardVerification: number
     carVefificationStatus: number
+    hotelBooking: number
+    hotelBookingStatus: number
     medicalKit: number
     medicalKitStatus: number
     policeVerification: number
@@ -8646,6 +8650,7 @@ export namespace Prisma {
     website?: true
     upi?: true
     carVefificationStatus?: true
+    hotelBookingStatus?: true
     medicalKitStatus?: true
     policeVerificationStatus?: true
     nocChangeStatus?: true
@@ -8670,6 +8675,7 @@ export namespace Prisma {
     website?: true
     upi?: true
     carVefificationStatus?: true
+    hotelBookingStatus?: true
     medicalKitStatus?: true
     policeVerificationStatus?: true
     nocChangeStatus?: true
@@ -8695,6 +8701,8 @@ export namespace Prisma {
     upi?: true
     cardVerification?: true
     carVefificationStatus?: true
+    hotelBooking?: true
+    hotelBookingStatus?: true
     medicalKit?: true
     medicalKitStatus?: true
     policeVerification?: true
@@ -8816,6 +8824,8 @@ export namespace Prisma {
     upi: string | null
     cardVerification: JsonValue | null
     carVefificationStatus: $Enums.Status
+    hotelBooking: JsonValue | null
+    hotelBookingStatus: $Enums.Status
     medicalKit: JsonValue | null
     medicalKitStatus: $Enums.Status
     policeVerification: JsonValue | null
@@ -8869,6 +8879,8 @@ export namespace Prisma {
     upi?: boolean
     cardVerification?: boolean
     carVefificationStatus?: boolean
+    hotelBooking?: boolean
+    hotelBookingStatus?: boolean
     medicalKit?: boolean
     medicalKitStatus?: boolean
     policeVerification?: boolean
@@ -8905,6 +8917,8 @@ export namespace Prisma {
     upi?: boolean
     cardVerification?: boolean
     carVefificationStatus?: boolean
+    hotelBooking?: boolean
+    hotelBookingStatus?: boolean
     medicalKit?: boolean
     medicalKitStatus?: boolean
     policeVerification?: boolean
@@ -8925,7 +8939,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: boolean
   }
 
-  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "url" | "name" | "dateOfBirth" | "gender" | "state" | "phone" | "address" | "website" | "upi" | "cardVerification" | "carVefificationStatus" | "medicalKit" | "medicalKitStatus" | "policeVerification" | "policeVerificationStatus" | "nocChange" | "nocChangeStatus" | "locationVerificationChangeArea" | "locationVerificationChangeAreaStatus" | "secretarySafetyChange" | "secretarySafetyChangeStatus" | "enquiryVerificationChange" | "enquiryVerificationChangeStatus" | "incomeGstChange" | "incomeGstChangeStatus" | "phoneVerification" | "phoneVerificationVerifiedStatus" | "joiningFromChange" | "joiningFromChangeStatus", ExtArgs["result"]["profile"]>
+  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "url" | "name" | "dateOfBirth" | "gender" | "state" | "phone" | "address" | "website" | "upi" | "cardVerification" | "carVefificationStatus" | "hotelBooking" | "hotelBookingStatus" | "medicalKit" | "medicalKitStatus" | "policeVerification" | "policeVerificationStatus" | "nocChange" | "nocChangeStatus" | "locationVerificationChangeArea" | "locationVerificationChangeAreaStatus" | "secretarySafetyChange" | "secretarySafetyChangeStatus" | "enquiryVerificationChange" | "enquiryVerificationChangeStatus" | "incomeGstChange" | "incomeGstChangeStatus" | "phoneVerification" | "phoneVerificationVerifiedStatus" | "joiningFromChange" | "joiningFromChangeStatus", ExtArgs["result"]["profile"]>
 
   export type $ProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Profile"
@@ -8944,6 +8958,8 @@ export namespace Prisma {
       upi: string | null
       cardVerification: Prisma.JsonValue | null
       carVefificationStatus: $Enums.Status
+      hotelBooking: Prisma.JsonValue | null
+      hotelBookingStatus: $Enums.Status
       medicalKit: Prisma.JsonValue | null
       medicalKitStatus: $Enums.Status
       policeVerification: Prisma.JsonValue | null
@@ -9344,6 +9360,8 @@ export namespace Prisma {
     readonly upi: FieldRef<"Profile", 'String'>
     readonly cardVerification: FieldRef<"Profile", 'Json'>
     readonly carVefificationStatus: FieldRef<"Profile", 'Status'>
+    readonly hotelBooking: FieldRef<"Profile", 'Json'>
+    readonly hotelBookingStatus: FieldRef<"Profile", 'Status'>
     readonly medicalKit: FieldRef<"Profile", 'Json'>
     readonly medicalKitStatus: FieldRef<"Profile", 'Status'>
     readonly policeVerification: FieldRef<"Profile", 'Json'>
@@ -9824,6 +9842,8 @@ export namespace Prisma {
     upi: 'upi',
     cardVerification: 'cardVerification',
     carVefificationStatus: 'carVefificationStatus',
+    hotelBooking: 'hotelBooking',
+    hotelBookingStatus: 'hotelBookingStatus',
     medicalKit: 'medicalKit',
     medicalKitStatus: 'medicalKitStatus',
     policeVerification: 'policeVerification',
@@ -10653,6 +10673,8 @@ export namespace Prisma {
     upi?: StringNullableFilter<"Profile"> | string | null
     cardVerification?: JsonNullableFilter<"Profile">
     carVefificationStatus?: EnumStatusFilter<"Profile"> | $Enums.Status
+    hotelBooking?: JsonNullableFilter<"Profile">
+    hotelBookingStatus?: EnumStatusFilter<"Profile"> | $Enums.Status
     medicalKit?: JsonNullableFilter<"Profile">
     medicalKitStatus?: EnumStatusFilter<"Profile"> | $Enums.Status
     policeVerification?: JsonNullableFilter<"Profile">
@@ -10687,6 +10709,8 @@ export namespace Prisma {
     upi?: SortOrderInput | SortOrder
     cardVerification?: SortOrderInput | SortOrder
     carVefificationStatus?: SortOrder
+    hotelBooking?: SortOrderInput | SortOrder
+    hotelBookingStatus?: SortOrder
     medicalKit?: SortOrderInput | SortOrder
     medicalKitStatus?: SortOrder
     policeVerification?: SortOrderInput | SortOrder
@@ -10725,6 +10749,8 @@ export namespace Prisma {
     upi?: StringNullableFilter<"Profile"> | string | null
     cardVerification?: JsonNullableFilter<"Profile">
     carVefificationStatus?: EnumStatusFilter<"Profile"> | $Enums.Status
+    hotelBooking?: JsonNullableFilter<"Profile">
+    hotelBookingStatus?: EnumStatusFilter<"Profile"> | $Enums.Status
     medicalKit?: JsonNullableFilter<"Profile">
     medicalKitStatus?: EnumStatusFilter<"Profile"> | $Enums.Status
     policeVerification?: JsonNullableFilter<"Profile">
@@ -10759,6 +10785,8 @@ export namespace Prisma {
     upi?: SortOrderInput | SortOrder
     cardVerification?: SortOrderInput | SortOrder
     carVefificationStatus?: SortOrder
+    hotelBooking?: SortOrderInput | SortOrder
+    hotelBookingStatus?: SortOrder
     medicalKit?: SortOrderInput | SortOrder
     medicalKitStatus?: SortOrder
     policeVerification?: SortOrderInput | SortOrder
@@ -10801,6 +10829,8 @@ export namespace Prisma {
     upi?: StringNullableWithAggregatesFilter<"Profile"> | string | null
     cardVerification?: JsonNullableWithAggregatesFilter<"Profile">
     carVefificationStatus?: EnumStatusWithAggregatesFilter<"Profile"> | $Enums.Status
+    hotelBooking?: JsonNullableWithAggregatesFilter<"Profile">
+    hotelBookingStatus?: EnumStatusWithAggregatesFilter<"Profile"> | $Enums.Status
     medicalKit?: JsonNullableWithAggregatesFilter<"Profile">
     medicalKitStatus?: EnumStatusWithAggregatesFilter<"Profile"> | $Enums.Status
     policeVerification?: JsonNullableWithAggregatesFilter<"Profile">
@@ -11463,6 +11493,8 @@ export namespace Prisma {
     upi?: string | null
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: $Enums.Status
+    hotelBooking?: NullableJsonNullValueInput | InputJsonValue
+    hotelBookingStatus?: $Enums.Status
     medicalKit?: NullableJsonNullValueInput | InputJsonValue
     medicalKitStatus?: $Enums.Status
     policeVerification?: NullableJsonNullValueInput | InputJsonValue
@@ -11497,6 +11529,8 @@ export namespace Prisma {
     upi?: string | null
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: $Enums.Status
+    hotelBooking?: NullableJsonNullValueInput | InputJsonValue
+    hotelBookingStatus?: $Enums.Status
     medicalKit?: NullableJsonNullValueInput | InputJsonValue
     medicalKitStatus?: $Enums.Status
     policeVerification?: NullableJsonNullValueInput | InputJsonValue
@@ -11530,6 +11564,8 @@ export namespace Prisma {
     upi?: NullableStringFieldUpdateOperationsInput | string | null
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    hotelBooking?: NullableJsonNullValueInput | InputJsonValue
+    hotelBookingStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     medicalKit?: NullableJsonNullValueInput | InputJsonValue
     medicalKitStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     policeVerification?: NullableJsonNullValueInput | InputJsonValue
@@ -11564,6 +11600,8 @@ export namespace Prisma {
     upi?: NullableStringFieldUpdateOperationsInput | string | null
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    hotelBooking?: NullableJsonNullValueInput | InputJsonValue
+    hotelBookingStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     medicalKit?: NullableJsonNullValueInput | InputJsonValue
     medicalKitStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     policeVerification?: NullableJsonNullValueInput | InputJsonValue
@@ -11598,6 +11636,8 @@ export namespace Prisma {
     upi?: string | null
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: $Enums.Status
+    hotelBooking?: NullableJsonNullValueInput | InputJsonValue
+    hotelBookingStatus?: $Enums.Status
     medicalKit?: NullableJsonNullValueInput | InputJsonValue
     medicalKitStatus?: $Enums.Status
     policeVerification?: NullableJsonNullValueInput | InputJsonValue
@@ -11631,6 +11671,8 @@ export namespace Prisma {
     upi?: NullableStringFieldUpdateOperationsInput | string | null
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    hotelBooking?: NullableJsonNullValueInput | InputJsonValue
+    hotelBookingStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     medicalKit?: NullableJsonNullValueInput | InputJsonValue
     medicalKitStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     policeVerification?: NullableJsonNullValueInput | InputJsonValue
@@ -11665,6 +11707,8 @@ export namespace Prisma {
     upi?: NullableStringFieldUpdateOperationsInput | string | null
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    hotelBooking?: NullableJsonNullValueInput | InputJsonValue
+    hotelBookingStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     medicalKit?: NullableJsonNullValueInput | InputJsonValue
     medicalKitStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     policeVerification?: NullableJsonNullValueInput | InputJsonValue
@@ -12326,6 +12370,8 @@ export namespace Prisma {
     upi?: SortOrder
     cardVerification?: SortOrder
     carVefificationStatus?: SortOrder
+    hotelBooking?: SortOrder
+    hotelBookingStatus?: SortOrder
     medicalKit?: SortOrder
     medicalKitStatus?: SortOrder
     policeVerification?: SortOrder
@@ -12363,6 +12409,7 @@ export namespace Prisma {
     website?: SortOrder
     upi?: SortOrder
     carVefificationStatus?: SortOrder
+    hotelBookingStatus?: SortOrder
     medicalKitStatus?: SortOrder
     policeVerificationStatus?: SortOrder
     nocChangeStatus?: SortOrder
@@ -12387,6 +12434,7 @@ export namespace Prisma {
     website?: SortOrder
     upi?: SortOrder
     carVefificationStatus?: SortOrder
+    hotelBookingStatus?: SortOrder
     medicalKitStatus?: SortOrder
     policeVerificationStatus?: SortOrder
     nocChangeStatus?: SortOrder
