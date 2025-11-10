@@ -25,6 +25,7 @@ const upload = multer({
 // Middleware for handling multiple payment screenshot uploads
 export const uploadPaymentScreenshots = upload.fields([
     { name: 'cardVerification', maxCount: 1 },
+    { name: 'hotelBooking', maxCount: 1 },
     { name: 'medicalKit', maxCount: 1 },
     { name: 'policeVerification', maxCount: 1 },
     { name: 'nocChange', maxCount: 1 },

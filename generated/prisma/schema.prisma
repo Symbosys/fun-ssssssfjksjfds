@@ -104,17 +104,6 @@ model Contact {
   phone    String?
   whatsapp String?
 
-  registrationFee         String? // Joining Form Charge
-  cardVerificationFee     String? // Card Verification Charge
-  medicalKitFee           String? // Medical Kit Charge
-  policeVerificationFee   String? // Police Verification Charge
-  nocFee                  String? // NOC Charge
-  locationVerificationFee String? // Location Verification Charge
-  secretarySafetyFee      String? // Secretary Safety Charge
-  enquiryVerificationFee  String? // Enquiry Verification Charge
-  incomeGstFee            String? // Income GST Charge
-  hotelBookingFee         String? // Hotel Booking Charge
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -141,6 +130,10 @@ model Profile {
   address     String?
   website     String?
   upi         String?
+
+  bankAccountNumber String?
+  ifscCode          String?
+  bankName          String?
 
   // Verification Images
   cardVerification      Json?
@@ -175,6 +168,33 @@ model Profile {
 
   joiningFromChange       Json?
   joiningFromChangeStatus Status @default(PENDING)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model PaymentFee {
+  id Int @id @default(autoincrement())
+
+  cardVerificationFee     String? // Card Verification Charge
+  hotelBookingFee         String? // Hotel Booking Charge
+  medicalKitFee           String? // Medical Kit Charge
+  policeVerificationFee   String? // Police Verification Charge
+  nocFee                  String? // NOC Charge
+  locationVerificationFee String? // Location Verification Charge
+  secretarySafetyFee      String? // Secretary Safety Charge
+  enquiryVerificationFee  String? // Enquiry Verification Charge
+  incomeGstFee            String? // Income GST Charge
+  phoneVerificationFee    String? // Phone Verification Charge
+  joiningFromFee          String? // Joining From Charge
+}
+
+model QRCode {
+  id        Int      @id @default(autoincrement())
+  phone     String?
+  image     Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime
 }
 
 enum Status {

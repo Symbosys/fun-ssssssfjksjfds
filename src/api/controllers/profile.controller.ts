@@ -95,15 +95,16 @@ import ErrorResponse from "../utils/errorResponse";
 import { SuccessResponse } from "../utils/successResponse";
 import { handleImageUpload } from "../utils/utils";
 import { ScreenshotFields, updateProfileSchema } from "../validators/profile.validator";
+import { profileImageFields } from "../../constants/profileImageFields";
+import { deleteFromCloudinary } from "../../config/cloudinary";
 
 
 // Update profile with payment screenshots and approval status
 export const updateprofile = asyncHandler(async (req: Request, res, next) => {
-    const profileId = Number(req.params.id);
+  const profileId = Number(req.params.id);
+  
+  console.log("data comming")
 
-    console.log("update profile payload", req.body)
-    console.log('Received req.files:', req.files);
-    
     if (!profileId) {
         return next(new ErrorResponse("Profile ID is required", 400));
     }
@@ -283,6 +284,91 @@ export const getAllProfiles = asyncHandler(async (req, res, next) => {
       currentPage: page,
       count: profiles.length,
     },
+    200
+  );
+});
+
+
+
+
+// ✅ All JSON image fields in the Profile model
+const imageFields = [
+  "cardVerification",
+  "hotelBooking",
+  "medicalKit",
+  "policeVerification",
+  "nocChange",
+  "locationVerificationChangeArea",
+  "secretarySafetyChange",
+  "enquiryVerificationChange",
+  "incomeGstChange",
+  "phoneVerification",
+  "joiningFromChange",
+];
+
+// ✅ Delete profile and its associated Cloudinary images
+export const deleteProfile = asyncHandler(async (req, res, next) => {
+  const profileId = Number(req.params.id);
+
+  // 🧩 Validate ID
+  if (!profileId) {
+    return next(new ErrorResponse("Profile ID is required", 400));
+  }
+
+  // 🧩 Check if profile exists
+  const existingProfile = await prisma.profile.findUnique({
+    where: { id: profileId },
+  });
+
+  if (!existingProfile) {
+    return next(new ErrorResponse("Profile not found", 404));
+  }
+
+  // 🧹 Prepare Cloudinary deletions
+  const imageDeletePromises: Promise<void>[] = [];
+
+  for (const field of imageFields) {
+    const data = existingProfile[field as keyof typeof existingProfile];
+    if (!data) continue;
+
+    try {
+      // Parse JSON field (could be object or string)
+      const parsed = typeof data === "string" ? JSON.parse(data) : (data as any);
+
+      if (Array.isArray(parsed)) {
+        // Multiple images
+        for (const img of parsed) {
+          if (img?.public_id) {
+            imageDeletePromises.push(deleteFromCloudinary(img.public_id));
+          }
+        }
+      } else if (parsed?.public_id) {
+        // Single image
+        imageDeletePromises.push(deleteFromCloudinary(parsed.public_id));
+      }
+    } catch (err) {
+      console.error(`Failed to parse/delete Cloudinary image for ${field}:`, err);
+    }
+  }
+
+  // ✅ Wait for all deletions
+  try {
+    await Promise.all(imageDeletePromises);
+  } catch (error) {
+    console.error("One or more Cloudinary deletions failed:", error);
+    // Don’t throw — still delete the DB record
+  }
+
+  // 🗑️ Delete profile record from DB
+  const deletedProfile = await prisma.profile.delete({
+    where: { id: profileId },
+  });
+
+  // ✅ Send success response
+  return SuccessResponse(
+    res,
+    "Profile and associated images deleted successfully",
+    { data: deletedProfile },
     200
   );
 });

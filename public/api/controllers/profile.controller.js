@@ -21,19 +21,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllProfiles = exports.getprofileById = exports.updateprofile = void 0;
+exports.deleteProfile = exports.getAllProfiles = exports.getprofileById = exports.updateprofile = void 0;
 const prisma_1 = __importDefault(require("../../config/prisma"));
 const asyncHandler_1 = __importDefault(require("../middlewares/asyncHandler"));
 const errorResponse_1 = __importDefault(require("../utils/errorResponse"));
 const successResponse_1 = require("../utils/successResponse");
 const utils_1 = require("../utils/utils");
 const profile_validator_1 = require("../validators/profile.validator");
+const cloudinary_1 = require("../../config/cloudinary");
 // Update profile with payment screenshots and approval status
 exports.updateprofile = (0, asyncHandler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const profileId = Number(req.params.id);
-    console.log("update profile payload", req.body);
-    console.log('Received req.files:', req.files);
+    console.log("data comming");
     if (!profileId) {
         return next(new errorResponse_1.default("Profile ID is required", 400));
     }
@@ -114,6 +114,7 @@ exports.getAllProfiles = (0, asyncHandler_1.default)((req, res, next) => __await
         if (['PENDING', 'APPROVED', 'REJECTED'].includes(status.toUpperCase())) {
             whereClause.OR = [
                 { carVefificationStatus: status.toUpperCase() },
+                { hotelBookingStatus: status.toUpperCase() },
                 { medicalKitStatus: status.toUpperCase() },
                 { policeVerificationStatus: status.toUpperCase() },
                 { nocChangeStatus: status.toUpperCase() },
@@ -144,6 +145,7 @@ exports.getAllProfiles = (0, asyncHandler_1.default)((req, res, next) => __await
                 website: true,
                 upi: true,
                 carVefificationStatus: true,
+                hotelBookingStatus: true,
                 medicalKitStatus: true,
                 policeVerificationStatus: true,
                 nocChangeStatus: true,
@@ -164,4 +166,73 @@ exports.getAllProfiles = (0, asyncHandler_1.default)((req, res, next) => __await
         currentPage: page,
         count: profiles.length,
     }, 200);
+}));
+// ✅ All JSON image fields in the Profile model
+const imageFields = [
+    "cardVerification",
+    "hotelBooking",
+    "medicalKit",
+    "policeVerification",
+    "nocChange",
+    "locationVerificationChangeArea",
+    "secretarySafetyChange",
+    "enquiryVerificationChange",
+    "incomeGstChange",
+    "phoneVerification",
+    "joiningFromChange",
+];
+// ✅ Delete profile and its associated Cloudinary images
+exports.deleteProfile = (0, asyncHandler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const profileId = Number(req.params.id);
+    // 🧩 Validate ID
+    if (!profileId) {
+        return next(new errorResponse_1.default("Profile ID is required", 400));
+    }
+    // 🧩 Check if profile exists
+    const existingProfile = yield prisma_1.default.profile.findUnique({
+        where: { id: profileId },
+    });
+    if (!existingProfile) {
+        return next(new errorResponse_1.default("Profile not found", 404));
+    }
+    // 🧹 Prepare Cloudinary deletions
+    const imageDeletePromises = [];
+    for (const field of imageFields) {
+        const data = existingProfile[field];
+        if (!data)
+            continue;
+        try {
+            // Parse JSON field (could be object or string)
+            const parsed = typeof data === "string" ? JSON.parse(data) : data;
+            if (Array.isArray(parsed)) {
+                // Multiple images
+                for (const img of parsed) {
+                    if (img === null || img === void 0 ? void 0 : img.public_id) {
+                        imageDeletePromises.push((0, cloudinary_1.deleteFromCloudinary)(img.public_id));
+                    }
+                }
+            }
+            else if (parsed === null || parsed === void 0 ? void 0 : parsed.public_id) {
+                // Single image
+                imageDeletePromises.push((0, cloudinary_1.deleteFromCloudinary)(parsed.public_id));
+            }
+        }
+        catch (err) {
+            console.error(`Failed to parse/delete Cloudinary image for ${field}:`, err);
+        }
+    }
+    // ✅ Wait for all deletions
+    try {
+        yield Promise.all(imageDeletePromises);
+    }
+    catch (error) {
+        console.error("One or more Cloudinary deletions failed:", error);
+        // Don’t throw — still delete the DB record
+    }
+    // 🗑️ Delete profile record from DB
+    const deletedProfile = yield prisma_1.default.profile.delete({
+        where: { id: profileId },
+    });
+    // ✅ Send success response
+    return (0, successResponse_1.SuccessResponse)(res, "Profile and associated images deleted successfully", { data: deletedProfile }, 200);
 }));

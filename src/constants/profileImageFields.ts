@@ -1,5 +1,6 @@
 export const profileImageFields = [
   "cardVerification",
+  "hotelBooking",
   "medicalKit",
   "policeVerification",
   "nocChange",

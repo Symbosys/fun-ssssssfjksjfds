@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.profileImageFields = void 0;
 exports.profileImageFields = [
     "cardVerification",
+    "hotelBooking",
     "medicalKit",
     "policeVerification",
     "nocChange",

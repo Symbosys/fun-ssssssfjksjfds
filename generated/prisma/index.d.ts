@@ -53,6 +53,16 @@ export type Otp = $Result.DefaultSelection<Prisma.$OtpPayload>
  * 
  */
 export type Profile = $Result.DefaultSelection<Prisma.$ProfilePayload>
+/**
+ * Model PaymentFee
+ * 
+ */
+export type PaymentFee = $Result.DefaultSelection<Prisma.$PaymentFeePayload>
+/**
+ * Model QRCode
+ * 
+ */
+export type QRCode = $Result.DefaultSelection<Prisma.$QRCodePayload>
 
 /**
  * Enums
@@ -293,6 +303,26 @@ export class PrismaClient<
     * ```
     */
   get profile(): Prisma.ProfileDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.paymentFee`: Exposes CRUD operations for the **PaymentFee** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PaymentFees
+    * const paymentFees = await prisma.paymentFee.findMany()
+    * ```
+    */
+  get paymentFee(): Prisma.PaymentFeeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.qRCode`: Exposes CRUD operations for the **QRCode** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more QRCodes
+    * const qRCodes = await prisma.qRCode.findMany()
+    * ```
+    */
+  get qRCode(): Prisma.QRCodeDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -740,7 +770,9 @@ export namespace Prisma {
     Booking: 'Booking',
     Contact: 'Contact',
     Otp: 'Otp',
-    Profile: 'Profile'
+    Profile: 'Profile',
+    PaymentFee: 'PaymentFee',
+    QRCode: 'QRCode'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -759,7 +791,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "admin" | "model" | "modelImage" | "applicants" | "booking" | "contact" | "otp" | "profile"
+      modelProps: "admin" | "model" | "modelImage" | "applicants" | "booking" | "contact" | "otp" | "profile" | "paymentFee" | "qRCode"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1291,6 +1323,138 @@ export namespace Prisma {
           }
         }
       }
+      PaymentFee: {
+        payload: Prisma.$PaymentFeePayload<ExtArgs>
+        fields: Prisma.PaymentFeeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PaymentFeeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentFeePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PaymentFeeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentFeePayload>
+          }
+          findFirst: {
+            args: Prisma.PaymentFeeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentFeePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PaymentFeeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentFeePayload>
+          }
+          findMany: {
+            args: Prisma.PaymentFeeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentFeePayload>[]
+          }
+          create: {
+            args: Prisma.PaymentFeeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentFeePayload>
+          }
+          createMany: {
+            args: Prisma.PaymentFeeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.PaymentFeeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentFeePayload>
+          }
+          update: {
+            args: Prisma.PaymentFeeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentFeePayload>
+          }
+          deleteMany: {
+            args: Prisma.PaymentFeeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PaymentFeeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.PaymentFeeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentFeePayload>
+          }
+          aggregate: {
+            args: Prisma.PaymentFeeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePaymentFee>
+          }
+          groupBy: {
+            args: Prisma.PaymentFeeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PaymentFeeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PaymentFeeCountArgs<ExtArgs>
+            result: $Utils.Optional<PaymentFeeCountAggregateOutputType> | number
+          }
+        }
+      }
+      QRCode: {
+        payload: Prisma.$QRCodePayload<ExtArgs>
+        fields: Prisma.QRCodeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.QRCodeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QRCodePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.QRCodeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QRCodePayload>
+          }
+          findFirst: {
+            args: Prisma.QRCodeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QRCodePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.QRCodeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QRCodePayload>
+          }
+          findMany: {
+            args: Prisma.QRCodeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QRCodePayload>[]
+          }
+          create: {
+            args: Prisma.QRCodeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QRCodePayload>
+          }
+          createMany: {
+            args: Prisma.QRCodeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.QRCodeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QRCodePayload>
+          }
+          update: {
+            args: Prisma.QRCodeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QRCodePayload>
+          }
+          deleteMany: {
+            args: Prisma.QRCodeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.QRCodeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.QRCodeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QRCodePayload>
+          }
+          aggregate: {
+            args: Prisma.QRCodeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateQRCode>
+          }
+          groupBy: {
+            args: Prisma.QRCodeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<QRCodeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.QRCodeCountArgs<ExtArgs>
+            result: $Utils.Optional<QRCodeCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1395,6 +1559,8 @@ export namespace Prisma {
     contact?: ContactOmit
     otp?: OtpOmit
     profile?: ProfileOmit
+    paymentFee?: PaymentFeeOmit
+    qRCode?: QRCodeOmit
   }
 
   /* Types for Logging */
@@ -6582,16 +6748,6 @@ export namespace Prisma {
     email: string | null
     phone: string | null
     whatsapp: string | null
-    registrationFee: string | null
-    cardVerificationFee: string | null
-    medicalKitFee: string | null
-    policeVerificationFee: string | null
-    nocFee: string | null
-    locationVerificationFee: string | null
-    secretarySafetyFee: string | null
-    enquiryVerificationFee: string | null
-    incomeGstFee: string | null
-    hotelBookingFee: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6601,16 +6757,6 @@ export namespace Prisma {
     email: string | null
     phone: string | null
     whatsapp: string | null
-    registrationFee: string | null
-    cardVerificationFee: string | null
-    medicalKitFee: string | null
-    policeVerificationFee: string | null
-    nocFee: string | null
-    locationVerificationFee: string | null
-    secretarySafetyFee: string | null
-    enquiryVerificationFee: string | null
-    incomeGstFee: string | null
-    hotelBookingFee: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6620,16 +6766,6 @@ export namespace Prisma {
     email: number
     phone: number
     whatsapp: number
-    registrationFee: number
-    cardVerificationFee: number
-    medicalKitFee: number
-    policeVerificationFee: number
-    nocFee: number
-    locationVerificationFee: number
-    secretarySafetyFee: number
-    enquiryVerificationFee: number
-    incomeGstFee: number
-    hotelBookingFee: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -6649,16 +6785,6 @@ export namespace Prisma {
     email?: true
     phone?: true
     whatsapp?: true
-    registrationFee?: true
-    cardVerificationFee?: true
-    medicalKitFee?: true
-    policeVerificationFee?: true
-    nocFee?: true
-    locationVerificationFee?: true
-    secretarySafetyFee?: true
-    enquiryVerificationFee?: true
-    incomeGstFee?: true
-    hotelBookingFee?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6668,16 +6794,6 @@ export namespace Prisma {
     email?: true
     phone?: true
     whatsapp?: true
-    registrationFee?: true
-    cardVerificationFee?: true
-    medicalKitFee?: true
-    policeVerificationFee?: true
-    nocFee?: true
-    locationVerificationFee?: true
-    secretarySafetyFee?: true
-    enquiryVerificationFee?: true
-    incomeGstFee?: true
-    hotelBookingFee?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6687,16 +6803,6 @@ export namespace Prisma {
     email?: true
     phone?: true
     whatsapp?: true
-    registrationFee?: true
-    cardVerificationFee?: true
-    medicalKitFee?: true
-    policeVerificationFee?: true
-    nocFee?: true
-    locationVerificationFee?: true
-    secretarySafetyFee?: true
-    enquiryVerificationFee?: true
-    incomeGstFee?: true
-    hotelBookingFee?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -6793,16 +6899,6 @@ export namespace Prisma {
     email: string | null
     phone: string | null
     whatsapp: string | null
-    registrationFee: string | null
-    cardVerificationFee: string | null
-    medicalKitFee: string | null
-    policeVerificationFee: string | null
-    nocFee: string | null
-    locationVerificationFee: string | null
-    secretarySafetyFee: string | null
-    enquiryVerificationFee: string | null
-    incomeGstFee: string | null
-    hotelBookingFee: string | null
     createdAt: Date
     updatedAt: Date
     _count: ContactCountAggregateOutputType | null
@@ -6831,16 +6927,6 @@ export namespace Prisma {
     email?: boolean
     phone?: boolean
     whatsapp?: boolean
-    registrationFee?: boolean
-    cardVerificationFee?: boolean
-    medicalKitFee?: boolean
-    policeVerificationFee?: boolean
-    nocFee?: boolean
-    locationVerificationFee?: boolean
-    secretarySafetyFee?: boolean
-    enquiryVerificationFee?: boolean
-    incomeGstFee?: boolean
-    hotelBookingFee?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["contact"]>
@@ -6852,21 +6938,11 @@ export namespace Prisma {
     email?: boolean
     phone?: boolean
     whatsapp?: boolean
-    registrationFee?: boolean
-    cardVerificationFee?: boolean
-    medicalKitFee?: boolean
-    policeVerificationFee?: boolean
-    nocFee?: boolean
-    locationVerificationFee?: boolean
-    secretarySafetyFee?: boolean
-    enquiryVerificationFee?: boolean
-    incomeGstFee?: boolean
-    hotelBookingFee?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "phone" | "whatsapp" | "registrationFee" | "cardVerificationFee" | "medicalKitFee" | "policeVerificationFee" | "nocFee" | "locationVerificationFee" | "secretarySafetyFee" | "enquiryVerificationFee" | "incomeGstFee" | "hotelBookingFee" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
+  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "phone" | "whatsapp" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
 
   export type $ContactPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Contact"
@@ -6876,16 +6952,6 @@ export namespace Prisma {
       email: string | null
       phone: string | null
       whatsapp: string | null
-      registrationFee: string | null
-      cardVerificationFee: string | null
-      medicalKitFee: string | null
-      policeVerificationFee: string | null
-      nocFee: string | null
-      locationVerificationFee: string | null
-      secretarySafetyFee: string | null
-      enquiryVerificationFee: string | null
-      incomeGstFee: string | null
-      hotelBookingFee: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["contact"]>
@@ -7261,16 +7327,6 @@ export namespace Prisma {
     readonly email: FieldRef<"Contact", 'String'>
     readonly phone: FieldRef<"Contact", 'String'>
     readonly whatsapp: FieldRef<"Contact", 'String'>
-    readonly registrationFee: FieldRef<"Contact", 'String'>
-    readonly cardVerificationFee: FieldRef<"Contact", 'String'>
-    readonly medicalKitFee: FieldRef<"Contact", 'String'>
-    readonly policeVerificationFee: FieldRef<"Contact", 'String'>
-    readonly nocFee: FieldRef<"Contact", 'String'>
-    readonly locationVerificationFee: FieldRef<"Contact", 'String'>
-    readonly secretarySafetyFee: FieldRef<"Contact", 'String'>
-    readonly enquiryVerificationFee: FieldRef<"Contact", 'String'>
-    readonly incomeGstFee: FieldRef<"Contact", 'String'>
-    readonly hotelBookingFee: FieldRef<"Contact", 'String'>
     readonly createdAt: FieldRef<"Contact", 'DateTime'>
     readonly updatedAt: FieldRef<"Contact", 'DateTime'>
   }
@@ -8553,6 +8609,9 @@ export namespace Prisma {
     address: string | null
     website: string | null
     upi: string | null
+    bankAccountNumber: string | null
+    ifscCode: string | null
+    bankName: string | null
     carVefificationStatus: $Enums.Status | null
     hotelBookingStatus: $Enums.Status | null
     medicalKitStatus: $Enums.Status | null
@@ -8564,6 +8623,8 @@ export namespace Prisma {
     incomeGstChangeStatus: $Enums.Status | null
     phoneVerificationVerifiedStatus: $Enums.Status | null
     joiningFromChangeStatus: $Enums.Status | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ProfileMaxAggregateOutputType = {
@@ -8578,6 +8639,9 @@ export namespace Prisma {
     address: string | null
     website: string | null
     upi: string | null
+    bankAccountNumber: string | null
+    ifscCode: string | null
+    bankName: string | null
     carVefificationStatus: $Enums.Status | null
     hotelBookingStatus: $Enums.Status | null
     medicalKitStatus: $Enums.Status | null
@@ -8589,6 +8653,8 @@ export namespace Prisma {
     incomeGstChangeStatus: $Enums.Status | null
     phoneVerificationVerifiedStatus: $Enums.Status | null
     joiningFromChangeStatus: $Enums.Status | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ProfileCountAggregateOutputType = {
@@ -8603,6 +8669,9 @@ export namespace Prisma {
     address: number
     website: number
     upi: number
+    bankAccountNumber: number
+    ifscCode: number
+    bankName: number
     cardVerification: number
     carVefificationStatus: number
     hotelBooking: number
@@ -8625,6 +8694,8 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus: number
     joiningFromChange: number
     joiningFromChangeStatus: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -8649,6 +8720,9 @@ export namespace Prisma {
     address?: true
     website?: true
     upi?: true
+    bankAccountNumber?: true
+    ifscCode?: true
+    bankName?: true
     carVefificationStatus?: true
     hotelBookingStatus?: true
     medicalKitStatus?: true
@@ -8660,6 +8734,8 @@ export namespace Prisma {
     incomeGstChangeStatus?: true
     phoneVerificationVerifiedStatus?: true
     joiningFromChangeStatus?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ProfileMaxAggregateInputType = {
@@ -8674,6 +8750,9 @@ export namespace Prisma {
     address?: true
     website?: true
     upi?: true
+    bankAccountNumber?: true
+    ifscCode?: true
+    bankName?: true
     carVefificationStatus?: true
     hotelBookingStatus?: true
     medicalKitStatus?: true
@@ -8685,6 +8764,8 @@ export namespace Prisma {
     incomeGstChangeStatus?: true
     phoneVerificationVerifiedStatus?: true
     joiningFromChangeStatus?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ProfileCountAggregateInputType = {
@@ -8699,6 +8780,9 @@ export namespace Prisma {
     address?: true
     website?: true
     upi?: true
+    bankAccountNumber?: true
+    ifscCode?: true
+    bankName?: true
     cardVerification?: true
     carVefificationStatus?: true
     hotelBooking?: true
@@ -8721,6 +8805,8 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus?: true
     joiningFromChange?: true
     joiningFromChangeStatus?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -8822,6 +8908,9 @@ export namespace Prisma {
     address: string | null
     website: string | null
     upi: string | null
+    bankAccountNumber: string | null
+    ifscCode: string | null
+    bankName: string | null
     cardVerification: JsonValue | null
     carVefificationStatus: $Enums.Status
     hotelBooking: JsonValue | null
@@ -8844,6 +8933,8 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus: $Enums.Status
     joiningFromChange: JsonValue | null
     joiningFromChangeStatus: $Enums.Status
+    createdAt: Date
+    updatedAt: Date
     _count: ProfileCountAggregateOutputType | null
     _avg: ProfileAvgAggregateOutputType | null
     _sum: ProfileSumAggregateOutputType | null
@@ -8877,6 +8968,9 @@ export namespace Prisma {
     address?: boolean
     website?: boolean
     upi?: boolean
+    bankAccountNumber?: boolean
+    ifscCode?: boolean
+    bankName?: boolean
     cardVerification?: boolean
     carVefificationStatus?: boolean
     hotelBooking?: boolean
@@ -8899,6 +8993,8 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus?: boolean
     joiningFromChange?: boolean
     joiningFromChangeStatus?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["profile"]>
 
 
@@ -8915,6 +9011,9 @@ export namespace Prisma {
     address?: boolean
     website?: boolean
     upi?: boolean
+    bankAccountNumber?: boolean
+    ifscCode?: boolean
+    bankName?: boolean
     cardVerification?: boolean
     carVefificationStatus?: boolean
     hotelBooking?: boolean
@@ -8937,9 +9036,11 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus?: boolean
     joiningFromChange?: boolean
     joiningFromChangeStatus?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "url" | "name" | "dateOfBirth" | "gender" | "state" | "phone" | "address" | "website" | "upi" | "cardVerification" | "carVefificationStatus" | "hotelBooking" | "hotelBookingStatus" | "medicalKit" | "medicalKitStatus" | "policeVerification" | "policeVerificationStatus" | "nocChange" | "nocChangeStatus" | "locationVerificationChangeArea" | "locationVerificationChangeAreaStatus" | "secretarySafetyChange" | "secretarySafetyChangeStatus" | "enquiryVerificationChange" | "enquiryVerificationChangeStatus" | "incomeGstChange" | "incomeGstChangeStatus" | "phoneVerification" | "phoneVerificationVerifiedStatus" | "joiningFromChange" | "joiningFromChangeStatus", ExtArgs["result"]["profile"]>
+  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "url" | "name" | "dateOfBirth" | "gender" | "state" | "phone" | "address" | "website" | "upi" | "bankAccountNumber" | "ifscCode" | "bankName" | "cardVerification" | "carVefificationStatus" | "hotelBooking" | "hotelBookingStatus" | "medicalKit" | "medicalKitStatus" | "policeVerification" | "policeVerificationStatus" | "nocChange" | "nocChangeStatus" | "locationVerificationChangeArea" | "locationVerificationChangeAreaStatus" | "secretarySafetyChange" | "secretarySafetyChangeStatus" | "enquiryVerificationChange" | "enquiryVerificationChangeStatus" | "incomeGstChange" | "incomeGstChangeStatus" | "phoneVerification" | "phoneVerificationVerifiedStatus" | "joiningFromChange" | "joiningFromChangeStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["profile"]>
 
   export type $ProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Profile"
@@ -8956,6 +9057,9 @@ export namespace Prisma {
       address: string | null
       website: string | null
       upi: string | null
+      bankAccountNumber: string | null
+      ifscCode: string | null
+      bankName: string | null
       cardVerification: Prisma.JsonValue | null
       carVefificationStatus: $Enums.Status
       hotelBooking: Prisma.JsonValue | null
@@ -8978,6 +9082,8 @@ export namespace Prisma {
       phoneVerificationVerifiedStatus: $Enums.Status
       joiningFromChange: Prisma.JsonValue | null
       joiningFromChangeStatus: $Enums.Status
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["profile"]>
     composites: {}
   }
@@ -9358,6 +9464,9 @@ export namespace Prisma {
     readonly address: FieldRef<"Profile", 'String'>
     readonly website: FieldRef<"Profile", 'String'>
     readonly upi: FieldRef<"Profile", 'String'>
+    readonly bankAccountNumber: FieldRef<"Profile", 'String'>
+    readonly ifscCode: FieldRef<"Profile", 'String'>
+    readonly bankName: FieldRef<"Profile", 'String'>
     readonly cardVerification: FieldRef<"Profile", 'Json'>
     readonly carVefificationStatus: FieldRef<"Profile", 'Status'>
     readonly hotelBooking: FieldRef<"Profile", 'Json'>
@@ -9380,6 +9489,8 @@ export namespace Prisma {
     readonly phoneVerificationVerifiedStatus: FieldRef<"Profile", 'Status'>
     readonly joiningFromChange: FieldRef<"Profile", 'Json'>
     readonly joiningFromChangeStatus: FieldRef<"Profile", 'Status'>
+    readonly createdAt: FieldRef<"Profile", 'DateTime'>
+    readonly updatedAt: FieldRef<"Profile", 'DateTime'>
   }
     
 
@@ -9702,6 +9813,1911 @@ export namespace Prisma {
 
 
   /**
+   * Model PaymentFee
+   */
+
+  export type AggregatePaymentFee = {
+    _count: PaymentFeeCountAggregateOutputType | null
+    _avg: PaymentFeeAvgAggregateOutputType | null
+    _sum: PaymentFeeSumAggregateOutputType | null
+    _min: PaymentFeeMinAggregateOutputType | null
+    _max: PaymentFeeMaxAggregateOutputType | null
+  }
+
+  export type PaymentFeeAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type PaymentFeeSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type PaymentFeeMinAggregateOutputType = {
+    id: number | null
+    cardVerificationFee: string | null
+    hotelBookingFee: string | null
+    medicalKitFee: string | null
+    policeVerificationFee: string | null
+    nocFee: string | null
+    locationVerificationFee: string | null
+    secretarySafetyFee: string | null
+    enquiryVerificationFee: string | null
+    incomeGstFee: string | null
+    phoneVerificationFee: string | null
+    joiningFromFee: string | null
+  }
+
+  export type PaymentFeeMaxAggregateOutputType = {
+    id: number | null
+    cardVerificationFee: string | null
+    hotelBookingFee: string | null
+    medicalKitFee: string | null
+    policeVerificationFee: string | null
+    nocFee: string | null
+    locationVerificationFee: string | null
+    secretarySafetyFee: string | null
+    enquiryVerificationFee: string | null
+    incomeGstFee: string | null
+    phoneVerificationFee: string | null
+    joiningFromFee: string | null
+  }
+
+  export type PaymentFeeCountAggregateOutputType = {
+    id: number
+    cardVerificationFee: number
+    hotelBookingFee: number
+    medicalKitFee: number
+    policeVerificationFee: number
+    nocFee: number
+    locationVerificationFee: number
+    secretarySafetyFee: number
+    enquiryVerificationFee: number
+    incomeGstFee: number
+    phoneVerificationFee: number
+    joiningFromFee: number
+    _all: number
+  }
+
+
+  export type PaymentFeeAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type PaymentFeeSumAggregateInputType = {
+    id?: true
+  }
+
+  export type PaymentFeeMinAggregateInputType = {
+    id?: true
+    cardVerificationFee?: true
+    hotelBookingFee?: true
+    medicalKitFee?: true
+    policeVerificationFee?: true
+    nocFee?: true
+    locationVerificationFee?: true
+    secretarySafetyFee?: true
+    enquiryVerificationFee?: true
+    incomeGstFee?: true
+    phoneVerificationFee?: true
+    joiningFromFee?: true
+  }
+
+  export type PaymentFeeMaxAggregateInputType = {
+    id?: true
+    cardVerificationFee?: true
+    hotelBookingFee?: true
+    medicalKitFee?: true
+    policeVerificationFee?: true
+    nocFee?: true
+    locationVerificationFee?: true
+    secretarySafetyFee?: true
+    enquiryVerificationFee?: true
+    incomeGstFee?: true
+    phoneVerificationFee?: true
+    joiningFromFee?: true
+  }
+
+  export type PaymentFeeCountAggregateInputType = {
+    id?: true
+    cardVerificationFee?: true
+    hotelBookingFee?: true
+    medicalKitFee?: true
+    policeVerificationFee?: true
+    nocFee?: true
+    locationVerificationFee?: true
+    secretarySafetyFee?: true
+    enquiryVerificationFee?: true
+    incomeGstFee?: true
+    phoneVerificationFee?: true
+    joiningFromFee?: true
+    _all?: true
+  }
+
+  export type PaymentFeeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PaymentFee to aggregate.
+     */
+    where?: PaymentFeeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaymentFees to fetch.
+     */
+    orderBy?: PaymentFeeOrderByWithRelationInput | PaymentFeeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PaymentFeeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaymentFees from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaymentFees.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PaymentFees
+    **/
+    _count?: true | PaymentFeeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PaymentFeeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PaymentFeeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PaymentFeeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PaymentFeeMaxAggregateInputType
+  }
+
+  export type GetPaymentFeeAggregateType<T extends PaymentFeeAggregateArgs> = {
+        [P in keyof T & keyof AggregatePaymentFee]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePaymentFee[P]>
+      : GetScalarType<T[P], AggregatePaymentFee[P]>
+  }
+
+
+
+
+  export type PaymentFeeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PaymentFeeWhereInput
+    orderBy?: PaymentFeeOrderByWithAggregationInput | PaymentFeeOrderByWithAggregationInput[]
+    by: PaymentFeeScalarFieldEnum[] | PaymentFeeScalarFieldEnum
+    having?: PaymentFeeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PaymentFeeCountAggregateInputType | true
+    _avg?: PaymentFeeAvgAggregateInputType
+    _sum?: PaymentFeeSumAggregateInputType
+    _min?: PaymentFeeMinAggregateInputType
+    _max?: PaymentFeeMaxAggregateInputType
+  }
+
+  export type PaymentFeeGroupByOutputType = {
+    id: number
+    cardVerificationFee: string | null
+    hotelBookingFee: string | null
+    medicalKitFee: string | null
+    policeVerificationFee: string | null
+    nocFee: string | null
+    locationVerificationFee: string | null
+    secretarySafetyFee: string | null
+    enquiryVerificationFee: string | null
+    incomeGstFee: string | null
+    phoneVerificationFee: string | null
+    joiningFromFee: string | null
+    _count: PaymentFeeCountAggregateOutputType | null
+    _avg: PaymentFeeAvgAggregateOutputType | null
+    _sum: PaymentFeeSumAggregateOutputType | null
+    _min: PaymentFeeMinAggregateOutputType | null
+    _max: PaymentFeeMaxAggregateOutputType | null
+  }
+
+  type GetPaymentFeeGroupByPayload<T extends PaymentFeeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PaymentFeeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PaymentFeeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PaymentFeeGroupByOutputType[P]>
+            : GetScalarType<T[P], PaymentFeeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PaymentFeeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    cardVerificationFee?: boolean
+    hotelBookingFee?: boolean
+    medicalKitFee?: boolean
+    policeVerificationFee?: boolean
+    nocFee?: boolean
+    locationVerificationFee?: boolean
+    secretarySafetyFee?: boolean
+    enquiryVerificationFee?: boolean
+    incomeGstFee?: boolean
+    phoneVerificationFee?: boolean
+    joiningFromFee?: boolean
+  }, ExtArgs["result"]["paymentFee"]>
+
+
+
+  export type PaymentFeeSelectScalar = {
+    id?: boolean
+    cardVerificationFee?: boolean
+    hotelBookingFee?: boolean
+    medicalKitFee?: boolean
+    policeVerificationFee?: boolean
+    nocFee?: boolean
+    locationVerificationFee?: boolean
+    secretarySafetyFee?: boolean
+    enquiryVerificationFee?: boolean
+    incomeGstFee?: boolean
+    phoneVerificationFee?: boolean
+    joiningFromFee?: boolean
+  }
+
+  export type PaymentFeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "cardVerificationFee" | "hotelBookingFee" | "medicalKitFee" | "policeVerificationFee" | "nocFee" | "locationVerificationFee" | "secretarySafetyFee" | "enquiryVerificationFee" | "incomeGstFee" | "phoneVerificationFee" | "joiningFromFee", ExtArgs["result"]["paymentFee"]>
+
+  export type $PaymentFeePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PaymentFee"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      cardVerificationFee: string | null
+      hotelBookingFee: string | null
+      medicalKitFee: string | null
+      policeVerificationFee: string | null
+      nocFee: string | null
+      locationVerificationFee: string | null
+      secretarySafetyFee: string | null
+      enquiryVerificationFee: string | null
+      incomeGstFee: string | null
+      phoneVerificationFee: string | null
+      joiningFromFee: string | null
+    }, ExtArgs["result"]["paymentFee"]>
+    composites: {}
+  }
+
+  type PaymentFeeGetPayload<S extends boolean | null | undefined | PaymentFeeDefaultArgs> = $Result.GetResult<Prisma.$PaymentFeePayload, S>
+
+  type PaymentFeeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PaymentFeeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PaymentFeeCountAggregateInputType | true
+    }
+
+  export interface PaymentFeeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PaymentFee'], meta: { name: 'PaymentFee' } }
+    /**
+     * Find zero or one PaymentFee that matches the filter.
+     * @param {PaymentFeeFindUniqueArgs} args - Arguments to find a PaymentFee
+     * @example
+     * // Get one PaymentFee
+     * const paymentFee = await prisma.paymentFee.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PaymentFeeFindUniqueArgs>(args: SelectSubset<T, PaymentFeeFindUniqueArgs<ExtArgs>>): Prisma__PaymentFeeClient<$Result.GetResult<Prisma.$PaymentFeePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PaymentFee that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PaymentFeeFindUniqueOrThrowArgs} args - Arguments to find a PaymentFee
+     * @example
+     * // Get one PaymentFee
+     * const paymentFee = await prisma.paymentFee.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PaymentFeeFindUniqueOrThrowArgs>(args: SelectSubset<T, PaymentFeeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PaymentFeeClient<$Result.GetResult<Prisma.$PaymentFeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PaymentFee that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentFeeFindFirstArgs} args - Arguments to find a PaymentFee
+     * @example
+     * // Get one PaymentFee
+     * const paymentFee = await prisma.paymentFee.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PaymentFeeFindFirstArgs>(args?: SelectSubset<T, PaymentFeeFindFirstArgs<ExtArgs>>): Prisma__PaymentFeeClient<$Result.GetResult<Prisma.$PaymentFeePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PaymentFee that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentFeeFindFirstOrThrowArgs} args - Arguments to find a PaymentFee
+     * @example
+     * // Get one PaymentFee
+     * const paymentFee = await prisma.paymentFee.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PaymentFeeFindFirstOrThrowArgs>(args?: SelectSubset<T, PaymentFeeFindFirstOrThrowArgs<ExtArgs>>): Prisma__PaymentFeeClient<$Result.GetResult<Prisma.$PaymentFeePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PaymentFees that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentFeeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PaymentFees
+     * const paymentFees = await prisma.paymentFee.findMany()
+     * 
+     * // Get first 10 PaymentFees
+     * const paymentFees = await prisma.paymentFee.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const paymentFeeWithIdOnly = await prisma.paymentFee.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PaymentFeeFindManyArgs>(args?: SelectSubset<T, PaymentFeeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentFeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PaymentFee.
+     * @param {PaymentFeeCreateArgs} args - Arguments to create a PaymentFee.
+     * @example
+     * // Create one PaymentFee
+     * const PaymentFee = await prisma.paymentFee.create({
+     *   data: {
+     *     // ... data to create a PaymentFee
+     *   }
+     * })
+     * 
+     */
+    create<T extends PaymentFeeCreateArgs>(args: SelectSubset<T, PaymentFeeCreateArgs<ExtArgs>>): Prisma__PaymentFeeClient<$Result.GetResult<Prisma.$PaymentFeePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PaymentFees.
+     * @param {PaymentFeeCreateManyArgs} args - Arguments to create many PaymentFees.
+     * @example
+     * // Create many PaymentFees
+     * const paymentFee = await prisma.paymentFee.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PaymentFeeCreateManyArgs>(args?: SelectSubset<T, PaymentFeeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PaymentFee.
+     * @param {PaymentFeeDeleteArgs} args - Arguments to delete one PaymentFee.
+     * @example
+     * // Delete one PaymentFee
+     * const PaymentFee = await prisma.paymentFee.delete({
+     *   where: {
+     *     // ... filter to delete one PaymentFee
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PaymentFeeDeleteArgs>(args: SelectSubset<T, PaymentFeeDeleteArgs<ExtArgs>>): Prisma__PaymentFeeClient<$Result.GetResult<Prisma.$PaymentFeePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PaymentFee.
+     * @param {PaymentFeeUpdateArgs} args - Arguments to update one PaymentFee.
+     * @example
+     * // Update one PaymentFee
+     * const paymentFee = await prisma.paymentFee.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PaymentFeeUpdateArgs>(args: SelectSubset<T, PaymentFeeUpdateArgs<ExtArgs>>): Prisma__PaymentFeeClient<$Result.GetResult<Prisma.$PaymentFeePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PaymentFees.
+     * @param {PaymentFeeDeleteManyArgs} args - Arguments to filter PaymentFees to delete.
+     * @example
+     * // Delete a few PaymentFees
+     * const { count } = await prisma.paymentFee.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PaymentFeeDeleteManyArgs>(args?: SelectSubset<T, PaymentFeeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PaymentFees.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentFeeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PaymentFees
+     * const paymentFee = await prisma.paymentFee.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PaymentFeeUpdateManyArgs>(args: SelectSubset<T, PaymentFeeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PaymentFee.
+     * @param {PaymentFeeUpsertArgs} args - Arguments to update or create a PaymentFee.
+     * @example
+     * // Update or create a PaymentFee
+     * const paymentFee = await prisma.paymentFee.upsert({
+     *   create: {
+     *     // ... data to create a PaymentFee
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PaymentFee we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PaymentFeeUpsertArgs>(args: SelectSubset<T, PaymentFeeUpsertArgs<ExtArgs>>): Prisma__PaymentFeeClient<$Result.GetResult<Prisma.$PaymentFeePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PaymentFees.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentFeeCountArgs} args - Arguments to filter PaymentFees to count.
+     * @example
+     * // Count the number of PaymentFees
+     * const count = await prisma.paymentFee.count({
+     *   where: {
+     *     // ... the filter for the PaymentFees we want to count
+     *   }
+     * })
+    **/
+    count<T extends PaymentFeeCountArgs>(
+      args?: Subset<T, PaymentFeeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PaymentFeeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PaymentFee.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentFeeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PaymentFeeAggregateArgs>(args: Subset<T, PaymentFeeAggregateArgs>): Prisma.PrismaPromise<GetPaymentFeeAggregateType<T>>
+
+    /**
+     * Group by PaymentFee.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentFeeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PaymentFeeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PaymentFeeGroupByArgs['orderBy'] }
+        : { orderBy?: PaymentFeeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PaymentFeeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPaymentFeeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PaymentFee model
+   */
+  readonly fields: PaymentFeeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PaymentFee.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PaymentFeeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PaymentFee model
+   */
+  interface PaymentFeeFieldRefs {
+    readonly id: FieldRef<"PaymentFee", 'Int'>
+    readonly cardVerificationFee: FieldRef<"PaymentFee", 'String'>
+    readonly hotelBookingFee: FieldRef<"PaymentFee", 'String'>
+    readonly medicalKitFee: FieldRef<"PaymentFee", 'String'>
+    readonly policeVerificationFee: FieldRef<"PaymentFee", 'String'>
+    readonly nocFee: FieldRef<"PaymentFee", 'String'>
+    readonly locationVerificationFee: FieldRef<"PaymentFee", 'String'>
+    readonly secretarySafetyFee: FieldRef<"PaymentFee", 'String'>
+    readonly enquiryVerificationFee: FieldRef<"PaymentFee", 'String'>
+    readonly incomeGstFee: FieldRef<"PaymentFee", 'String'>
+    readonly phoneVerificationFee: FieldRef<"PaymentFee", 'String'>
+    readonly joiningFromFee: FieldRef<"PaymentFee", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PaymentFee findUnique
+   */
+  export type PaymentFeeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentFee
+     */
+    select?: PaymentFeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentFee
+     */
+    omit?: PaymentFeeOmit<ExtArgs> | null
+    /**
+     * Filter, which PaymentFee to fetch.
+     */
+    where: PaymentFeeWhereUniqueInput
+  }
+
+  /**
+   * PaymentFee findUniqueOrThrow
+   */
+  export type PaymentFeeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentFee
+     */
+    select?: PaymentFeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentFee
+     */
+    omit?: PaymentFeeOmit<ExtArgs> | null
+    /**
+     * Filter, which PaymentFee to fetch.
+     */
+    where: PaymentFeeWhereUniqueInput
+  }
+
+  /**
+   * PaymentFee findFirst
+   */
+  export type PaymentFeeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentFee
+     */
+    select?: PaymentFeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentFee
+     */
+    omit?: PaymentFeeOmit<ExtArgs> | null
+    /**
+     * Filter, which PaymentFee to fetch.
+     */
+    where?: PaymentFeeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaymentFees to fetch.
+     */
+    orderBy?: PaymentFeeOrderByWithRelationInput | PaymentFeeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PaymentFees.
+     */
+    cursor?: PaymentFeeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaymentFees from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaymentFees.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PaymentFees.
+     */
+    distinct?: PaymentFeeScalarFieldEnum | PaymentFeeScalarFieldEnum[]
+  }
+
+  /**
+   * PaymentFee findFirstOrThrow
+   */
+  export type PaymentFeeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentFee
+     */
+    select?: PaymentFeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentFee
+     */
+    omit?: PaymentFeeOmit<ExtArgs> | null
+    /**
+     * Filter, which PaymentFee to fetch.
+     */
+    where?: PaymentFeeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaymentFees to fetch.
+     */
+    orderBy?: PaymentFeeOrderByWithRelationInput | PaymentFeeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PaymentFees.
+     */
+    cursor?: PaymentFeeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaymentFees from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaymentFees.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PaymentFees.
+     */
+    distinct?: PaymentFeeScalarFieldEnum | PaymentFeeScalarFieldEnum[]
+  }
+
+  /**
+   * PaymentFee findMany
+   */
+  export type PaymentFeeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentFee
+     */
+    select?: PaymentFeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentFee
+     */
+    omit?: PaymentFeeOmit<ExtArgs> | null
+    /**
+     * Filter, which PaymentFees to fetch.
+     */
+    where?: PaymentFeeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaymentFees to fetch.
+     */
+    orderBy?: PaymentFeeOrderByWithRelationInput | PaymentFeeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PaymentFees.
+     */
+    cursor?: PaymentFeeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaymentFees from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaymentFees.
+     */
+    skip?: number
+    distinct?: PaymentFeeScalarFieldEnum | PaymentFeeScalarFieldEnum[]
+  }
+
+  /**
+   * PaymentFee create
+   */
+  export type PaymentFeeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentFee
+     */
+    select?: PaymentFeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentFee
+     */
+    omit?: PaymentFeeOmit<ExtArgs> | null
+    /**
+     * The data needed to create a PaymentFee.
+     */
+    data?: XOR<PaymentFeeCreateInput, PaymentFeeUncheckedCreateInput>
+  }
+
+  /**
+   * PaymentFee createMany
+   */
+  export type PaymentFeeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PaymentFees.
+     */
+    data: PaymentFeeCreateManyInput | PaymentFeeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PaymentFee update
+   */
+  export type PaymentFeeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentFee
+     */
+    select?: PaymentFeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentFee
+     */
+    omit?: PaymentFeeOmit<ExtArgs> | null
+    /**
+     * The data needed to update a PaymentFee.
+     */
+    data: XOR<PaymentFeeUpdateInput, PaymentFeeUncheckedUpdateInput>
+    /**
+     * Choose, which PaymentFee to update.
+     */
+    where: PaymentFeeWhereUniqueInput
+  }
+
+  /**
+   * PaymentFee updateMany
+   */
+  export type PaymentFeeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PaymentFees.
+     */
+    data: XOR<PaymentFeeUpdateManyMutationInput, PaymentFeeUncheckedUpdateManyInput>
+    /**
+     * Filter which PaymentFees to update
+     */
+    where?: PaymentFeeWhereInput
+    /**
+     * Limit how many PaymentFees to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PaymentFee upsert
+   */
+  export type PaymentFeeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentFee
+     */
+    select?: PaymentFeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentFee
+     */
+    omit?: PaymentFeeOmit<ExtArgs> | null
+    /**
+     * The filter to search for the PaymentFee to update in case it exists.
+     */
+    where: PaymentFeeWhereUniqueInput
+    /**
+     * In case the PaymentFee found by the `where` argument doesn't exist, create a new PaymentFee with this data.
+     */
+    create: XOR<PaymentFeeCreateInput, PaymentFeeUncheckedCreateInput>
+    /**
+     * In case the PaymentFee was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PaymentFeeUpdateInput, PaymentFeeUncheckedUpdateInput>
+  }
+
+  /**
+   * PaymentFee delete
+   */
+  export type PaymentFeeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentFee
+     */
+    select?: PaymentFeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentFee
+     */
+    omit?: PaymentFeeOmit<ExtArgs> | null
+    /**
+     * Filter which PaymentFee to delete.
+     */
+    where: PaymentFeeWhereUniqueInput
+  }
+
+  /**
+   * PaymentFee deleteMany
+   */
+  export type PaymentFeeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PaymentFees to delete
+     */
+    where?: PaymentFeeWhereInput
+    /**
+     * Limit how many PaymentFees to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PaymentFee without action
+   */
+  export type PaymentFeeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentFee
+     */
+    select?: PaymentFeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaymentFee
+     */
+    omit?: PaymentFeeOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model QRCode
+   */
+
+  export type AggregateQRCode = {
+    _count: QRCodeCountAggregateOutputType | null
+    _avg: QRCodeAvgAggregateOutputType | null
+    _sum: QRCodeSumAggregateOutputType | null
+    _min: QRCodeMinAggregateOutputType | null
+    _max: QRCodeMaxAggregateOutputType | null
+  }
+
+  export type QRCodeAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type QRCodeSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type QRCodeMinAggregateOutputType = {
+    id: number | null
+    phone: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type QRCodeMaxAggregateOutputType = {
+    id: number | null
+    phone: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type QRCodeCountAggregateOutputType = {
+    id: number
+    phone: number
+    image: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type QRCodeAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type QRCodeSumAggregateInputType = {
+    id?: true
+  }
+
+  export type QRCodeMinAggregateInputType = {
+    id?: true
+    phone?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type QRCodeMaxAggregateInputType = {
+    id?: true
+    phone?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type QRCodeCountAggregateInputType = {
+    id?: true
+    phone?: true
+    image?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type QRCodeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QRCode to aggregate.
+     */
+    where?: QRCodeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QRCodes to fetch.
+     */
+    orderBy?: QRCodeOrderByWithRelationInput | QRCodeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: QRCodeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QRCodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QRCodes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned QRCodes
+    **/
+    _count?: true | QRCodeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: QRCodeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: QRCodeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: QRCodeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: QRCodeMaxAggregateInputType
+  }
+
+  export type GetQRCodeAggregateType<T extends QRCodeAggregateArgs> = {
+        [P in keyof T & keyof AggregateQRCode]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateQRCode[P]>
+      : GetScalarType<T[P], AggregateQRCode[P]>
+  }
+
+
+
+
+  export type QRCodeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QRCodeWhereInput
+    orderBy?: QRCodeOrderByWithAggregationInput | QRCodeOrderByWithAggregationInput[]
+    by: QRCodeScalarFieldEnum[] | QRCodeScalarFieldEnum
+    having?: QRCodeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: QRCodeCountAggregateInputType | true
+    _avg?: QRCodeAvgAggregateInputType
+    _sum?: QRCodeSumAggregateInputType
+    _min?: QRCodeMinAggregateInputType
+    _max?: QRCodeMaxAggregateInputType
+  }
+
+  export type QRCodeGroupByOutputType = {
+    id: number
+    phone: string | null
+    image: JsonValue | null
+    createdAt: Date
+    updatedAt: Date
+    _count: QRCodeCountAggregateOutputType | null
+    _avg: QRCodeAvgAggregateOutputType | null
+    _sum: QRCodeSumAggregateOutputType | null
+    _min: QRCodeMinAggregateOutputType | null
+    _max: QRCodeMaxAggregateOutputType | null
+  }
+
+  type GetQRCodeGroupByPayload<T extends QRCodeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<QRCodeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof QRCodeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], QRCodeGroupByOutputType[P]>
+            : GetScalarType<T[P], QRCodeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type QRCodeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    phone?: boolean
+    image?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["qRCode"]>
+
+
+
+  export type QRCodeSelectScalar = {
+    id?: boolean
+    phone?: boolean
+    image?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type QRCodeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phone" | "image" | "createdAt" | "updatedAt", ExtArgs["result"]["qRCode"]>
+
+  export type $QRCodePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "QRCode"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      phone: string | null
+      image: Prisma.JsonValue | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["qRCode"]>
+    composites: {}
+  }
+
+  type QRCodeGetPayload<S extends boolean | null | undefined | QRCodeDefaultArgs> = $Result.GetResult<Prisma.$QRCodePayload, S>
+
+  type QRCodeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<QRCodeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: QRCodeCountAggregateInputType | true
+    }
+
+  export interface QRCodeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['QRCode'], meta: { name: 'QRCode' } }
+    /**
+     * Find zero or one QRCode that matches the filter.
+     * @param {QRCodeFindUniqueArgs} args - Arguments to find a QRCode
+     * @example
+     * // Get one QRCode
+     * const qRCode = await prisma.qRCode.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends QRCodeFindUniqueArgs>(args: SelectSubset<T, QRCodeFindUniqueArgs<ExtArgs>>): Prisma__QRCodeClient<$Result.GetResult<Prisma.$QRCodePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one QRCode that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {QRCodeFindUniqueOrThrowArgs} args - Arguments to find a QRCode
+     * @example
+     * // Get one QRCode
+     * const qRCode = await prisma.qRCode.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends QRCodeFindUniqueOrThrowArgs>(args: SelectSubset<T, QRCodeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__QRCodeClient<$Result.GetResult<Prisma.$QRCodePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QRCode that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QRCodeFindFirstArgs} args - Arguments to find a QRCode
+     * @example
+     * // Get one QRCode
+     * const qRCode = await prisma.qRCode.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends QRCodeFindFirstArgs>(args?: SelectSubset<T, QRCodeFindFirstArgs<ExtArgs>>): Prisma__QRCodeClient<$Result.GetResult<Prisma.$QRCodePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QRCode that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QRCodeFindFirstOrThrowArgs} args - Arguments to find a QRCode
+     * @example
+     * // Get one QRCode
+     * const qRCode = await prisma.qRCode.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends QRCodeFindFirstOrThrowArgs>(args?: SelectSubset<T, QRCodeFindFirstOrThrowArgs<ExtArgs>>): Prisma__QRCodeClient<$Result.GetResult<Prisma.$QRCodePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more QRCodes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QRCodeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all QRCodes
+     * const qRCodes = await prisma.qRCode.findMany()
+     * 
+     * // Get first 10 QRCodes
+     * const qRCodes = await prisma.qRCode.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const qRCodeWithIdOnly = await prisma.qRCode.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends QRCodeFindManyArgs>(args?: SelectSubset<T, QRCodeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QRCodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a QRCode.
+     * @param {QRCodeCreateArgs} args - Arguments to create a QRCode.
+     * @example
+     * // Create one QRCode
+     * const QRCode = await prisma.qRCode.create({
+     *   data: {
+     *     // ... data to create a QRCode
+     *   }
+     * })
+     * 
+     */
+    create<T extends QRCodeCreateArgs>(args: SelectSubset<T, QRCodeCreateArgs<ExtArgs>>): Prisma__QRCodeClient<$Result.GetResult<Prisma.$QRCodePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many QRCodes.
+     * @param {QRCodeCreateManyArgs} args - Arguments to create many QRCodes.
+     * @example
+     * // Create many QRCodes
+     * const qRCode = await prisma.qRCode.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends QRCodeCreateManyArgs>(args?: SelectSubset<T, QRCodeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a QRCode.
+     * @param {QRCodeDeleteArgs} args - Arguments to delete one QRCode.
+     * @example
+     * // Delete one QRCode
+     * const QRCode = await prisma.qRCode.delete({
+     *   where: {
+     *     // ... filter to delete one QRCode
+     *   }
+     * })
+     * 
+     */
+    delete<T extends QRCodeDeleteArgs>(args: SelectSubset<T, QRCodeDeleteArgs<ExtArgs>>): Prisma__QRCodeClient<$Result.GetResult<Prisma.$QRCodePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one QRCode.
+     * @param {QRCodeUpdateArgs} args - Arguments to update one QRCode.
+     * @example
+     * // Update one QRCode
+     * const qRCode = await prisma.qRCode.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends QRCodeUpdateArgs>(args: SelectSubset<T, QRCodeUpdateArgs<ExtArgs>>): Prisma__QRCodeClient<$Result.GetResult<Prisma.$QRCodePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more QRCodes.
+     * @param {QRCodeDeleteManyArgs} args - Arguments to filter QRCodes to delete.
+     * @example
+     * // Delete a few QRCodes
+     * const { count } = await prisma.qRCode.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends QRCodeDeleteManyArgs>(args?: SelectSubset<T, QRCodeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QRCodes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QRCodeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many QRCodes
+     * const qRCode = await prisma.qRCode.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends QRCodeUpdateManyArgs>(args: SelectSubset<T, QRCodeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one QRCode.
+     * @param {QRCodeUpsertArgs} args - Arguments to update or create a QRCode.
+     * @example
+     * // Update or create a QRCode
+     * const qRCode = await prisma.qRCode.upsert({
+     *   create: {
+     *     // ... data to create a QRCode
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the QRCode we want to update
+     *   }
+     * })
+     */
+    upsert<T extends QRCodeUpsertArgs>(args: SelectSubset<T, QRCodeUpsertArgs<ExtArgs>>): Prisma__QRCodeClient<$Result.GetResult<Prisma.$QRCodePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of QRCodes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QRCodeCountArgs} args - Arguments to filter QRCodes to count.
+     * @example
+     * // Count the number of QRCodes
+     * const count = await prisma.qRCode.count({
+     *   where: {
+     *     // ... the filter for the QRCodes we want to count
+     *   }
+     * })
+    **/
+    count<T extends QRCodeCountArgs>(
+      args?: Subset<T, QRCodeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], QRCodeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a QRCode.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QRCodeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends QRCodeAggregateArgs>(args: Subset<T, QRCodeAggregateArgs>): Prisma.PrismaPromise<GetQRCodeAggregateType<T>>
+
+    /**
+     * Group by QRCode.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QRCodeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends QRCodeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: QRCodeGroupByArgs['orderBy'] }
+        : { orderBy?: QRCodeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, QRCodeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQRCodeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the QRCode model
+   */
+  readonly fields: QRCodeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for QRCode.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__QRCodeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the QRCode model
+   */
+  interface QRCodeFieldRefs {
+    readonly id: FieldRef<"QRCode", 'Int'>
+    readonly phone: FieldRef<"QRCode", 'String'>
+    readonly image: FieldRef<"QRCode", 'Json'>
+    readonly createdAt: FieldRef<"QRCode", 'DateTime'>
+    readonly updatedAt: FieldRef<"QRCode", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * QRCode findUnique
+   */
+  export type QRCodeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QRCode
+     */
+    select?: QRCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QRCode
+     */
+    omit?: QRCodeOmit<ExtArgs> | null
+    /**
+     * Filter, which QRCode to fetch.
+     */
+    where: QRCodeWhereUniqueInput
+  }
+
+  /**
+   * QRCode findUniqueOrThrow
+   */
+  export type QRCodeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QRCode
+     */
+    select?: QRCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QRCode
+     */
+    omit?: QRCodeOmit<ExtArgs> | null
+    /**
+     * Filter, which QRCode to fetch.
+     */
+    where: QRCodeWhereUniqueInput
+  }
+
+  /**
+   * QRCode findFirst
+   */
+  export type QRCodeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QRCode
+     */
+    select?: QRCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QRCode
+     */
+    omit?: QRCodeOmit<ExtArgs> | null
+    /**
+     * Filter, which QRCode to fetch.
+     */
+    where?: QRCodeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QRCodes to fetch.
+     */
+    orderBy?: QRCodeOrderByWithRelationInput | QRCodeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QRCodes.
+     */
+    cursor?: QRCodeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QRCodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QRCodes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QRCodes.
+     */
+    distinct?: QRCodeScalarFieldEnum | QRCodeScalarFieldEnum[]
+  }
+
+  /**
+   * QRCode findFirstOrThrow
+   */
+  export type QRCodeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QRCode
+     */
+    select?: QRCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QRCode
+     */
+    omit?: QRCodeOmit<ExtArgs> | null
+    /**
+     * Filter, which QRCode to fetch.
+     */
+    where?: QRCodeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QRCodes to fetch.
+     */
+    orderBy?: QRCodeOrderByWithRelationInput | QRCodeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QRCodes.
+     */
+    cursor?: QRCodeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QRCodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QRCodes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QRCodes.
+     */
+    distinct?: QRCodeScalarFieldEnum | QRCodeScalarFieldEnum[]
+  }
+
+  /**
+   * QRCode findMany
+   */
+  export type QRCodeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QRCode
+     */
+    select?: QRCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QRCode
+     */
+    omit?: QRCodeOmit<ExtArgs> | null
+    /**
+     * Filter, which QRCodes to fetch.
+     */
+    where?: QRCodeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QRCodes to fetch.
+     */
+    orderBy?: QRCodeOrderByWithRelationInput | QRCodeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing QRCodes.
+     */
+    cursor?: QRCodeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QRCodes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QRCodes.
+     */
+    skip?: number
+    distinct?: QRCodeScalarFieldEnum | QRCodeScalarFieldEnum[]
+  }
+
+  /**
+   * QRCode create
+   */
+  export type QRCodeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QRCode
+     */
+    select?: QRCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QRCode
+     */
+    omit?: QRCodeOmit<ExtArgs> | null
+    /**
+     * The data needed to create a QRCode.
+     */
+    data: XOR<QRCodeCreateInput, QRCodeUncheckedCreateInput>
+  }
+
+  /**
+   * QRCode createMany
+   */
+  export type QRCodeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many QRCodes.
+     */
+    data: QRCodeCreateManyInput | QRCodeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * QRCode update
+   */
+  export type QRCodeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QRCode
+     */
+    select?: QRCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QRCode
+     */
+    omit?: QRCodeOmit<ExtArgs> | null
+    /**
+     * The data needed to update a QRCode.
+     */
+    data: XOR<QRCodeUpdateInput, QRCodeUncheckedUpdateInput>
+    /**
+     * Choose, which QRCode to update.
+     */
+    where: QRCodeWhereUniqueInput
+  }
+
+  /**
+   * QRCode updateMany
+   */
+  export type QRCodeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update QRCodes.
+     */
+    data: XOR<QRCodeUpdateManyMutationInput, QRCodeUncheckedUpdateManyInput>
+    /**
+     * Filter which QRCodes to update
+     */
+    where?: QRCodeWhereInput
+    /**
+     * Limit how many QRCodes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * QRCode upsert
+   */
+  export type QRCodeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QRCode
+     */
+    select?: QRCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QRCode
+     */
+    omit?: QRCodeOmit<ExtArgs> | null
+    /**
+     * The filter to search for the QRCode to update in case it exists.
+     */
+    where: QRCodeWhereUniqueInput
+    /**
+     * In case the QRCode found by the `where` argument doesn't exist, create a new QRCode with this data.
+     */
+    create: XOR<QRCodeCreateInput, QRCodeUncheckedCreateInput>
+    /**
+     * In case the QRCode was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<QRCodeUpdateInput, QRCodeUncheckedUpdateInput>
+  }
+
+  /**
+   * QRCode delete
+   */
+  export type QRCodeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QRCode
+     */
+    select?: QRCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QRCode
+     */
+    omit?: QRCodeOmit<ExtArgs> | null
+    /**
+     * Filter which QRCode to delete.
+     */
+    where: QRCodeWhereUniqueInput
+  }
+
+  /**
+   * QRCode deleteMany
+   */
+  export type QRCodeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QRCodes to delete
+     */
+    where?: QRCodeWhereInput
+    /**
+     * Limit how many QRCodes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * QRCode without action
+   */
+  export type QRCodeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QRCode
+     */
+    select?: QRCodeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QRCode
+     */
+    omit?: QRCodeOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9799,16 +11815,6 @@ export namespace Prisma {
     email: 'email',
     phone: 'phone',
     whatsapp: 'whatsapp',
-    registrationFee: 'registrationFee',
-    cardVerificationFee: 'cardVerificationFee',
-    medicalKitFee: 'medicalKitFee',
-    policeVerificationFee: 'policeVerificationFee',
-    nocFee: 'nocFee',
-    locationVerificationFee: 'locationVerificationFee',
-    secretarySafetyFee: 'secretarySafetyFee',
-    enquiryVerificationFee: 'enquiryVerificationFee',
-    incomeGstFee: 'incomeGstFee',
-    hotelBookingFee: 'hotelBookingFee',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -9840,6 +11846,9 @@ export namespace Prisma {
     address: 'address',
     website: 'website',
     upi: 'upi',
+    bankAccountNumber: 'bankAccountNumber',
+    ifscCode: 'ifscCode',
+    bankName: 'bankName',
     cardVerification: 'cardVerification',
     carVefificationStatus: 'carVefificationStatus',
     hotelBooking: 'hotelBooking',
@@ -9861,10 +11870,41 @@ export namespace Prisma {
     phoneVerification: 'phoneVerification',
     phoneVerificationVerifiedStatus: 'phoneVerificationVerifiedStatus',
     joiningFromChange: 'joiningFromChange',
-    joiningFromChangeStatus: 'joiningFromChangeStatus'
+    joiningFromChangeStatus: 'joiningFromChangeStatus',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
+
+
+  export const PaymentFeeScalarFieldEnum: {
+    id: 'id',
+    cardVerificationFee: 'cardVerificationFee',
+    hotelBookingFee: 'hotelBookingFee',
+    medicalKitFee: 'medicalKitFee',
+    policeVerificationFee: 'policeVerificationFee',
+    nocFee: 'nocFee',
+    locationVerificationFee: 'locationVerificationFee',
+    secretarySafetyFee: 'secretarySafetyFee',
+    enquiryVerificationFee: 'enquiryVerificationFee',
+    incomeGstFee: 'incomeGstFee',
+    phoneVerificationFee: 'phoneVerificationFee',
+    joiningFromFee: 'joiningFromFee'
+  };
+
+  export type PaymentFeeScalarFieldEnum = (typeof PaymentFeeScalarFieldEnum)[keyof typeof PaymentFeeScalarFieldEnum]
+
+
+  export const QRCodeScalarFieldEnum: {
+    id: 'id',
+    phone: 'phone',
+    image: 'image',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type QRCodeScalarFieldEnum = (typeof QRCodeScalarFieldEnum)[keyof typeof QRCodeScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -9962,17 +12002,7 @@ export namespace Prisma {
   export const ContactOrderByRelevanceFieldEnum: {
     email: 'email',
     phone: 'phone',
-    whatsapp: 'whatsapp',
-    registrationFee: 'registrationFee',
-    cardVerificationFee: 'cardVerificationFee',
-    medicalKitFee: 'medicalKitFee',
-    policeVerificationFee: 'policeVerificationFee',
-    nocFee: 'nocFee',
-    locationVerificationFee: 'locationVerificationFee',
-    secretarySafetyFee: 'secretarySafetyFee',
-    enquiryVerificationFee: 'enquiryVerificationFee',
-    incomeGstFee: 'incomeGstFee',
-    hotelBookingFee: 'hotelBookingFee'
+    whatsapp: 'whatsapp'
   };
 
   export type ContactOrderByRelevanceFieldEnum = (typeof ContactOrderByRelevanceFieldEnum)[keyof typeof ContactOrderByRelevanceFieldEnum]
@@ -9996,10 +12026,37 @@ export namespace Prisma {
     phone: 'phone',
     address: 'address',
     website: 'website',
-    upi: 'upi'
+    upi: 'upi',
+    bankAccountNumber: 'bankAccountNumber',
+    ifscCode: 'ifscCode',
+    bankName: 'bankName'
   };
 
   export type ProfileOrderByRelevanceFieldEnum = (typeof ProfileOrderByRelevanceFieldEnum)[keyof typeof ProfileOrderByRelevanceFieldEnum]
+
+
+  export const PaymentFeeOrderByRelevanceFieldEnum: {
+    cardVerificationFee: 'cardVerificationFee',
+    hotelBookingFee: 'hotelBookingFee',
+    medicalKitFee: 'medicalKitFee',
+    policeVerificationFee: 'policeVerificationFee',
+    nocFee: 'nocFee',
+    locationVerificationFee: 'locationVerificationFee',
+    secretarySafetyFee: 'secretarySafetyFee',
+    enquiryVerificationFee: 'enquiryVerificationFee',
+    incomeGstFee: 'incomeGstFee',
+    phoneVerificationFee: 'phoneVerificationFee',
+    joiningFromFee: 'joiningFromFee'
+  };
+
+  export type PaymentFeeOrderByRelevanceFieldEnum = (typeof PaymentFeeOrderByRelevanceFieldEnum)[keyof typeof PaymentFeeOrderByRelevanceFieldEnum]
+
+
+  export const QRCodeOrderByRelevanceFieldEnum: {
+    phone: 'phone'
+  };
+
+  export type QRCodeOrderByRelevanceFieldEnum = (typeof QRCodeOrderByRelevanceFieldEnum)[keyof typeof QRCodeOrderByRelevanceFieldEnum]
 
 
   /**
@@ -10494,16 +12551,6 @@ export namespace Prisma {
     email?: StringNullableFilter<"Contact"> | string | null
     phone?: StringNullableFilter<"Contact"> | string | null
     whatsapp?: StringNullableFilter<"Contact"> | string | null
-    registrationFee?: StringNullableFilter<"Contact"> | string | null
-    cardVerificationFee?: StringNullableFilter<"Contact"> | string | null
-    medicalKitFee?: StringNullableFilter<"Contact"> | string | null
-    policeVerificationFee?: StringNullableFilter<"Contact"> | string | null
-    nocFee?: StringNullableFilter<"Contact"> | string | null
-    locationVerificationFee?: StringNullableFilter<"Contact"> | string | null
-    secretarySafetyFee?: StringNullableFilter<"Contact"> | string | null
-    enquiryVerificationFee?: StringNullableFilter<"Contact"> | string | null
-    incomeGstFee?: StringNullableFilter<"Contact"> | string | null
-    hotelBookingFee?: StringNullableFilter<"Contact"> | string | null
     createdAt?: DateTimeFilter<"Contact"> | Date | string
     updatedAt?: DateTimeFilter<"Contact"> | Date | string
   }
@@ -10513,16 +12560,6 @@ export namespace Prisma {
     email?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     whatsapp?: SortOrderInput | SortOrder
-    registrationFee?: SortOrderInput | SortOrder
-    cardVerificationFee?: SortOrderInput | SortOrder
-    medicalKitFee?: SortOrderInput | SortOrder
-    policeVerificationFee?: SortOrderInput | SortOrder
-    nocFee?: SortOrderInput | SortOrder
-    locationVerificationFee?: SortOrderInput | SortOrder
-    secretarySafetyFee?: SortOrderInput | SortOrder
-    enquiryVerificationFee?: SortOrderInput | SortOrder
-    incomeGstFee?: SortOrderInput | SortOrder
-    hotelBookingFee?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _relevance?: ContactOrderByRelevanceInput
@@ -10536,16 +12573,6 @@ export namespace Prisma {
     email?: StringNullableFilter<"Contact"> | string | null
     phone?: StringNullableFilter<"Contact"> | string | null
     whatsapp?: StringNullableFilter<"Contact"> | string | null
-    registrationFee?: StringNullableFilter<"Contact"> | string | null
-    cardVerificationFee?: StringNullableFilter<"Contact"> | string | null
-    medicalKitFee?: StringNullableFilter<"Contact"> | string | null
-    policeVerificationFee?: StringNullableFilter<"Contact"> | string | null
-    nocFee?: StringNullableFilter<"Contact"> | string | null
-    locationVerificationFee?: StringNullableFilter<"Contact"> | string | null
-    secretarySafetyFee?: StringNullableFilter<"Contact"> | string | null
-    enquiryVerificationFee?: StringNullableFilter<"Contact"> | string | null
-    incomeGstFee?: StringNullableFilter<"Contact"> | string | null
-    hotelBookingFee?: StringNullableFilter<"Contact"> | string | null
     createdAt?: DateTimeFilter<"Contact"> | Date | string
     updatedAt?: DateTimeFilter<"Contact"> | Date | string
   }, "id">
@@ -10555,16 +12582,6 @@ export namespace Prisma {
     email?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     whatsapp?: SortOrderInput | SortOrder
-    registrationFee?: SortOrderInput | SortOrder
-    cardVerificationFee?: SortOrderInput | SortOrder
-    medicalKitFee?: SortOrderInput | SortOrder
-    policeVerificationFee?: SortOrderInput | SortOrder
-    nocFee?: SortOrderInput | SortOrder
-    locationVerificationFee?: SortOrderInput | SortOrder
-    secretarySafetyFee?: SortOrderInput | SortOrder
-    enquiryVerificationFee?: SortOrderInput | SortOrder
-    incomeGstFee?: SortOrderInput | SortOrder
-    hotelBookingFee?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ContactCountOrderByAggregateInput
@@ -10582,16 +12599,6 @@ export namespace Prisma {
     email?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     phone?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     whatsapp?: StringNullableWithAggregatesFilter<"Contact"> | string | null
-    registrationFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
-    cardVerificationFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
-    medicalKitFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
-    policeVerificationFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
-    nocFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
-    locationVerificationFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
-    secretarySafetyFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
-    enquiryVerificationFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
-    incomeGstFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
-    hotelBookingFee?: StringNullableWithAggregatesFilter<"Contact"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
   }
@@ -10671,6 +12678,9 @@ export namespace Prisma {
     address?: StringNullableFilter<"Profile"> | string | null
     website?: StringNullableFilter<"Profile"> | string | null
     upi?: StringNullableFilter<"Profile"> | string | null
+    bankAccountNumber?: StringNullableFilter<"Profile"> | string | null
+    ifscCode?: StringNullableFilter<"Profile"> | string | null
+    bankName?: StringNullableFilter<"Profile"> | string | null
     cardVerification?: JsonNullableFilter<"Profile">
     carVefificationStatus?: EnumStatusFilter<"Profile"> | $Enums.Status
     hotelBooking?: JsonNullableFilter<"Profile">
@@ -10693,6 +12703,8 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus?: EnumStatusFilter<"Profile"> | $Enums.Status
     joiningFromChange?: JsonNullableFilter<"Profile">
     joiningFromChangeStatus?: EnumStatusFilter<"Profile"> | $Enums.Status
+    createdAt?: DateTimeFilter<"Profile"> | Date | string
+    updatedAt?: DateTimeFilter<"Profile"> | Date | string
   }
 
   export type ProfileOrderByWithRelationInput = {
@@ -10707,6 +12719,9 @@ export namespace Prisma {
     address?: SortOrderInput | SortOrder
     website?: SortOrderInput | SortOrder
     upi?: SortOrderInput | SortOrder
+    bankAccountNumber?: SortOrderInput | SortOrder
+    ifscCode?: SortOrderInput | SortOrder
+    bankName?: SortOrderInput | SortOrder
     cardVerification?: SortOrderInput | SortOrder
     carVefificationStatus?: SortOrder
     hotelBooking?: SortOrderInput | SortOrder
@@ -10729,6 +12744,8 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus?: SortOrder
     joiningFromChange?: SortOrderInput | SortOrder
     joiningFromChangeStatus?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _relevance?: ProfileOrderByRelevanceInput
   }
 
@@ -10747,6 +12764,9 @@ export namespace Prisma {
     address?: StringNullableFilter<"Profile"> | string | null
     website?: StringNullableFilter<"Profile"> | string | null
     upi?: StringNullableFilter<"Profile"> | string | null
+    bankAccountNumber?: StringNullableFilter<"Profile"> | string | null
+    ifscCode?: StringNullableFilter<"Profile"> | string | null
+    bankName?: StringNullableFilter<"Profile"> | string | null
     cardVerification?: JsonNullableFilter<"Profile">
     carVefificationStatus?: EnumStatusFilter<"Profile"> | $Enums.Status
     hotelBooking?: JsonNullableFilter<"Profile">
@@ -10769,6 +12789,8 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus?: EnumStatusFilter<"Profile"> | $Enums.Status
     joiningFromChange?: JsonNullableFilter<"Profile">
     joiningFromChangeStatus?: EnumStatusFilter<"Profile"> | $Enums.Status
+    createdAt?: DateTimeFilter<"Profile"> | Date | string
+    updatedAt?: DateTimeFilter<"Profile"> | Date | string
   }, "id" | "email">
 
   export type ProfileOrderByWithAggregationInput = {
@@ -10783,6 +12805,9 @@ export namespace Prisma {
     address?: SortOrderInput | SortOrder
     website?: SortOrderInput | SortOrder
     upi?: SortOrderInput | SortOrder
+    bankAccountNumber?: SortOrderInput | SortOrder
+    ifscCode?: SortOrderInput | SortOrder
+    bankName?: SortOrderInput | SortOrder
     cardVerification?: SortOrderInput | SortOrder
     carVefificationStatus?: SortOrder
     hotelBooking?: SortOrderInput | SortOrder
@@ -10805,6 +12830,8 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus?: SortOrder
     joiningFromChange?: SortOrderInput | SortOrder
     joiningFromChangeStatus?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: ProfileCountOrderByAggregateInput
     _avg?: ProfileAvgOrderByAggregateInput
     _max?: ProfileMaxOrderByAggregateInput
@@ -10827,6 +12854,9 @@ export namespace Prisma {
     address?: StringNullableWithAggregatesFilter<"Profile"> | string | null
     website?: StringNullableWithAggregatesFilter<"Profile"> | string | null
     upi?: StringNullableWithAggregatesFilter<"Profile"> | string | null
+    bankAccountNumber?: StringNullableWithAggregatesFilter<"Profile"> | string | null
+    ifscCode?: StringNullableWithAggregatesFilter<"Profile"> | string | null
+    bankName?: StringNullableWithAggregatesFilter<"Profile"> | string | null
     cardVerification?: JsonNullableWithAggregatesFilter<"Profile">
     carVefificationStatus?: EnumStatusWithAggregatesFilter<"Profile"> | $Enums.Status
     hotelBooking?: JsonNullableWithAggregatesFilter<"Profile">
@@ -10849,6 +12879,153 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus?: EnumStatusWithAggregatesFilter<"Profile"> | $Enums.Status
     joiningFromChange?: JsonNullableWithAggregatesFilter<"Profile">
     joiningFromChangeStatus?: EnumStatusWithAggregatesFilter<"Profile"> | $Enums.Status
+    createdAt?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
+  }
+
+  export type PaymentFeeWhereInput = {
+    AND?: PaymentFeeWhereInput | PaymentFeeWhereInput[]
+    OR?: PaymentFeeWhereInput[]
+    NOT?: PaymentFeeWhereInput | PaymentFeeWhereInput[]
+    id?: IntFilter<"PaymentFee"> | number
+    cardVerificationFee?: StringNullableFilter<"PaymentFee"> | string | null
+    hotelBookingFee?: StringNullableFilter<"PaymentFee"> | string | null
+    medicalKitFee?: StringNullableFilter<"PaymentFee"> | string | null
+    policeVerificationFee?: StringNullableFilter<"PaymentFee"> | string | null
+    nocFee?: StringNullableFilter<"PaymentFee"> | string | null
+    locationVerificationFee?: StringNullableFilter<"PaymentFee"> | string | null
+    secretarySafetyFee?: StringNullableFilter<"PaymentFee"> | string | null
+    enquiryVerificationFee?: StringNullableFilter<"PaymentFee"> | string | null
+    incomeGstFee?: StringNullableFilter<"PaymentFee"> | string | null
+    phoneVerificationFee?: StringNullableFilter<"PaymentFee"> | string | null
+    joiningFromFee?: StringNullableFilter<"PaymentFee"> | string | null
+  }
+
+  export type PaymentFeeOrderByWithRelationInput = {
+    id?: SortOrder
+    cardVerificationFee?: SortOrderInput | SortOrder
+    hotelBookingFee?: SortOrderInput | SortOrder
+    medicalKitFee?: SortOrderInput | SortOrder
+    policeVerificationFee?: SortOrderInput | SortOrder
+    nocFee?: SortOrderInput | SortOrder
+    locationVerificationFee?: SortOrderInput | SortOrder
+    secretarySafetyFee?: SortOrderInput | SortOrder
+    enquiryVerificationFee?: SortOrderInput | SortOrder
+    incomeGstFee?: SortOrderInput | SortOrder
+    phoneVerificationFee?: SortOrderInput | SortOrder
+    joiningFromFee?: SortOrderInput | SortOrder
+    _relevance?: PaymentFeeOrderByRelevanceInput
+  }
+
+  export type PaymentFeeWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PaymentFeeWhereInput | PaymentFeeWhereInput[]
+    OR?: PaymentFeeWhereInput[]
+    NOT?: PaymentFeeWhereInput | PaymentFeeWhereInput[]
+    cardVerificationFee?: StringNullableFilter<"PaymentFee"> | string | null
+    hotelBookingFee?: StringNullableFilter<"PaymentFee"> | string | null
+    medicalKitFee?: StringNullableFilter<"PaymentFee"> | string | null
+    policeVerificationFee?: StringNullableFilter<"PaymentFee"> | string | null
+    nocFee?: StringNullableFilter<"PaymentFee"> | string | null
+    locationVerificationFee?: StringNullableFilter<"PaymentFee"> | string | null
+    secretarySafetyFee?: StringNullableFilter<"PaymentFee"> | string | null
+    enquiryVerificationFee?: StringNullableFilter<"PaymentFee"> | string | null
+    incomeGstFee?: StringNullableFilter<"PaymentFee"> | string | null
+    phoneVerificationFee?: StringNullableFilter<"PaymentFee"> | string | null
+    joiningFromFee?: StringNullableFilter<"PaymentFee"> | string | null
+  }, "id">
+
+  export type PaymentFeeOrderByWithAggregationInput = {
+    id?: SortOrder
+    cardVerificationFee?: SortOrderInput | SortOrder
+    hotelBookingFee?: SortOrderInput | SortOrder
+    medicalKitFee?: SortOrderInput | SortOrder
+    policeVerificationFee?: SortOrderInput | SortOrder
+    nocFee?: SortOrderInput | SortOrder
+    locationVerificationFee?: SortOrderInput | SortOrder
+    secretarySafetyFee?: SortOrderInput | SortOrder
+    enquiryVerificationFee?: SortOrderInput | SortOrder
+    incomeGstFee?: SortOrderInput | SortOrder
+    phoneVerificationFee?: SortOrderInput | SortOrder
+    joiningFromFee?: SortOrderInput | SortOrder
+    _count?: PaymentFeeCountOrderByAggregateInput
+    _avg?: PaymentFeeAvgOrderByAggregateInput
+    _max?: PaymentFeeMaxOrderByAggregateInput
+    _min?: PaymentFeeMinOrderByAggregateInput
+    _sum?: PaymentFeeSumOrderByAggregateInput
+  }
+
+  export type PaymentFeeScalarWhereWithAggregatesInput = {
+    AND?: PaymentFeeScalarWhereWithAggregatesInput | PaymentFeeScalarWhereWithAggregatesInput[]
+    OR?: PaymentFeeScalarWhereWithAggregatesInput[]
+    NOT?: PaymentFeeScalarWhereWithAggregatesInput | PaymentFeeScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PaymentFee"> | number
+    cardVerificationFee?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+    hotelBookingFee?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+    medicalKitFee?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+    policeVerificationFee?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+    nocFee?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+    locationVerificationFee?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+    secretarySafetyFee?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+    enquiryVerificationFee?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+    incomeGstFee?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+    phoneVerificationFee?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+    joiningFromFee?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+  }
+
+  export type QRCodeWhereInput = {
+    AND?: QRCodeWhereInput | QRCodeWhereInput[]
+    OR?: QRCodeWhereInput[]
+    NOT?: QRCodeWhereInput | QRCodeWhereInput[]
+    id?: IntFilter<"QRCode"> | number
+    phone?: StringNullableFilter<"QRCode"> | string | null
+    image?: JsonNullableFilter<"QRCode">
+    createdAt?: DateTimeFilter<"QRCode"> | Date | string
+    updatedAt?: DateTimeFilter<"QRCode"> | Date | string
+  }
+
+  export type QRCodeOrderByWithRelationInput = {
+    id?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    image?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _relevance?: QRCodeOrderByRelevanceInput
+  }
+
+  export type QRCodeWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: QRCodeWhereInput | QRCodeWhereInput[]
+    OR?: QRCodeWhereInput[]
+    NOT?: QRCodeWhereInput | QRCodeWhereInput[]
+    phone?: StringNullableFilter<"QRCode"> | string | null
+    image?: JsonNullableFilter<"QRCode">
+    createdAt?: DateTimeFilter<"QRCode"> | Date | string
+    updatedAt?: DateTimeFilter<"QRCode"> | Date | string
+  }, "id">
+
+  export type QRCodeOrderByWithAggregationInput = {
+    id?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    image?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: QRCodeCountOrderByAggregateInput
+    _avg?: QRCodeAvgOrderByAggregateInput
+    _max?: QRCodeMaxOrderByAggregateInput
+    _min?: QRCodeMinOrderByAggregateInput
+    _sum?: QRCodeSumOrderByAggregateInput
+  }
+
+  export type QRCodeScalarWhereWithAggregatesInput = {
+    AND?: QRCodeScalarWhereWithAggregatesInput | QRCodeScalarWhereWithAggregatesInput[]
+    OR?: QRCodeScalarWhereWithAggregatesInput[]
+    NOT?: QRCodeScalarWhereWithAggregatesInput | QRCodeScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"QRCode"> | number
+    phone?: StringNullableWithAggregatesFilter<"QRCode"> | string | null
+    image?: JsonNullableWithAggregatesFilter<"QRCode">
+    createdAt?: DateTimeWithAggregatesFilter<"QRCode"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"QRCode"> | Date | string
   }
 
   export type AdminCreateInput = {
@@ -11294,16 +13471,6 @@ export namespace Prisma {
     email?: string | null
     phone?: string | null
     whatsapp?: string | null
-    registrationFee?: string | null
-    cardVerificationFee?: string | null
-    medicalKitFee?: string | null
-    policeVerificationFee?: string | null
-    nocFee?: string | null
-    locationVerificationFee?: string | null
-    secretarySafetyFee?: string | null
-    enquiryVerificationFee?: string | null
-    incomeGstFee?: string | null
-    hotelBookingFee?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11313,16 +13480,6 @@ export namespace Prisma {
     email?: string | null
     phone?: string | null
     whatsapp?: string | null
-    registrationFee?: string | null
-    cardVerificationFee?: string | null
-    medicalKitFee?: string | null
-    policeVerificationFee?: string | null
-    nocFee?: string | null
-    locationVerificationFee?: string | null
-    secretarySafetyFee?: string | null
-    enquiryVerificationFee?: string | null
-    incomeGstFee?: string | null
-    hotelBookingFee?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11331,16 +13488,6 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
-    registrationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    cardVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    medicalKitFee?: NullableStringFieldUpdateOperationsInput | string | null
-    policeVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    nocFee?: NullableStringFieldUpdateOperationsInput | string | null
-    locationVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    secretarySafetyFee?: NullableStringFieldUpdateOperationsInput | string | null
-    enquiryVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    incomeGstFee?: NullableStringFieldUpdateOperationsInput | string | null
-    hotelBookingFee?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11350,16 +13497,6 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
-    registrationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    cardVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    medicalKitFee?: NullableStringFieldUpdateOperationsInput | string | null
-    policeVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    nocFee?: NullableStringFieldUpdateOperationsInput | string | null
-    locationVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    secretarySafetyFee?: NullableStringFieldUpdateOperationsInput | string | null
-    enquiryVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    incomeGstFee?: NullableStringFieldUpdateOperationsInput | string | null
-    hotelBookingFee?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11369,16 +13506,6 @@ export namespace Prisma {
     email?: string | null
     phone?: string | null
     whatsapp?: string | null
-    registrationFee?: string | null
-    cardVerificationFee?: string | null
-    medicalKitFee?: string | null
-    policeVerificationFee?: string | null
-    nocFee?: string | null
-    locationVerificationFee?: string | null
-    secretarySafetyFee?: string | null
-    enquiryVerificationFee?: string | null
-    incomeGstFee?: string | null
-    hotelBookingFee?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11387,16 +13514,6 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
-    registrationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    cardVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    medicalKitFee?: NullableStringFieldUpdateOperationsInput | string | null
-    policeVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    nocFee?: NullableStringFieldUpdateOperationsInput | string | null
-    locationVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    secretarySafetyFee?: NullableStringFieldUpdateOperationsInput | string | null
-    enquiryVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    incomeGstFee?: NullableStringFieldUpdateOperationsInput | string | null
-    hotelBookingFee?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11406,16 +13523,6 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
-    registrationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    cardVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    medicalKitFee?: NullableStringFieldUpdateOperationsInput | string | null
-    policeVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    nocFee?: NullableStringFieldUpdateOperationsInput | string | null
-    locationVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    secretarySafetyFee?: NullableStringFieldUpdateOperationsInput | string | null
-    enquiryVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
-    incomeGstFee?: NullableStringFieldUpdateOperationsInput | string | null
-    hotelBookingFee?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11491,6 +13598,9 @@ export namespace Prisma {
     address?: string | null
     website?: string | null
     upi?: string | null
+    bankAccountNumber?: string | null
+    ifscCode?: string | null
+    bankName?: string | null
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: $Enums.Status
     hotelBooking?: NullableJsonNullValueInput | InputJsonValue
@@ -11513,6 +13623,8 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus?: $Enums.Status
     joiningFromChange?: NullableJsonNullValueInput | InputJsonValue
     joiningFromChangeStatus?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ProfileUncheckedCreateInput = {
@@ -11527,6 +13639,9 @@ export namespace Prisma {
     address?: string | null
     website?: string | null
     upi?: string | null
+    bankAccountNumber?: string | null
+    ifscCode?: string | null
+    bankName?: string | null
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: $Enums.Status
     hotelBooking?: NullableJsonNullValueInput | InputJsonValue
@@ -11549,6 +13664,8 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus?: $Enums.Status
     joiningFromChange?: NullableJsonNullValueInput | InputJsonValue
     joiningFromChangeStatus?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ProfileUpdateInput = {
@@ -11562,6 +13679,9 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     website?: NullableStringFieldUpdateOperationsInput | string | null
     upi?: NullableStringFieldUpdateOperationsInput | string | null
+    bankAccountNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    ifscCode?: NullableStringFieldUpdateOperationsInput | string | null
+    bankName?: NullableStringFieldUpdateOperationsInput | string | null
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     hotelBooking?: NullableJsonNullValueInput | InputJsonValue
@@ -11584,6 +13704,8 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     joiningFromChange?: NullableJsonNullValueInput | InputJsonValue
     joiningFromChangeStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProfileUncheckedUpdateInput = {
@@ -11598,6 +13720,9 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     website?: NullableStringFieldUpdateOperationsInput | string | null
     upi?: NullableStringFieldUpdateOperationsInput | string | null
+    bankAccountNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    ifscCode?: NullableStringFieldUpdateOperationsInput | string | null
+    bankName?: NullableStringFieldUpdateOperationsInput | string | null
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     hotelBooking?: NullableJsonNullValueInput | InputJsonValue
@@ -11620,6 +13745,8 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     joiningFromChange?: NullableJsonNullValueInput | InputJsonValue
     joiningFromChangeStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProfileCreateManyInput = {
@@ -11634,6 +13761,9 @@ export namespace Prisma {
     address?: string | null
     website?: string | null
     upi?: string | null
+    bankAccountNumber?: string | null
+    ifscCode?: string | null
+    bankName?: string | null
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: $Enums.Status
     hotelBooking?: NullableJsonNullValueInput | InputJsonValue
@@ -11656,6 +13786,8 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus?: $Enums.Status
     joiningFromChange?: NullableJsonNullValueInput | InputJsonValue
     joiningFromChangeStatus?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ProfileUpdateManyMutationInput = {
@@ -11669,6 +13801,9 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     website?: NullableStringFieldUpdateOperationsInput | string | null
     upi?: NullableStringFieldUpdateOperationsInput | string | null
+    bankAccountNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    ifscCode?: NullableStringFieldUpdateOperationsInput | string | null
+    bankName?: NullableStringFieldUpdateOperationsInput | string | null
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     hotelBooking?: NullableJsonNullValueInput | InputJsonValue
@@ -11691,6 +13826,8 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     joiningFromChange?: NullableJsonNullValueInput | InputJsonValue
     joiningFromChangeStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProfileUncheckedUpdateManyInput = {
@@ -11705,6 +13842,9 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     website?: NullableStringFieldUpdateOperationsInput | string | null
     upi?: NullableStringFieldUpdateOperationsInput | string | null
+    bankAccountNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    ifscCode?: NullableStringFieldUpdateOperationsInput | string | null
+    bankName?: NullableStringFieldUpdateOperationsInput | string | null
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     hotelBooking?: NullableJsonNullValueInput | InputJsonValue
@@ -11727,6 +13867,163 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     joiningFromChange?: NullableJsonNullValueInput | InputJsonValue
     joiningFromChangeStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PaymentFeeCreateInput = {
+    cardVerificationFee?: string | null
+    hotelBookingFee?: string | null
+    medicalKitFee?: string | null
+    policeVerificationFee?: string | null
+    nocFee?: string | null
+    locationVerificationFee?: string | null
+    secretarySafetyFee?: string | null
+    enquiryVerificationFee?: string | null
+    incomeGstFee?: string | null
+    phoneVerificationFee?: string | null
+    joiningFromFee?: string | null
+  }
+
+  export type PaymentFeeUncheckedCreateInput = {
+    id?: number
+    cardVerificationFee?: string | null
+    hotelBookingFee?: string | null
+    medicalKitFee?: string | null
+    policeVerificationFee?: string | null
+    nocFee?: string | null
+    locationVerificationFee?: string | null
+    secretarySafetyFee?: string | null
+    enquiryVerificationFee?: string | null
+    incomeGstFee?: string | null
+    phoneVerificationFee?: string | null
+    joiningFromFee?: string | null
+  }
+
+  export type PaymentFeeUpdateInput = {
+    cardVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    hotelBookingFee?: NullableStringFieldUpdateOperationsInput | string | null
+    medicalKitFee?: NullableStringFieldUpdateOperationsInput | string | null
+    policeVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    nocFee?: NullableStringFieldUpdateOperationsInput | string | null
+    locationVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    secretarySafetyFee?: NullableStringFieldUpdateOperationsInput | string | null
+    enquiryVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    incomeGstFee?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    joiningFromFee?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PaymentFeeUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    cardVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    hotelBookingFee?: NullableStringFieldUpdateOperationsInput | string | null
+    medicalKitFee?: NullableStringFieldUpdateOperationsInput | string | null
+    policeVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    nocFee?: NullableStringFieldUpdateOperationsInput | string | null
+    locationVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    secretarySafetyFee?: NullableStringFieldUpdateOperationsInput | string | null
+    enquiryVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    incomeGstFee?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    joiningFromFee?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PaymentFeeCreateManyInput = {
+    id?: number
+    cardVerificationFee?: string | null
+    hotelBookingFee?: string | null
+    medicalKitFee?: string | null
+    policeVerificationFee?: string | null
+    nocFee?: string | null
+    locationVerificationFee?: string | null
+    secretarySafetyFee?: string | null
+    enquiryVerificationFee?: string | null
+    incomeGstFee?: string | null
+    phoneVerificationFee?: string | null
+    joiningFromFee?: string | null
+  }
+
+  export type PaymentFeeUpdateManyMutationInput = {
+    cardVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    hotelBookingFee?: NullableStringFieldUpdateOperationsInput | string | null
+    medicalKitFee?: NullableStringFieldUpdateOperationsInput | string | null
+    policeVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    nocFee?: NullableStringFieldUpdateOperationsInput | string | null
+    locationVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    secretarySafetyFee?: NullableStringFieldUpdateOperationsInput | string | null
+    enquiryVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    incomeGstFee?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    joiningFromFee?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PaymentFeeUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    cardVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    hotelBookingFee?: NullableStringFieldUpdateOperationsInput | string | null
+    medicalKitFee?: NullableStringFieldUpdateOperationsInput | string | null
+    policeVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    nocFee?: NullableStringFieldUpdateOperationsInput | string | null
+    locationVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    secretarySafetyFee?: NullableStringFieldUpdateOperationsInput | string | null
+    enquiryVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    incomeGstFee?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
+    joiningFromFee?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type QRCodeCreateInput = {
+    phone?: string | null
+    image?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type QRCodeUncheckedCreateInput = {
+    id?: number
+    phone?: string | null
+    image?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type QRCodeUpdateInput = {
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QRCodeUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QRCodeCreateManyInput = {
+    id?: number
+    phone?: string | null
+    image?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type QRCodeUpdateManyMutationInput = {
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QRCodeUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -12242,16 +14539,6 @@ export namespace Prisma {
     email?: SortOrder
     phone?: SortOrder
     whatsapp?: SortOrder
-    registrationFee?: SortOrder
-    cardVerificationFee?: SortOrder
-    medicalKitFee?: SortOrder
-    policeVerificationFee?: SortOrder
-    nocFee?: SortOrder
-    locationVerificationFee?: SortOrder
-    secretarySafetyFee?: SortOrder
-    enquiryVerificationFee?: SortOrder
-    incomeGstFee?: SortOrder
-    hotelBookingFee?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12265,16 +14552,6 @@ export namespace Prisma {
     email?: SortOrder
     phone?: SortOrder
     whatsapp?: SortOrder
-    registrationFee?: SortOrder
-    cardVerificationFee?: SortOrder
-    medicalKitFee?: SortOrder
-    policeVerificationFee?: SortOrder
-    nocFee?: SortOrder
-    locationVerificationFee?: SortOrder
-    secretarySafetyFee?: SortOrder
-    enquiryVerificationFee?: SortOrder
-    incomeGstFee?: SortOrder
-    hotelBookingFee?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12284,16 +14561,6 @@ export namespace Prisma {
     email?: SortOrder
     phone?: SortOrder
     whatsapp?: SortOrder
-    registrationFee?: SortOrder
-    cardVerificationFee?: SortOrder
-    medicalKitFee?: SortOrder
-    policeVerificationFee?: SortOrder
-    nocFee?: SortOrder
-    locationVerificationFee?: SortOrder
-    secretarySafetyFee?: SortOrder
-    enquiryVerificationFee?: SortOrder
-    incomeGstFee?: SortOrder
-    hotelBookingFee?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12368,6 +14635,9 @@ export namespace Prisma {
     address?: SortOrder
     website?: SortOrder
     upi?: SortOrder
+    bankAccountNumber?: SortOrder
+    ifscCode?: SortOrder
+    bankName?: SortOrder
     cardVerification?: SortOrder
     carVefificationStatus?: SortOrder
     hotelBooking?: SortOrder
@@ -12390,6 +14660,8 @@ export namespace Prisma {
     phoneVerificationVerifiedStatus?: SortOrder
     joiningFromChange?: SortOrder
     joiningFromChangeStatus?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ProfileAvgOrderByAggregateInput = {
@@ -12408,6 +14680,9 @@ export namespace Prisma {
     address?: SortOrder
     website?: SortOrder
     upi?: SortOrder
+    bankAccountNumber?: SortOrder
+    ifscCode?: SortOrder
+    bankName?: SortOrder
     carVefificationStatus?: SortOrder
     hotelBookingStatus?: SortOrder
     medicalKitStatus?: SortOrder
@@ -12419,6 +14694,8 @@ export namespace Prisma {
     incomeGstChangeStatus?: SortOrder
     phoneVerificationVerifiedStatus?: SortOrder
     joiningFromChangeStatus?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ProfileMinOrderByAggregateInput = {
@@ -12433,6 +14710,9 @@ export namespace Prisma {
     address?: SortOrder
     website?: SortOrder
     upi?: SortOrder
+    bankAccountNumber?: SortOrder
+    ifscCode?: SortOrder
+    bankName?: SortOrder
     carVefificationStatus?: SortOrder
     hotelBookingStatus?: SortOrder
     medicalKitStatus?: SortOrder
@@ -12444,6 +14724,8 @@ export namespace Prisma {
     incomeGstChangeStatus?: SortOrder
     phoneVerificationVerifiedStatus?: SortOrder
     joiningFromChangeStatus?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ProfileSumOrderByAggregateInput = {
@@ -12458,6 +14740,101 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumStatusFilter<$PrismaModel>
     _max?: NestedEnumStatusFilter<$PrismaModel>
+  }
+
+  export type PaymentFeeOrderByRelevanceInput = {
+    fields: PaymentFeeOrderByRelevanceFieldEnum | PaymentFeeOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type PaymentFeeCountOrderByAggregateInput = {
+    id?: SortOrder
+    cardVerificationFee?: SortOrder
+    hotelBookingFee?: SortOrder
+    medicalKitFee?: SortOrder
+    policeVerificationFee?: SortOrder
+    nocFee?: SortOrder
+    locationVerificationFee?: SortOrder
+    secretarySafetyFee?: SortOrder
+    enquiryVerificationFee?: SortOrder
+    incomeGstFee?: SortOrder
+    phoneVerificationFee?: SortOrder
+    joiningFromFee?: SortOrder
+  }
+
+  export type PaymentFeeAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type PaymentFeeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    cardVerificationFee?: SortOrder
+    hotelBookingFee?: SortOrder
+    medicalKitFee?: SortOrder
+    policeVerificationFee?: SortOrder
+    nocFee?: SortOrder
+    locationVerificationFee?: SortOrder
+    secretarySafetyFee?: SortOrder
+    enquiryVerificationFee?: SortOrder
+    incomeGstFee?: SortOrder
+    phoneVerificationFee?: SortOrder
+    joiningFromFee?: SortOrder
+  }
+
+  export type PaymentFeeMinOrderByAggregateInput = {
+    id?: SortOrder
+    cardVerificationFee?: SortOrder
+    hotelBookingFee?: SortOrder
+    medicalKitFee?: SortOrder
+    policeVerificationFee?: SortOrder
+    nocFee?: SortOrder
+    locationVerificationFee?: SortOrder
+    secretarySafetyFee?: SortOrder
+    enquiryVerificationFee?: SortOrder
+    incomeGstFee?: SortOrder
+    phoneVerificationFee?: SortOrder
+    joiningFromFee?: SortOrder
+  }
+
+  export type PaymentFeeSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type QRCodeOrderByRelevanceInput = {
+    fields: QRCodeOrderByRelevanceFieldEnum | QRCodeOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type QRCodeCountOrderByAggregateInput = {
+    id?: SortOrder
+    phone?: SortOrder
+    image?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type QRCodeAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type QRCodeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    phone?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type QRCodeMinOrderByAggregateInput = {
+    id?: SortOrder
+    phone?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type QRCodeSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {

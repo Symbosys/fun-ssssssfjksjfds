@@ -33,6 +33,7 @@ exports.updateProfileSchema = zod_1.z.object({
     upi: zod_1.z.string().optional(),
     // Status updates
     carVefificationStatus: statusEnum.optional(),
+    hotelBookingStatus: statusEnum.optional(),
     medicalKitStatus: statusEnum.optional(),
     policeVerificationStatus: statusEnum.optional(),
     nocChangeStatus: statusEnum.optional(),
@@ -46,6 +47,7 @@ exports.updateProfileSchema = zod_1.z.object({
 // Schema for payment screenshot fields (for file uploads)
 exports.ScreenshotFields = [
     "cardVerification",
+    "hotelBooking",
     "medicalKit",
     "policeVerification",
     "nocChange",

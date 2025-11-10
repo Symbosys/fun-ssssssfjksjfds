@@ -189,16 +189,6 @@ exports.Prisma.ContactScalarFieldEnum = {
   email: 'email',
   phone: 'phone',
   whatsapp: 'whatsapp',
-  registrationFee: 'registrationFee',
-  cardVerificationFee: 'cardVerificationFee',
-  medicalKitFee: 'medicalKitFee',
-  policeVerificationFee: 'policeVerificationFee',
-  nocFee: 'nocFee',
-  locationVerificationFee: 'locationVerificationFee',
-  secretarySafetyFee: 'secretarySafetyFee',
-  enquiryVerificationFee: 'enquiryVerificationFee',
-  incomeGstFee: 'incomeGstFee',
-  hotelBookingFee: 'hotelBookingFee',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -224,6 +214,9 @@ exports.Prisma.ProfileScalarFieldEnum = {
   address: 'address',
   website: 'website',
   upi: 'upi',
+  bankAccountNumber: 'bankAccountNumber',
+  ifscCode: 'ifscCode',
+  bankName: 'bankName',
   cardVerification: 'cardVerification',
   carVefificationStatus: 'carVefificationStatus',
   hotelBooking: 'hotelBooking',
@@ -245,7 +238,32 @@ exports.Prisma.ProfileScalarFieldEnum = {
   phoneVerification: 'phoneVerification',
   phoneVerificationVerifiedStatus: 'phoneVerificationVerifiedStatus',
   joiningFromChange: 'joiningFromChange',
-  joiningFromChangeStatus: 'joiningFromChangeStatus'
+  joiningFromChangeStatus: 'joiningFromChangeStatus',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PaymentFeeScalarFieldEnum = {
+  id: 'id',
+  cardVerificationFee: 'cardVerificationFee',
+  hotelBookingFee: 'hotelBookingFee',
+  medicalKitFee: 'medicalKitFee',
+  policeVerificationFee: 'policeVerificationFee',
+  nocFee: 'nocFee',
+  locationVerificationFee: 'locationVerificationFee',
+  secretarySafetyFee: 'secretarySafetyFee',
+  enquiryVerificationFee: 'enquiryVerificationFee',
+  incomeGstFee: 'incomeGstFee',
+  phoneVerificationFee: 'phoneVerificationFee',
+  joiningFromFee: 'joiningFromFee'
+};
+
+exports.Prisma.QRCodeScalarFieldEnum = {
+  id: 'id',
+  phone: 'phone',
+  image: 'image',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -316,17 +334,7 @@ exports.Prisma.BookingOrderByRelevanceFieldEnum = {
 exports.Prisma.ContactOrderByRelevanceFieldEnum = {
   email: 'email',
   phone: 'phone',
-  whatsapp: 'whatsapp',
-  registrationFee: 'registrationFee',
-  cardVerificationFee: 'cardVerificationFee',
-  medicalKitFee: 'medicalKitFee',
-  policeVerificationFee: 'policeVerificationFee',
-  nocFee: 'nocFee',
-  locationVerificationFee: 'locationVerificationFee',
-  secretarySafetyFee: 'secretarySafetyFee',
-  enquiryVerificationFee: 'enquiryVerificationFee',
-  incomeGstFee: 'incomeGstFee',
-  hotelBookingFee: 'hotelBookingFee'
+  whatsapp: 'whatsapp'
 };
 
 exports.Prisma.OtpOrderByRelevanceFieldEnum = {
@@ -344,7 +352,28 @@ exports.Prisma.ProfileOrderByRelevanceFieldEnum = {
   phone: 'phone',
   address: 'address',
   website: 'website',
-  upi: 'upi'
+  upi: 'upi',
+  bankAccountNumber: 'bankAccountNumber',
+  ifscCode: 'ifscCode',
+  bankName: 'bankName'
+};
+
+exports.Prisma.PaymentFeeOrderByRelevanceFieldEnum = {
+  cardVerificationFee: 'cardVerificationFee',
+  hotelBookingFee: 'hotelBookingFee',
+  medicalKitFee: 'medicalKitFee',
+  policeVerificationFee: 'policeVerificationFee',
+  nocFee: 'nocFee',
+  locationVerificationFee: 'locationVerificationFee',
+  secretarySafetyFee: 'secretarySafetyFee',
+  enquiryVerificationFee: 'enquiryVerificationFee',
+  incomeGstFee: 'incomeGstFee',
+  phoneVerificationFee: 'phoneVerificationFee',
+  joiningFromFee: 'joiningFromFee'
+};
+
+exports.Prisma.QRCodeOrderByRelevanceFieldEnum = {
+  phone: 'phone'
 };
 exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN',
@@ -370,7 +399,9 @@ exports.Prisma.ModelName = {
   Booking: 'Booking',
   Contact: 'Contact',
   Otp: 'Otp',
-  Profile: 'Profile'
+  Profile: 'Profile',
+  PaymentFee: 'PaymentFee',
+  QRCode: 'QRCode'
 };
 
 /**
