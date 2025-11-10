@@ -31,6 +31,9 @@ exports.updateProfileSchema = zod_1.z.object({
     address: zod_1.z.string().optional(),
     website: zod_1.z.string().url().optional(),
     upi: zod_1.z.string().optional(),
+    bankAccountNumber: zod_1.z.string().optional(),
+    ifscCode: zod_1.z.string().optional(),
+    bankName: zod_1.z.string().optional(),
     // Status updates
     carVefificationStatus: statusEnum.optional(),
     hotelBookingStatus: statusEnum.optional(),

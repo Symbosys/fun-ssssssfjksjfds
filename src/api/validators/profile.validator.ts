@@ -33,6 +33,9 @@ export const updateProfileSchema = z.object({
   address: z.string().optional(),
   website: z.string().url().optional(),
   upi: z.string().optional(),
+  bankAccountNumber: z.string().optional(),
+  ifscCode: z.string().optional(),
+  bankName: z.string().optional(),
 
 
   // Status updates
