@@ -9,6 +9,8 @@ import { adminRouter, applicationRoutes, BookingRoute, modelRouter, SettingRoute
 import { ENV } from "./config";
 import otprouter from "./api/routes/otp.routes";
 import profileRoutes from "./api/routes/profile.routes";
+import Qr from "./api/routes/qrCode.routes";
+import PaymentFeeRoute from "./api/routes/paymentFee.routes";
 
 
 // 🚀 Initialize express application
@@ -27,18 +29,18 @@ app.use(
     credentials: true,
   })
 );
-// app.use(
-//   rateLimit({
-//     windowMs: 15 * 60 * 1000, //⌛ 15 minutes
-//     max: 100, // limit each IP to 100 requests per windowMs
-//     message: {
-//       status: 429,
-//       message: "Too many requests, please try again later",
-//     },
-//     standardHeaders: true,
-//     legacyHeaders: false,
-//   })
-// );
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000, //⌛ 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+    message: {
+      status: 429,
+      message: "Too many requests, please try again later",
+    },
+    standardHeaders: true, 
+    legacyHeaders: false,
+  })
+);
 
 
 // 🩺 Health check endpoint
@@ -58,6 +60,9 @@ app.use("/api/v1/setting", SettingRoute);
 
 app.use("/api/v1/otp", otprouter);
 app.use("/api/v1/profile", profileRoutes);
+
+app.use("/api/v1/qr", Qr)
+app.use("/api/v1/fee", PaymentFeeRoute)
 
 
 

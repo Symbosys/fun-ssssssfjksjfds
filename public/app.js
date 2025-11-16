@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const cors_1 = __importDefault(require("cors"));
 const express_1 = __importDefault(require("express"));
+const express_rate_limit_1 = require("express-rate-limit");
 const helmet_1 = __importDefault(require("helmet"));
 const morgan_1 = __importDefault(require("morgan"));
 const path_1 = __importDefault(require("path"));
@@ -13,6 +14,8 @@ const routes_1 = require("./api/routes");
 const config_1 = require("./config");
 const otp_routes_1 = __importDefault(require("./api/routes/otp.routes"));
 const profile_routes_1 = __importDefault(require("./api/routes/profile.routes"));
+const qrCode_routes_1 = __importDefault(require("./api/routes/qrCode.routes"));
+const paymentFee_routes_1 = __importDefault(require("./api/routes/paymentFee.routes"));
 // 🚀 Initialize express application
 const app = (0, express_1.default)();
 // 🛡️ Security and utility middlewares
@@ -25,18 +28,16 @@ app.use((0, cors_1.default)({
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
 }));
-// app.use(
-//   rateLimit({
-//     windowMs: 15 * 60 * 1000, //⌛ 15 minutes
-//     max: 100, // limit each IP to 100 requests per windowMs
-//     message: {
-//       status: 429,
-//       message: "Too many requests, please try again later",
-//     },
-//     standardHeaders: true,
-//     legacyHeaders: false,
-//   })
-// );
+app.use((0, express_rate_limit_1.rateLimit)({
+    windowMs: 15 * 60 * 1000, //⌛ 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+    message: {
+        status: 429,
+        message: "Too many requests, please try again later",
+    },
+    standardHeaders: true,
+    legacyHeaders: false,
+}));
 // 🩺 Health check endpoint
 app.get("/", (req, res) => {
     res.json({
@@ -51,6 +52,8 @@ app.use("/api/v1/booking", routes_1.BookingRoute);
 app.use("/api/v1/setting", routes_1.SettingRoute);
 app.use("/api/v1/otp", otp_routes_1.default);
 app.use("/api/v1/profile", profile_routes_1.default);
+app.use("/api/v1/qr", qrCode_routes_1.default);
+app.use("/api/v1/fee", paymentFee_routes_1.default);
 // ⚠️ Global error handling middleware
 app.use(middlewares_1.errorMiddleware);
 // 📤 Export the configured app
