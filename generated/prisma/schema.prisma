@@ -135,6 +135,8 @@ model Profile {
   ifscCode          String?
   bankName          String?
 
+  customerImage Json?
+
   // Verification Images
   cardVerification      Json?
   carVefificationStatus Status @default(PENDING)

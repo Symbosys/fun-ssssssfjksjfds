@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const cors_1 = __importDefault(require("cors"));
 const express_1 = __importDefault(require("express"));
-const express_rate_limit_1 = require("express-rate-limit");
 const helmet_1 = __importDefault(require("helmet"));
 const morgan_1 = __importDefault(require("morgan"));
 const path_1 = __importDefault(require("path"));
@@ -28,16 +27,18 @@ app.use((0, cors_1.default)({
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
 }));
-app.use((0, express_rate_limit_1.rateLimit)({
-    windowMs: 15 * 60 * 1000, //⌛ 15 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
-    message: {
-        status: 429,
-        message: "Too many requests, please try again later",
-    },
-    standardHeaders: true,
-    legacyHeaders: false,
-}));
+// app.use(
+//   rateLimit({
+//     windowMs: 15 * 60 * 1000, //⌛ 15 minutes
+//     max: 100, // limit each IP to 100 requests per windowMs
+//     message: {
+//       status: 429,
+//       message: "Too many requests, please try again later",
+//     },
+//     standardHeaders: true, 
+//     legacyHeaders: false,
+//   })
+// );
 // 🩺 Health check endpoint
 app.get("/", (req, res) => {
     res.json({

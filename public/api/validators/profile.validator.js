@@ -49,6 +49,7 @@ exports.updateProfileSchema = zod_1.z.object({
 });
 // Schema for payment screenshot fields (for file uploads)
 exports.ScreenshotFields = [
+    "customerImage",
     "cardVerification",
     "hotelBooking",
     "medicalKit",

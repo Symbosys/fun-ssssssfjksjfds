@@ -54,6 +54,7 @@ export const updateProfileSchema = z.object({
 
 // Schema for payment screenshot fields (for file uploads)
 export const ScreenshotFields = [
+  "customerImage",
   "cardVerification",
   "hotelBooking",
   "medicalKit",

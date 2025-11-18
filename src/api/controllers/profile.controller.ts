@@ -102,8 +102,6 @@ import { deleteFromCloudinary } from "../../config/cloudinary";
 // Update profile with payment screenshots and approval status
 export const updateprofile = asyncHandler(async (req: Request, res, next) => {
   const profileId = Number(req.params.id);
-  
-  console.log("data comming")
 
     if (!profileId) {
         return next(new ErrorResponse("Profile ID is required", 400));

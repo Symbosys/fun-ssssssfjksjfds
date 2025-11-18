@@ -33,7 +33,6 @@ const cloudinary_1 = require("../../config/cloudinary");
 exports.updateprofile = (0, asyncHandler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const profileId = Number(req.params.id);
-    console.log("data comming");
     if (!profileId) {
         return next(new errorResponse_1.default("Profile ID is required", 400));
     }

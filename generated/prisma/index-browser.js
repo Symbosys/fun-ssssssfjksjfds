@@ -217,6 +217,7 @@ exports.Prisma.ProfileScalarFieldEnum = {
   bankAccountNumber: 'bankAccountNumber',
   ifscCode: 'ifscCode',
   bankName: 'bankName',
+  customerImage: 'customerImage',
   cardVerification: 'cardVerification',
   carVefificationStatus: 'carVefificationStatus',
   hotelBooking: 'hotelBooking',

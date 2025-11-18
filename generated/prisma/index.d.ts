@@ -8672,6 +8672,7 @@ export namespace Prisma {
     bankAccountNumber: number
     ifscCode: number
     bankName: number
+    customerImage: number
     cardVerification: number
     carVefificationStatus: number
     hotelBooking: number
@@ -8783,6 +8784,7 @@ export namespace Prisma {
     bankAccountNumber?: true
     ifscCode?: true
     bankName?: true
+    customerImage?: true
     cardVerification?: true
     carVefificationStatus?: true
     hotelBooking?: true
@@ -8911,6 +8913,7 @@ export namespace Prisma {
     bankAccountNumber: string | null
     ifscCode: string | null
     bankName: string | null
+    customerImage: JsonValue | null
     cardVerification: JsonValue | null
     carVefificationStatus: $Enums.Status
     hotelBooking: JsonValue | null
@@ -8971,6 +8974,7 @@ export namespace Prisma {
     bankAccountNumber?: boolean
     ifscCode?: boolean
     bankName?: boolean
+    customerImage?: boolean
     cardVerification?: boolean
     carVefificationStatus?: boolean
     hotelBooking?: boolean
@@ -9014,6 +9018,7 @@ export namespace Prisma {
     bankAccountNumber?: boolean
     ifscCode?: boolean
     bankName?: boolean
+    customerImage?: boolean
     cardVerification?: boolean
     carVefificationStatus?: boolean
     hotelBooking?: boolean
@@ -9040,7 +9045,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "url" | "name" | "dateOfBirth" | "gender" | "state" | "phone" | "address" | "website" | "upi" | "bankAccountNumber" | "ifscCode" | "bankName" | "cardVerification" | "carVefificationStatus" | "hotelBooking" | "hotelBookingStatus" | "medicalKit" | "medicalKitStatus" | "policeVerification" | "policeVerificationStatus" | "nocChange" | "nocChangeStatus" | "locationVerificationChangeArea" | "locationVerificationChangeAreaStatus" | "secretarySafetyChange" | "secretarySafetyChangeStatus" | "enquiryVerificationChange" | "enquiryVerificationChangeStatus" | "incomeGstChange" | "incomeGstChangeStatus" | "phoneVerification" | "phoneVerificationVerifiedStatus" | "joiningFromChange" | "joiningFromChangeStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["profile"]>
+  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "url" | "name" | "dateOfBirth" | "gender" | "state" | "phone" | "address" | "website" | "upi" | "bankAccountNumber" | "ifscCode" | "bankName" | "customerImage" | "cardVerification" | "carVefificationStatus" | "hotelBooking" | "hotelBookingStatus" | "medicalKit" | "medicalKitStatus" | "policeVerification" | "policeVerificationStatus" | "nocChange" | "nocChangeStatus" | "locationVerificationChangeArea" | "locationVerificationChangeAreaStatus" | "secretarySafetyChange" | "secretarySafetyChangeStatus" | "enquiryVerificationChange" | "enquiryVerificationChangeStatus" | "incomeGstChange" | "incomeGstChangeStatus" | "phoneVerification" | "phoneVerificationVerifiedStatus" | "joiningFromChange" | "joiningFromChangeStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["profile"]>
 
   export type $ProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Profile"
@@ -9060,6 +9065,7 @@ export namespace Prisma {
       bankAccountNumber: string | null
       ifscCode: string | null
       bankName: string | null
+      customerImage: Prisma.JsonValue | null
       cardVerification: Prisma.JsonValue | null
       carVefificationStatus: $Enums.Status
       hotelBooking: Prisma.JsonValue | null
@@ -9467,6 +9473,7 @@ export namespace Prisma {
     readonly bankAccountNumber: FieldRef<"Profile", 'String'>
     readonly ifscCode: FieldRef<"Profile", 'String'>
     readonly bankName: FieldRef<"Profile", 'String'>
+    readonly customerImage: FieldRef<"Profile", 'Json'>
     readonly cardVerification: FieldRef<"Profile", 'Json'>
     readonly carVefificationStatus: FieldRef<"Profile", 'Status'>
     readonly hotelBooking: FieldRef<"Profile", 'Json'>
@@ -11849,6 +11856,7 @@ export namespace Prisma {
     bankAccountNumber: 'bankAccountNumber',
     ifscCode: 'ifscCode',
     bankName: 'bankName',
+    customerImage: 'customerImage',
     cardVerification: 'cardVerification',
     carVefificationStatus: 'carVefificationStatus',
     hotelBooking: 'hotelBooking',
@@ -12681,6 +12689,7 @@ export namespace Prisma {
     bankAccountNumber?: StringNullableFilter<"Profile"> | string | null
     ifscCode?: StringNullableFilter<"Profile"> | string | null
     bankName?: StringNullableFilter<"Profile"> | string | null
+    customerImage?: JsonNullableFilter<"Profile">
     cardVerification?: JsonNullableFilter<"Profile">
     carVefificationStatus?: EnumStatusFilter<"Profile"> | $Enums.Status
     hotelBooking?: JsonNullableFilter<"Profile">
@@ -12722,6 +12731,7 @@ export namespace Prisma {
     bankAccountNumber?: SortOrderInput | SortOrder
     ifscCode?: SortOrderInput | SortOrder
     bankName?: SortOrderInput | SortOrder
+    customerImage?: SortOrderInput | SortOrder
     cardVerification?: SortOrderInput | SortOrder
     carVefificationStatus?: SortOrder
     hotelBooking?: SortOrderInput | SortOrder
@@ -12767,6 +12777,7 @@ export namespace Prisma {
     bankAccountNumber?: StringNullableFilter<"Profile"> | string | null
     ifscCode?: StringNullableFilter<"Profile"> | string | null
     bankName?: StringNullableFilter<"Profile"> | string | null
+    customerImage?: JsonNullableFilter<"Profile">
     cardVerification?: JsonNullableFilter<"Profile">
     carVefificationStatus?: EnumStatusFilter<"Profile"> | $Enums.Status
     hotelBooking?: JsonNullableFilter<"Profile">
@@ -12808,6 +12819,7 @@ export namespace Prisma {
     bankAccountNumber?: SortOrderInput | SortOrder
     ifscCode?: SortOrderInput | SortOrder
     bankName?: SortOrderInput | SortOrder
+    customerImage?: SortOrderInput | SortOrder
     cardVerification?: SortOrderInput | SortOrder
     carVefificationStatus?: SortOrder
     hotelBooking?: SortOrderInput | SortOrder
@@ -12857,6 +12869,7 @@ export namespace Prisma {
     bankAccountNumber?: StringNullableWithAggregatesFilter<"Profile"> | string | null
     ifscCode?: StringNullableWithAggregatesFilter<"Profile"> | string | null
     bankName?: StringNullableWithAggregatesFilter<"Profile"> | string | null
+    customerImage?: JsonNullableWithAggregatesFilter<"Profile">
     cardVerification?: JsonNullableWithAggregatesFilter<"Profile">
     carVefificationStatus?: EnumStatusWithAggregatesFilter<"Profile"> | $Enums.Status
     hotelBooking?: JsonNullableWithAggregatesFilter<"Profile">
@@ -13601,6 +13614,7 @@ export namespace Prisma {
     bankAccountNumber?: string | null
     ifscCode?: string | null
     bankName?: string | null
+    customerImage?: NullableJsonNullValueInput | InputJsonValue
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: $Enums.Status
     hotelBooking?: NullableJsonNullValueInput | InputJsonValue
@@ -13642,6 +13656,7 @@ export namespace Prisma {
     bankAccountNumber?: string | null
     ifscCode?: string | null
     bankName?: string | null
+    customerImage?: NullableJsonNullValueInput | InputJsonValue
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: $Enums.Status
     hotelBooking?: NullableJsonNullValueInput | InputJsonValue
@@ -13682,6 +13697,7 @@ export namespace Prisma {
     bankAccountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifscCode?: NullableStringFieldUpdateOperationsInput | string | null
     bankName?: NullableStringFieldUpdateOperationsInput | string | null
+    customerImage?: NullableJsonNullValueInput | InputJsonValue
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     hotelBooking?: NullableJsonNullValueInput | InputJsonValue
@@ -13723,6 +13739,7 @@ export namespace Prisma {
     bankAccountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifscCode?: NullableStringFieldUpdateOperationsInput | string | null
     bankName?: NullableStringFieldUpdateOperationsInput | string | null
+    customerImage?: NullableJsonNullValueInput | InputJsonValue
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     hotelBooking?: NullableJsonNullValueInput | InputJsonValue
@@ -13764,6 +13781,7 @@ export namespace Prisma {
     bankAccountNumber?: string | null
     ifscCode?: string | null
     bankName?: string | null
+    customerImage?: NullableJsonNullValueInput | InputJsonValue
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: $Enums.Status
     hotelBooking?: NullableJsonNullValueInput | InputJsonValue
@@ -13804,6 +13822,7 @@ export namespace Prisma {
     bankAccountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifscCode?: NullableStringFieldUpdateOperationsInput | string | null
     bankName?: NullableStringFieldUpdateOperationsInput | string | null
+    customerImage?: NullableJsonNullValueInput | InputJsonValue
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     hotelBooking?: NullableJsonNullValueInput | InputJsonValue
@@ -13845,6 +13864,7 @@ export namespace Prisma {
     bankAccountNumber?: NullableStringFieldUpdateOperationsInput | string | null
     ifscCode?: NullableStringFieldUpdateOperationsInput | string | null
     bankName?: NullableStringFieldUpdateOperationsInput | string | null
+    customerImage?: NullableJsonNullValueInput | InputJsonValue
     cardVerification?: NullableJsonNullValueInput | InputJsonValue
     carVefificationStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     hotelBooking?: NullableJsonNullValueInput | InputJsonValue
@@ -14638,6 +14658,7 @@ export namespace Prisma {
     bankAccountNumber?: SortOrder
     ifscCode?: SortOrder
     bankName?: SortOrder
+    customerImage?: SortOrder
     cardVerification?: SortOrder
     carVefificationStatus?: SortOrder
     hotelBooking?: SortOrder
