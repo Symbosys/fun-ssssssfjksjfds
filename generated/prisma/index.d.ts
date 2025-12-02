@@ -9841,6 +9841,13 @@ export namespace Prisma {
 
   export type PaymentFeeMinAggregateOutputType = {
     id: number | null
+    phoneNumber: string | null
+    email: string | null
+    whatsapp1: string | null
+    whatsapp2: string | null
+    whatsapp3: string | null
+    whatsapp4: string | null
+    registrationFee: string | null
     cardVerificationFee: string | null
     hotelBookingFee: string | null
     medicalKitFee: string | null
@@ -9856,6 +9863,13 @@ export namespace Prisma {
 
   export type PaymentFeeMaxAggregateOutputType = {
     id: number | null
+    phoneNumber: string | null
+    email: string | null
+    whatsapp1: string | null
+    whatsapp2: string | null
+    whatsapp3: string | null
+    whatsapp4: string | null
+    registrationFee: string | null
     cardVerificationFee: string | null
     hotelBookingFee: string | null
     medicalKitFee: string | null
@@ -9871,6 +9885,13 @@ export namespace Prisma {
 
   export type PaymentFeeCountAggregateOutputType = {
     id: number
+    phoneNumber: number
+    email: number
+    whatsapp1: number
+    whatsapp2: number
+    whatsapp3: number
+    whatsapp4: number
+    registrationFee: number
     cardVerificationFee: number
     hotelBookingFee: number
     medicalKitFee: number
@@ -9896,6 +9917,13 @@ export namespace Prisma {
 
   export type PaymentFeeMinAggregateInputType = {
     id?: true
+    phoneNumber?: true
+    email?: true
+    whatsapp1?: true
+    whatsapp2?: true
+    whatsapp3?: true
+    whatsapp4?: true
+    registrationFee?: true
     cardVerificationFee?: true
     hotelBookingFee?: true
     medicalKitFee?: true
@@ -9911,6 +9939,13 @@ export namespace Prisma {
 
   export type PaymentFeeMaxAggregateInputType = {
     id?: true
+    phoneNumber?: true
+    email?: true
+    whatsapp1?: true
+    whatsapp2?: true
+    whatsapp3?: true
+    whatsapp4?: true
+    registrationFee?: true
     cardVerificationFee?: true
     hotelBookingFee?: true
     medicalKitFee?: true
@@ -9926,6 +9961,13 @@ export namespace Prisma {
 
   export type PaymentFeeCountAggregateInputType = {
     id?: true
+    phoneNumber?: true
+    email?: true
+    whatsapp1?: true
+    whatsapp2?: true
+    whatsapp3?: true
+    whatsapp4?: true
+    registrationFee?: true
     cardVerificationFee?: true
     hotelBookingFee?: true
     medicalKitFee?: true
@@ -10028,6 +10070,13 @@ export namespace Prisma {
 
   export type PaymentFeeGroupByOutputType = {
     id: number
+    phoneNumber: string | null
+    email: string | null
+    whatsapp1: string | null
+    whatsapp2: string | null
+    whatsapp3: string | null
+    whatsapp4: string | null
+    registrationFee: string | null
     cardVerificationFee: string | null
     hotelBookingFee: string | null
     medicalKitFee: string | null
@@ -10062,6 +10111,13 @@ export namespace Prisma {
 
   export type PaymentFeeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    phoneNumber?: boolean
+    email?: boolean
+    whatsapp1?: boolean
+    whatsapp2?: boolean
+    whatsapp3?: boolean
+    whatsapp4?: boolean
+    registrationFee?: boolean
     cardVerificationFee?: boolean
     hotelBookingFee?: boolean
     medicalKitFee?: boolean
@@ -10079,6 +10135,13 @@ export namespace Prisma {
 
   export type PaymentFeeSelectScalar = {
     id?: boolean
+    phoneNumber?: boolean
+    email?: boolean
+    whatsapp1?: boolean
+    whatsapp2?: boolean
+    whatsapp3?: boolean
+    whatsapp4?: boolean
+    registrationFee?: boolean
     cardVerificationFee?: boolean
     hotelBookingFee?: boolean
     medicalKitFee?: boolean
@@ -10092,13 +10155,20 @@ export namespace Prisma {
     joiningFromFee?: boolean
   }
 
-  export type PaymentFeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "cardVerificationFee" | "hotelBookingFee" | "medicalKitFee" | "policeVerificationFee" | "nocFee" | "locationVerificationFee" | "secretarySafetyFee" | "enquiryVerificationFee" | "incomeGstFee" | "phoneVerificationFee" | "joiningFromFee", ExtArgs["result"]["paymentFee"]>
+  export type PaymentFeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phoneNumber" | "email" | "whatsapp1" | "whatsapp2" | "whatsapp3" | "whatsapp4" | "registrationFee" | "cardVerificationFee" | "hotelBookingFee" | "medicalKitFee" | "policeVerificationFee" | "nocFee" | "locationVerificationFee" | "secretarySafetyFee" | "enquiryVerificationFee" | "incomeGstFee" | "phoneVerificationFee" | "joiningFromFee", ExtArgs["result"]["paymentFee"]>
 
   export type $PaymentFeePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PaymentFee"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      phoneNumber: string | null
+      email: string | null
+      whatsapp1: string | null
+      whatsapp2: string | null
+      whatsapp3: string | null
+      whatsapp4: string | null
+      registrationFee: string | null
       cardVerificationFee: string | null
       hotelBookingFee: string | null
       medicalKitFee: string | null
@@ -10480,6 +10550,13 @@ export namespace Prisma {
    */
   interface PaymentFeeFieldRefs {
     readonly id: FieldRef<"PaymentFee", 'Int'>
+    readonly phoneNumber: FieldRef<"PaymentFee", 'String'>
+    readonly email: FieldRef<"PaymentFee", 'String'>
+    readonly whatsapp1: FieldRef<"PaymentFee", 'String'>
+    readonly whatsapp2: FieldRef<"PaymentFee", 'String'>
+    readonly whatsapp3: FieldRef<"PaymentFee", 'String'>
+    readonly whatsapp4: FieldRef<"PaymentFee", 'String'>
+    readonly registrationFee: FieldRef<"PaymentFee", 'String'>
     readonly cardVerificationFee: FieldRef<"PaymentFee", 'String'>
     readonly hotelBookingFee: FieldRef<"PaymentFee", 'String'>
     readonly medicalKitFee: FieldRef<"PaymentFee", 'String'>
@@ -11888,6 +11965,13 @@ export namespace Prisma {
 
   export const PaymentFeeScalarFieldEnum: {
     id: 'id',
+    phoneNumber: 'phoneNumber',
+    email: 'email',
+    whatsapp1: 'whatsapp1',
+    whatsapp2: 'whatsapp2',
+    whatsapp3: 'whatsapp3',
+    whatsapp4: 'whatsapp4',
+    registrationFee: 'registrationFee',
     cardVerificationFee: 'cardVerificationFee',
     hotelBookingFee: 'hotelBookingFee',
     medicalKitFee: 'medicalKitFee',
@@ -12044,6 +12128,13 @@ export namespace Prisma {
 
 
   export const PaymentFeeOrderByRelevanceFieldEnum: {
+    phoneNumber: 'phoneNumber',
+    email: 'email',
+    whatsapp1: 'whatsapp1',
+    whatsapp2: 'whatsapp2',
+    whatsapp3: 'whatsapp3',
+    whatsapp4: 'whatsapp4',
+    registrationFee: 'registrationFee',
     cardVerificationFee: 'cardVerificationFee',
     hotelBookingFee: 'hotelBookingFee',
     medicalKitFee: 'medicalKitFee',
@@ -12901,6 +12992,13 @@ export namespace Prisma {
     OR?: PaymentFeeWhereInput[]
     NOT?: PaymentFeeWhereInput | PaymentFeeWhereInput[]
     id?: IntFilter<"PaymentFee"> | number
+    phoneNumber?: StringNullableFilter<"PaymentFee"> | string | null
+    email?: StringNullableFilter<"PaymentFee"> | string | null
+    whatsapp1?: StringNullableFilter<"PaymentFee"> | string | null
+    whatsapp2?: StringNullableFilter<"PaymentFee"> | string | null
+    whatsapp3?: StringNullableFilter<"PaymentFee"> | string | null
+    whatsapp4?: StringNullableFilter<"PaymentFee"> | string | null
+    registrationFee?: StringNullableFilter<"PaymentFee"> | string | null
     cardVerificationFee?: StringNullableFilter<"PaymentFee"> | string | null
     hotelBookingFee?: StringNullableFilter<"PaymentFee"> | string | null
     medicalKitFee?: StringNullableFilter<"PaymentFee"> | string | null
@@ -12916,6 +13014,13 @@ export namespace Prisma {
 
   export type PaymentFeeOrderByWithRelationInput = {
     id?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    whatsapp1?: SortOrderInput | SortOrder
+    whatsapp2?: SortOrderInput | SortOrder
+    whatsapp3?: SortOrderInput | SortOrder
+    whatsapp4?: SortOrderInput | SortOrder
+    registrationFee?: SortOrderInput | SortOrder
     cardVerificationFee?: SortOrderInput | SortOrder
     hotelBookingFee?: SortOrderInput | SortOrder
     medicalKitFee?: SortOrderInput | SortOrder
@@ -12935,6 +13040,13 @@ export namespace Prisma {
     AND?: PaymentFeeWhereInput | PaymentFeeWhereInput[]
     OR?: PaymentFeeWhereInput[]
     NOT?: PaymentFeeWhereInput | PaymentFeeWhereInput[]
+    phoneNumber?: StringNullableFilter<"PaymentFee"> | string | null
+    email?: StringNullableFilter<"PaymentFee"> | string | null
+    whatsapp1?: StringNullableFilter<"PaymentFee"> | string | null
+    whatsapp2?: StringNullableFilter<"PaymentFee"> | string | null
+    whatsapp3?: StringNullableFilter<"PaymentFee"> | string | null
+    whatsapp4?: StringNullableFilter<"PaymentFee"> | string | null
+    registrationFee?: StringNullableFilter<"PaymentFee"> | string | null
     cardVerificationFee?: StringNullableFilter<"PaymentFee"> | string | null
     hotelBookingFee?: StringNullableFilter<"PaymentFee"> | string | null
     medicalKitFee?: StringNullableFilter<"PaymentFee"> | string | null
@@ -12950,6 +13062,13 @@ export namespace Prisma {
 
   export type PaymentFeeOrderByWithAggregationInput = {
     id?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    whatsapp1?: SortOrderInput | SortOrder
+    whatsapp2?: SortOrderInput | SortOrder
+    whatsapp3?: SortOrderInput | SortOrder
+    whatsapp4?: SortOrderInput | SortOrder
+    registrationFee?: SortOrderInput | SortOrder
     cardVerificationFee?: SortOrderInput | SortOrder
     hotelBookingFee?: SortOrderInput | SortOrder
     medicalKitFee?: SortOrderInput | SortOrder
@@ -12973,6 +13092,13 @@ export namespace Prisma {
     OR?: PaymentFeeScalarWhereWithAggregatesInput[]
     NOT?: PaymentFeeScalarWhereWithAggregatesInput | PaymentFeeScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"PaymentFee"> | number
+    phoneNumber?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+    email?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+    whatsapp1?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+    whatsapp2?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+    whatsapp3?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+    whatsapp4?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
+    registrationFee?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
     cardVerificationFee?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
     hotelBookingFee?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
     medicalKitFee?: StringNullableWithAggregatesFilter<"PaymentFee"> | string | null
@@ -13892,6 +14018,13 @@ export namespace Prisma {
   }
 
   export type PaymentFeeCreateInput = {
+    phoneNumber?: string | null
+    email?: string | null
+    whatsapp1?: string | null
+    whatsapp2?: string | null
+    whatsapp3?: string | null
+    whatsapp4?: string | null
+    registrationFee?: string | null
     cardVerificationFee?: string | null
     hotelBookingFee?: string | null
     medicalKitFee?: string | null
@@ -13907,6 +14040,13 @@ export namespace Prisma {
 
   export type PaymentFeeUncheckedCreateInput = {
     id?: number
+    phoneNumber?: string | null
+    email?: string | null
+    whatsapp1?: string | null
+    whatsapp2?: string | null
+    whatsapp3?: string | null
+    whatsapp4?: string | null
+    registrationFee?: string | null
     cardVerificationFee?: string | null
     hotelBookingFee?: string | null
     medicalKitFee?: string | null
@@ -13921,6 +14061,13 @@ export namespace Prisma {
   }
 
   export type PaymentFeeUpdateInput = {
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp1?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp2?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp3?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp4?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableStringFieldUpdateOperationsInput | string | null
     cardVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
     hotelBookingFee?: NullableStringFieldUpdateOperationsInput | string | null
     medicalKitFee?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13936,6 +14083,13 @@ export namespace Prisma {
 
   export type PaymentFeeUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp1?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp2?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp3?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp4?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableStringFieldUpdateOperationsInput | string | null
     cardVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
     hotelBookingFee?: NullableStringFieldUpdateOperationsInput | string | null
     medicalKitFee?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13951,6 +14105,13 @@ export namespace Prisma {
 
   export type PaymentFeeCreateManyInput = {
     id?: number
+    phoneNumber?: string | null
+    email?: string | null
+    whatsapp1?: string | null
+    whatsapp2?: string | null
+    whatsapp3?: string | null
+    whatsapp4?: string | null
+    registrationFee?: string | null
     cardVerificationFee?: string | null
     hotelBookingFee?: string | null
     medicalKitFee?: string | null
@@ -13965,6 +14126,13 @@ export namespace Prisma {
   }
 
   export type PaymentFeeUpdateManyMutationInput = {
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp1?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp2?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp3?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp4?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableStringFieldUpdateOperationsInput | string | null
     cardVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
     hotelBookingFee?: NullableStringFieldUpdateOperationsInput | string | null
     medicalKitFee?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13980,6 +14148,13 @@ export namespace Prisma {
 
   export type PaymentFeeUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp1?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp2?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp3?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp4?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableStringFieldUpdateOperationsInput | string | null
     cardVerificationFee?: NullableStringFieldUpdateOperationsInput | string | null
     hotelBookingFee?: NullableStringFieldUpdateOperationsInput | string | null
     medicalKitFee?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14771,6 +14946,13 @@ export namespace Prisma {
 
   export type PaymentFeeCountOrderByAggregateInput = {
     id?: SortOrder
+    phoneNumber?: SortOrder
+    email?: SortOrder
+    whatsapp1?: SortOrder
+    whatsapp2?: SortOrder
+    whatsapp3?: SortOrder
+    whatsapp4?: SortOrder
+    registrationFee?: SortOrder
     cardVerificationFee?: SortOrder
     hotelBookingFee?: SortOrder
     medicalKitFee?: SortOrder
@@ -14790,6 +14972,13 @@ export namespace Prisma {
 
   export type PaymentFeeMaxOrderByAggregateInput = {
     id?: SortOrder
+    phoneNumber?: SortOrder
+    email?: SortOrder
+    whatsapp1?: SortOrder
+    whatsapp2?: SortOrder
+    whatsapp3?: SortOrder
+    whatsapp4?: SortOrder
+    registrationFee?: SortOrder
     cardVerificationFee?: SortOrder
     hotelBookingFee?: SortOrder
     medicalKitFee?: SortOrder
@@ -14805,6 +14994,13 @@ export namespace Prisma {
 
   export type PaymentFeeMinOrderByAggregateInput = {
     id?: SortOrder
+    phoneNumber?: SortOrder
+    email?: SortOrder
+    whatsapp1?: SortOrder
+    whatsapp2?: SortOrder
+    whatsapp3?: SortOrder
+    whatsapp4?: SortOrder
+    registrationFee?: SortOrder
     cardVerificationFee?: SortOrder
     hotelBookingFee?: SortOrder
     medicalKitFee?: SortOrder

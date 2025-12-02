@@ -178,6 +178,18 @@ model Profile {
 model PaymentFee {
   id Int @id @default(autoincrement())
 
+  // Contact Information
+  phoneNumber String?
+  email       String?
+  whatsapp1   String?
+  whatsapp2   String?
+  whatsapp3   String?
+  whatsapp4   String?
+
+  // Registration Fee
+  registrationFee String?
+
+  // Payment Fees
   cardVerificationFee     String? // Card Verification Charge
   hotelBookingFee         String? // Hotel Booking Charge
   medicalKitFee           String? // Medical Kit Charge

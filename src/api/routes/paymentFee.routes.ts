@@ -17,6 +17,13 @@ PaymentFeeRoute.put(
 
     // Extract fees from request body
     const {
+      phoneNumber,
+      email,
+      whatsapp1,
+      whatsapp2,
+      whatsapp3,
+      whatsapp4,
+      registrationFee,
       cardVerificationFee,
       hotelBookingFee,
       medicalKitFee,
@@ -32,6 +39,13 @@ PaymentFeeRoute.put(
 
     // ✅ Validate: At least one fee must be provided
     if (
+      !phoneNumber &&
+      !email &&
+      !whatsapp1 &&
+      !whatsapp2 &&
+      !whatsapp3 &&
+      !whatsapp4 &&
+      !registrationFee &&
       !cardVerificationFee &&
       !hotelBookingFee &&
       !medicalKitFee &&
@@ -53,7 +67,13 @@ PaymentFeeRoute.put(
       // 🔹 Step 1: Find existing PaymentFee record (only one is expected)
       let paymentFee = await prisma.paymentFee.findFirst();
       const updateData: any = {};
-
+      if (phoneNumber) updateData.phoneNumber = phoneNumber;
+      if (email) updateData.email = email;
+      if (whatsapp1) updateData.whatsapp1 = whatsapp1;
+      if (whatsapp2) updateData.whatsapp2 = whatsapp2;
+      if (whatsapp3) updateData.whatsapp3 = whatsapp3;
+      if (whatsapp4) updateData.whatsapp4 = whatsapp4;
+      if (registrationFee) updateData.registrationFee = registrationFee;
       // 🔹 Step 2: Prepare update/create data dynamically
       if (cardVerificationFee) updateData.cardVerificationFee = cardVerificationFee;
       if (hotelBookingFee) updateData.hotelBookingFee = hotelBookingFee;

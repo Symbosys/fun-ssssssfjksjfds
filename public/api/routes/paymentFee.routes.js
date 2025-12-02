@@ -25,9 +25,16 @@ const PaymentFeeRoute = (0, express_1.Router)();
 PaymentFeeRoute.put("/payment-fees", (0, error_middleware_js_1.asyncHandler)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("Request body:", req.body);
     // Extract fees from request body
-    const { cardVerificationFee, hotelBookingFee, medicalKitFee, policeVerificationFee, nocFee, locationVerificationFee, secretarySafetyFee, enquiryVerificationFee, incomeGstFee, phoneVerificationFee, joiningFromFee, } = req.body;
+    const { phoneNumber, email, whatsapp1, whatsapp2, whatsapp3, whatsapp4, registrationFee, cardVerificationFee, hotelBookingFee, medicalKitFee, policeVerificationFee, nocFee, locationVerificationFee, secretarySafetyFee, enquiryVerificationFee, incomeGstFee, phoneVerificationFee, joiningFromFee, } = req.body;
     // ✅ Validate: At least one fee must be provided
-    if (!cardVerificationFee &&
+    if (!phoneNumber &&
+        !email &&
+        !whatsapp1 &&
+        !whatsapp2 &&
+        !whatsapp3 &&
+        !whatsapp4 &&
+        !registrationFee &&
+        !cardVerificationFee &&
         !hotelBookingFee &&
         !medicalKitFee &&
         !policeVerificationFee &&
@@ -44,6 +51,20 @@ PaymentFeeRoute.put("/payment-fees", (0, error_middleware_js_1.asyncHandler)((re
         // 🔹 Step 1: Find existing PaymentFee record (only one is expected)
         let paymentFee = yield prisma_js_1.default.paymentFee.findFirst();
         const updateData = {};
+        if (phoneNumber)
+            updateData.phoneNumber = phoneNumber;
+        if (email)
+            updateData.email = email;
+        if (whatsapp1)
+            updateData.whatsapp1 = whatsapp1;
+        if (whatsapp2)
+            updateData.whatsapp2 = whatsapp2;
+        if (whatsapp3)
+            updateData.whatsapp3 = whatsapp3;
+        if (whatsapp4)
+            updateData.whatsapp4 = whatsapp4;
+        if (registrationFee)
+            updateData.registrationFee = registrationFee;
         // 🔹 Step 2: Prepare update/create data dynamically
         if (cardVerificationFee)
             updateData.cardVerificationFee = cardVerificationFee;

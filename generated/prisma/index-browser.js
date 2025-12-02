@@ -246,6 +246,13 @@ exports.Prisma.ProfileScalarFieldEnum = {
 
 exports.Prisma.PaymentFeeScalarFieldEnum = {
   id: 'id',
+  phoneNumber: 'phoneNumber',
+  email: 'email',
+  whatsapp1: 'whatsapp1',
+  whatsapp2: 'whatsapp2',
+  whatsapp3: 'whatsapp3',
+  whatsapp4: 'whatsapp4',
+  registrationFee: 'registrationFee',
   cardVerificationFee: 'cardVerificationFee',
   hotelBookingFee: 'hotelBookingFee',
   medicalKitFee: 'medicalKitFee',
@@ -360,6 +367,13 @@ exports.Prisma.ProfileOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.PaymentFeeOrderByRelevanceFieldEnum = {
+  phoneNumber: 'phoneNumber',
+  email: 'email',
+  whatsapp1: 'whatsapp1',
+  whatsapp2: 'whatsapp2',
+  whatsapp3: 'whatsapp3',
+  whatsapp4: 'whatsapp4',
+  registrationFee: 'registrationFee',
   cardVerificationFee: 'cardVerificationFee',
   hotelBookingFee: 'hotelBookingFee',
   medicalKitFee: 'medicalKitFee',
