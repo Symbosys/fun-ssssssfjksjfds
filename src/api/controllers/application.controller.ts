@@ -73,6 +73,9 @@ export const getApplications = asyncHandler(async (req, res, next) => {
     where,
     skip,
     take: limit,
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 
   const totalApplications = await prisma.applicants.count({ where });
