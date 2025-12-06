@@ -53,6 +53,8 @@ exports.getApplications = (0, middlewares_1.asyncHandler)((req, res, next) => __
     const limit = Number(req.query.limit) || 10;
     const searchQuery = req.query.searchQuery || "";
     const gender = req.query.gender;
+    const startDate = req.query.startDate;
+    const endDate = req.query.endDate;
     const skip = (page - 1) * limit;
     const where = {};
     if (searchQuery) {
@@ -65,10 +67,19 @@ exports.getApplications = (0, middlewares_1.asyncHandler)((req, res, next) => __
     if (gender) {
         where.gender = gender;
     }
+    if (startDate && endDate) {
+        where.createdAt = {
+            gte: new Date(startDate),
+            lt: new Date(endDate),
+        };
+    }
     const applications = yield config_1.prisma.applicants.findMany({
         where,
         skip,
         take: limit,
+        orderBy: {
+            createdAt: "desc",
+        },
     });
     const totalApplications = yield config_1.prisma.applicants.count({ where });
     return (0, response_util_1.SuccessResponse)(res, "applications fetched successfully", {

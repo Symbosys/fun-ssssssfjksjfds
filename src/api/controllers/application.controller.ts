@@ -53,6 +53,8 @@ export const getApplications = asyncHandler(async (req, res, next) => {
   const limit = Number(req.query.limit) || 10;
   const searchQuery = (req.query.searchQuery as string) || "";
   const gender = req.query.gender as "MALE" | "FEMALE";
+  const startDate = req.query.startDate as string;
+  const endDate = req.query.endDate as string;
   const skip = (page - 1) * limit;
 
   const where: any = {};
@@ -67,6 +69,13 @@ export const getApplications = asyncHandler(async (req, res, next) => {
 
   if (gender) {
     where.gender = gender;
+  }
+
+  if (startDate && endDate) {
+    where.createdAt = {
+      gte: new Date(startDate),
+      lt: new Date(endDate),
+    };
   }
 
   const applications = await prisma.applicants.findMany({
