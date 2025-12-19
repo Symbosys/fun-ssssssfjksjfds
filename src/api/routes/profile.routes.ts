@@ -15,8 +15,8 @@
 
 
 import express from "express";
-import { deleteProfile, getAllProfiles, getprofileById, updateprofile } from "../controllers/profile.controller";
-import { uploadPaymentScreenshots } from "../middlewares/upload.middleware";
+import { createProfile, deleteProfile, getAllProfiles, getprofileById, updateprofile } from "../controllers/profile.controller";
+import upload, { uploadPaymentScreenshots } from "../middlewares/upload.middleware";
 
 const router = express.Router();
 
@@ -24,6 +24,9 @@ router.use((req, res, next) => {
   console.log("Incoming:", req.method, req.url);
   next();
 });
+
+// Create new profile
+router.post("/create", upload.single("customerImage"), createProfile);
 
 // Update profile with payment screenshots
 router.put("/update/:id", uploadPaymentScreenshots, updateprofile);

@@ -21,14 +21,47 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProfile = exports.getAllProfiles = exports.getprofileById = exports.updateprofile = void 0;
+exports.deleteProfile = exports.getAllProfiles = exports.getprofileById = exports.updateprofile = exports.createProfile = void 0;
+const cloudinary_1 = require("../../config/cloudinary");
 const prisma_1 = __importDefault(require("../../config/prisma"));
 const asyncHandler_1 = __importDefault(require("../middlewares/asyncHandler"));
 const errorResponse_1 = __importDefault(require("../utils/errorResponse"));
 const successResponse_1 = require("../utils/successResponse");
 const utils_1 = require("../utils/utils");
 const profile_validator_1 = require("../validators/profile.validator");
-const cloudinary_1 = require("../../config/cloudinary");
+exports.createProfile = (0, asyncHandler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email, name, phone, dateOfBirth, state, gender, address } = req.body;
+    if (!email || !name || !phone || !dateOfBirth || !state || !gender || !address) {
+        return next(new errorResponse_1.default("All fields are required", 400));
+    }
+    // Check if profile exists first to avoid unnecessary image upload
+    const existingProfile = yield prisma_1.default.profile.findUnique({
+        where: { email },
+    });
+    if (existingProfile) {
+        return (0, successResponse_1.SuccessResponse)(res, "Profile already exists", { data: existingProfile }, 200);
+    }
+    const customerImage = req.file;
+    if (!customerImage) {
+        return next(new errorResponse_1.default("Customer image is required", 400));
+    }
+    // upload customer image to cloudinary
+    const customerImageUpload = yield (0, cloudinary_1.uploadToCloudinary)(customerImage.buffer, "customerImage");
+    // create profile
+    const profile = yield prisma_1.default.profile.create({
+        data: {
+            email,
+            name,
+            phone,
+            dateOfBirth,
+            state,
+            gender,
+            address,
+            customerImage: customerImageUpload,
+        },
+    });
+    return (0, successResponse_1.SuccessResponse)(res, "Profile created successfully", { data: profile }, 201);
+}));
 // Update profile with payment screenshots and approval status
 exports.updateprofile = (0, asyncHandler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;

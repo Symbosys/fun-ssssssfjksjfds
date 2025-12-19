@@ -89,14 +89,57 @@
 
 
 import { Request } from "express";
+import { deleteFromCloudinary, uploadToCloudinary } from "../../config/cloudinary";
 import prisma from "../../config/prisma";
 import asyncHandler from "../middlewares/asyncHandler";
 import ErrorResponse from "../utils/errorResponse";
 import { SuccessResponse } from "../utils/successResponse";
 import { handleImageUpload } from "../utils/utils";
 import { ScreenshotFields, updateProfileSchema } from "../validators/profile.validator";
-import { profileImageFields } from "../../constants/profileImageFields";
-import { deleteFromCloudinary } from "../../config/cloudinary";
+
+
+
+export const createProfile = asyncHandler(async (req: Request, res, next) => {
+  const { email, name, phone, dateOfBirth, state, gender, address } = req.body;
+
+  if (!email || !name || !phone || !dateOfBirth || !state || !gender || !address) {
+    return next(new ErrorResponse("All fields are required", 400));
+  }
+
+  // Check if profile exists first to avoid unnecessary image upload
+  const existingProfile = await prisma.profile.findUnique({
+    where: { email },
+  });
+
+  if (existingProfile) {
+    return SuccessResponse(res, "Profile already exists", { data: existingProfile }, 200);
+  }
+
+  const customerImage = req.file;
+  if (!customerImage) {
+    return next(new ErrorResponse("Customer image is required", 400));
+  }
+
+  // upload customer image to cloudinary
+  const customerImageUpload = await uploadToCloudinary(customerImage.buffer, "customerImage");
+
+  // create profile
+  const profile = await prisma.profile.create({
+    data: {
+      email,
+      name,
+      phone,
+      dateOfBirth,
+      state,
+      gender,
+      address,
+      customerImage: customerImageUpload,
+    },
+  });
+
+  return SuccessResponse(res, "Profile created successfully", { data: profile }, 201);
+});
+
 
 
 // Update profile with payment screenshots and approval status
