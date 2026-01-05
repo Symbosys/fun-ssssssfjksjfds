@@ -134,6 +134,7 @@ export const createProfile = asyncHandler(async (req: Request, res, next) => {
       gender,
       address,
       customerImage: customerImageUpload,
+      currentStep: 1,
     },
   });
 
@@ -310,6 +311,7 @@ export const getAllProfiles = asyncHandler(async (req, res, next) => {
         incomeGstChangeStatus: true,
         phoneVerificationVerifiedStatus: true,
         joiningFromChangeStatus: true,
+        currentStep: true,
       },
     }),
     prisma.profile.count({ where: whereClause }),

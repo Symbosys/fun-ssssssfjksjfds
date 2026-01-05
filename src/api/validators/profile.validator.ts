@@ -50,6 +50,7 @@ export const updateProfileSchema = z.object({
   incomeGstChangeStatus: statusEnum.optional(),
   phoneVerificationStatus: statusEnum.optional(),
   joiningFromChangeStatus: statusEnum.optional(),
+  currentStep: z.preprocess((val) => (val === undefined ? undefined : parseInt(val as string, 10)), z.number().int().optional()),
 })
 
 // Schema for payment screenshot fields (for file uploads)

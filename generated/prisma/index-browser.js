@@ -241,7 +241,8 @@ exports.Prisma.ProfileScalarFieldEnum = {
   joiningFromChange: 'joiningFromChange',
   joiningFromChangeStatus: 'joiningFromChangeStatus',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  currentStep: 'currentStep'
 };
 
 exports.Prisma.PaymentFeeScalarFieldEnum = {

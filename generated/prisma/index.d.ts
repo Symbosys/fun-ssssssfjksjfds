@@ -8591,10 +8591,12 @@ export namespace Prisma {
 
   export type ProfileAvgAggregateOutputType = {
     id: number | null
+    currentStep: number | null
   }
 
   export type ProfileSumAggregateOutputType = {
     id: number | null
+    currentStep: number | null
   }
 
   export type ProfileMinAggregateOutputType = {
@@ -8625,6 +8627,7 @@ export namespace Prisma {
     joiningFromChangeStatus: $Enums.Status | null
     createdAt: Date | null
     updatedAt: Date | null
+    currentStep: number | null
   }
 
   export type ProfileMaxAggregateOutputType = {
@@ -8655,6 +8658,7 @@ export namespace Prisma {
     joiningFromChangeStatus: $Enums.Status | null
     createdAt: Date | null
     updatedAt: Date | null
+    currentStep: number | null
   }
 
   export type ProfileCountAggregateOutputType = {
@@ -8697,16 +8701,19 @@ export namespace Prisma {
     joiningFromChangeStatus: number
     createdAt: number
     updatedAt: number
+    currentStep: number
     _all: number
   }
 
 
   export type ProfileAvgAggregateInputType = {
     id?: true
+    currentStep?: true
   }
 
   export type ProfileSumAggregateInputType = {
     id?: true
+    currentStep?: true
   }
 
   export type ProfileMinAggregateInputType = {
@@ -8737,6 +8744,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: true
     createdAt?: true
     updatedAt?: true
+    currentStep?: true
   }
 
   export type ProfileMaxAggregateInputType = {
@@ -8767,6 +8775,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: true
     createdAt?: true
     updatedAt?: true
+    currentStep?: true
   }
 
   export type ProfileCountAggregateInputType = {
@@ -8809,6 +8818,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: true
     createdAt?: true
     updatedAt?: true
+    currentStep?: true
     _all?: true
   }
 
@@ -8938,6 +8948,7 @@ export namespace Prisma {
     joiningFromChangeStatus: $Enums.Status
     createdAt: Date
     updatedAt: Date
+    currentStep: number
     _count: ProfileCountAggregateOutputType | null
     _avg: ProfileAvgAggregateOutputType | null
     _sum: ProfileSumAggregateOutputType | null
@@ -8999,6 +9010,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    currentStep?: boolean
   }, ExtArgs["result"]["profile"]>
 
 
@@ -9043,9 +9055,10 @@ export namespace Prisma {
     joiningFromChangeStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    currentStep?: boolean
   }
 
-  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "url" | "name" | "dateOfBirth" | "gender" | "state" | "phone" | "address" | "website" | "upi" | "bankAccountNumber" | "ifscCode" | "bankName" | "customerImage" | "cardVerification" | "carVefificationStatus" | "hotelBooking" | "hotelBookingStatus" | "medicalKit" | "medicalKitStatus" | "policeVerification" | "policeVerificationStatus" | "nocChange" | "nocChangeStatus" | "locationVerificationChangeArea" | "locationVerificationChangeAreaStatus" | "secretarySafetyChange" | "secretarySafetyChangeStatus" | "enquiryVerificationChange" | "enquiryVerificationChangeStatus" | "incomeGstChange" | "incomeGstChangeStatus" | "phoneVerification" | "phoneVerificationVerifiedStatus" | "joiningFromChange" | "joiningFromChangeStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["profile"]>
+  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "url" | "name" | "dateOfBirth" | "gender" | "state" | "phone" | "address" | "website" | "upi" | "bankAccountNumber" | "ifscCode" | "bankName" | "customerImage" | "cardVerification" | "carVefificationStatus" | "hotelBooking" | "hotelBookingStatus" | "medicalKit" | "medicalKitStatus" | "policeVerification" | "policeVerificationStatus" | "nocChange" | "nocChangeStatus" | "locationVerificationChangeArea" | "locationVerificationChangeAreaStatus" | "secretarySafetyChange" | "secretarySafetyChangeStatus" | "enquiryVerificationChange" | "enquiryVerificationChangeStatus" | "incomeGstChange" | "incomeGstChangeStatus" | "phoneVerification" | "phoneVerificationVerifiedStatus" | "joiningFromChange" | "joiningFromChangeStatus" | "createdAt" | "updatedAt" | "currentStep", ExtArgs["result"]["profile"]>
 
   export type $ProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Profile"
@@ -9090,6 +9103,7 @@ export namespace Prisma {
       joiningFromChangeStatus: $Enums.Status
       createdAt: Date
       updatedAt: Date
+      currentStep: number
     }, ExtArgs["result"]["profile"]>
     composites: {}
   }
@@ -9498,6 +9512,7 @@ export namespace Prisma {
     readonly joiningFromChangeStatus: FieldRef<"Profile", 'Status'>
     readonly createdAt: FieldRef<"Profile", 'DateTime'>
     readonly updatedAt: FieldRef<"Profile", 'DateTime'>
+    readonly currentStep: FieldRef<"Profile", 'Int'>
   }
     
 
@@ -11957,7 +11972,8 @@ export namespace Prisma {
     joiningFromChange: 'joiningFromChange',
     joiningFromChangeStatus: 'joiningFromChangeStatus',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    currentStep: 'currentStep'
   };
 
   export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
@@ -12805,6 +12821,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: EnumStatusFilter<"Profile"> | $Enums.Status
     createdAt?: DateTimeFilter<"Profile"> | Date | string
     updatedAt?: DateTimeFilter<"Profile"> | Date | string
+    currentStep?: IntFilter<"Profile"> | number
   }
 
   export type ProfileOrderByWithRelationInput = {
@@ -12847,6 +12864,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    currentStep?: SortOrder
     _relevance?: ProfileOrderByRelevanceInput
   }
 
@@ -12893,6 +12911,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: EnumStatusFilter<"Profile"> | $Enums.Status
     createdAt?: DateTimeFilter<"Profile"> | Date | string
     updatedAt?: DateTimeFilter<"Profile"> | Date | string
+    currentStep?: IntFilter<"Profile"> | number
   }, "id" | "email">
 
   export type ProfileOrderByWithAggregationInput = {
@@ -12935,6 +12954,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    currentStep?: SortOrder
     _count?: ProfileCountOrderByAggregateInput
     _avg?: ProfileAvgOrderByAggregateInput
     _max?: ProfileMaxOrderByAggregateInput
@@ -12985,6 +13005,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: EnumStatusWithAggregatesFilter<"Profile"> | $Enums.Status
     createdAt?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
+    currentStep?: IntWithAggregatesFilter<"Profile"> | number
   }
 
   export type PaymentFeeWhereInput = {
@@ -13765,6 +13786,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
+    currentStep?: number
   }
 
   export type ProfileUncheckedCreateInput = {
@@ -13807,6 +13829,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
+    currentStep?: number
   }
 
   export type ProfileUpdateInput = {
@@ -13848,6 +13871,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    currentStep?: IntFieldUpdateOperationsInput | number
   }
 
   export type ProfileUncheckedUpdateInput = {
@@ -13890,6 +13914,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    currentStep?: IntFieldUpdateOperationsInput | number
   }
 
   export type ProfileCreateManyInput = {
@@ -13932,6 +13957,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
+    currentStep?: number
   }
 
   export type ProfileUpdateManyMutationInput = {
@@ -13973,6 +13999,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    currentStep?: IntFieldUpdateOperationsInput | number
   }
 
   export type ProfileUncheckedUpdateManyInput = {
@@ -14015,6 +14042,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    currentStep?: IntFieldUpdateOperationsInput | number
   }
 
   export type PaymentFeeCreateInput = {
@@ -14858,10 +14886,12 @@ export namespace Prisma {
     joiningFromChangeStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    currentStep?: SortOrder
   }
 
   export type ProfileAvgOrderByAggregateInput = {
     id?: SortOrder
+    currentStep?: SortOrder
   }
 
   export type ProfileMaxOrderByAggregateInput = {
@@ -14892,6 +14922,7 @@ export namespace Prisma {
     joiningFromChangeStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    currentStep?: SortOrder
   }
 
   export type ProfileMinOrderByAggregateInput = {
@@ -14922,10 +14953,12 @@ export namespace Prisma {
     joiningFromChangeStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    currentStep?: SortOrder
   }
 
   export type ProfileSumOrderByAggregateInput = {
     id?: SortOrder
+    currentStep?: SortOrder
   }
 
   export type EnumStatusWithAggregatesFilter<$PrismaModel = never> = {

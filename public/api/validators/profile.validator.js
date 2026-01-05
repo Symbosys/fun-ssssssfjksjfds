@@ -46,6 +46,7 @@ exports.updateProfileSchema = zod_1.z.object({
     incomeGstChangeStatus: statusEnum.optional(),
     phoneVerificationStatus: statusEnum.optional(),
     joiningFromChangeStatus: statusEnum.optional(),
+    currentStep: zod_1.z.preprocess((val) => (val === undefined ? undefined : parseInt(val, 10)), zod_1.z.number().int().optional()),
 });
 // Schema for payment screenshot fields (for file uploads)
 exports.ScreenshotFields = [

@@ -58,6 +58,7 @@ exports.createProfile = (0, asyncHandler_1.default)((req, res, next) => __awaite
             gender,
             address,
             customerImage: customerImageUpload,
+            currentStep: 1,
         },
     });
     return (0, successResponse_1.SuccessResponse)(res, "Profile created successfully", { data: profile }, 201);
@@ -187,6 +188,7 @@ exports.getAllProfiles = (0, asyncHandler_1.default)((req, res, next) => __await
                 incomeGstChangeStatus: true,
                 phoneVerificationVerifiedStatus: true,
                 joiningFromChangeStatus: true,
+                currentStep: true,
             },
         }),
         prisma_1.default.profile.count({ where: whereClause }),
